@@ -1,270 +1,474 @@
-inherited frmArticulos: TfrmArticulos
-  Tag = 1
-  Caption = 'Articulos'
-  ClientHeight = 658
-  ClientWidth = 1144
-  Position = poMainFormCenter
-  OnShow = FormShow
-  ExplicitWidth = 1152
-  ExplicitHeight = 685
+inherited fVta: TfVta
+  Caption = 'Ventas'
+  ClientHeight = 507
+  ClientWidth = 825
+  ExplicitWidth = 833
+  ExplicitHeight = 534
   PixelsPerInch = 96
-  TextHeight = 19
-  inherited tobMain: TToolBar
-    Width = 1144
-    ExplicitWidth = 1144
-    inherited ToolButton4: TToolButton
-      OnClick = ToolButton4Click
-    end
-    object ToolButton11: TToolButton
-      Left = 464
+  TextHeight = 15
+  object tobMain: TToolBar
+    Left = 0
+    Top = 0
+    Width = 825
+    Height = 42
+    ButtonHeight = 38
+    ButtonWidth = 56
+    Images = imlCRUD
+    ShowCaptions = True
+    TabOrder = 0
+    object ToolButton1: TToolButton
+      Left = 0
       Top = 0
-      Action = actPrecios
+      Action = dtsInsert
     end
-    object ToolButton12: TToolButton
-      Left = 528
+    object ToolButton2: TToolButton
+      Left = 56
+      Top = 0
+      Action = dtsEdit
+    end
+    object ToolButton3: TToolButton
+      Left = 112
+      Top = 0
+      Action = dtsPost
+    end
+    object ToolButton9: TToolButton
+      Left = 168
+      Top = 0
+      Action = dtsCancel
+    end
+    object ToolButton10: TToolButton
+      Left = 224
+      Top = 0
+      Action = actBuscar
+    end
+    object ToolButton4: TToolButton
+      Left = 280
+      Top = 0
+      Caption = '&Imprimir'
+      ImageIndex = 7
+    end
+    object ToolButton5: TToolButton
+      Left = 336
       Top = 0
       Width = 8
-      Caption = 'ToolButton12'
-      ImageIndex = 10
+      Caption = 'ToolButton5'
+      ImageIndex = 4
+      Style = tbsSeparator
+    end
+    object ToolButton7: TToolButton
+      Left = 344
+      Top = 0
+      Action = dtsDelete
+    end
+    object ToolButton8: TToolButton
+      Left = 400
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton8'
+      ImageIndex = 5
       Style = tbsSeparator
     end
   end
-  inherited pgcCRUD: TPageControl
+  object pgcCRUD: TPageControl
     Left = 0
     Top = 42
-    Width = 1144
-    Height = 616
+    Width = 825
+    Height = 465
+    ActivePage = tabDetail
     Align = alClient
-    ExplicitLeft = 0
-    ExplicitTop = 42
-    ExplicitWidth = 1144
-    ExplicitHeight = 616
-    inherited tabBrowse: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 4
-      ExplicitWidth = 1110
-      ExplicitHeight = 608
-      object Splitter1: TSplitter [0]
-        Left = 193
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Calibri'
+    Font.Style = []
+    MultiLine = True
+    ParentFont = False
+    TabOrder = 1
+    TabPosition = tpRight
+    object tabBrowse: TTabSheet
+      Caption = 'tabBrowse'
+      object dbgBrowse: TDBGrid
+        Left = 0
         Top = 0
-        Height = 608
-        ExplicitLeft = 216
-        ExplicitTop = 88
-        ExplicitHeight = 100
-      end
-      inherited dbgBrowse: TDBGrid
-        Left = 196
-        Top = 0
-        Width = 914
-        Height = 608
+        Width = 792
+        Height = 457
         Align = alClient
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        DataSource = dsBrowse
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -15
+        TitleFont.Name = 'Calibri'
+        TitleFont.Style = []
+        OnDblClick = dbgBrowseDblClick
+        OnKeyDown = dbgBrowseKeyDown
         Columns = <
           item
             Expanded = False
             FieldName = 'id'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'nombre'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'um'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'costo'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'rubro_id'
             Visible = False
           end
           item
             Expanded = False
-            FieldName = 'subrubro_id'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'descripcion'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'rubro'
+            FieldName = 'nro'
+            Title.Caption = 'Nro'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'subrubro'
+            FieldName = 'cliente_id'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'Cliente'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'fecha'
+            Title.Caption = 'Fecha'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Estado'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'monto'
+            Title.Caption = 'Total'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'fecha_requerido'
+            Title.Caption = 'Fecha Requerido'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'forma_entrega'
+            Title.Caption = 'Forma Entrega'
             Visible = True
           end>
       end
-      object JvDBTreeView1: TJvDBTreeView
-        Left = 0
-        Top = 0
-        Width = 193
-        Height = 608
-        DataSource = dm.dsRubros
-        MasterField = 'id'
-        DetailField = 'parent'
-        IconField = 'id'
-        ItemField = 'nombre'
-        StartMasterValue = '0'
-        UseFilter = False
-        PersistentNode = True
-        Indent = 19
-        OnChange = JvDBTreeView1Change
-        Align = alLeft
-        TabOrder = 1
-        RowSelect = True
-        Mirror = False
-      end
     end
-    inherited tabDetail: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 4
-      ExplicitWidth = 1110
-      ExplicitHeight = 608
-      object Label1: TLabel
-        Left = 26
-        Top = 40
-        Width = 29
-        Height = 19
-        Caption = 'Cod.'
-        FocusControl = DBEdit1
+    object tabDetail: TTabSheet
+      Caption = 'tabDetail'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Calibri'
+      Font.Style = []
+      ImageIndex = 1
+      ParentFont = False
+      object Label12: TLabel
+        Left = 626
+        Top = 357
+        Width = 27
+        Height = 15
+        Caption = 'Total'
       end
-      object Label2: TLabel
-        Left = 26
-        Top = 95
-        Width = 51
-        Height = 19
-        Caption = 'Nombre'
-        FocusControl = DBEdit2
-      end
-      object Label3: TLabel
-        Left = 26
-        Top = 151
-        Width = 37
-        Height = 19
-        Caption = 'Costo'
-        FocusControl = DBEdit3
-      end
-      object Label4: TLabel
-        Left = 26
-        Top = 207
-        Width = 23
-        Height = 19
-        Caption = 'UM'
-        FocusControl = DBEdit4
+      object Label6: TLabel
+        Left = 568
+        Top = 385
+        Width = 25
+        Height = 15
+        Caption = 'Dcto'
       end
       object Label7: TLabel
-        Left = 26
-        Top = 375
-        Width = 76
-        Height = 19
-        Caption = 'Descripcion'
+        Left = 568
+        Top = 414
+        Width = 82
+        Height = 15
+        Caption = 'Total a Pagar $'
       end
-      object Label8: TLabel
-        Left = 30
-        Top = 269
-        Width = 45
-        Height = 19
-        Caption = 'Rubros'
+      object dbgDetalle: TDBGrid
+        Left = 8
+        Top = 172
+        Width = 754
+        Height = 175
+        TabStop = False
+        DataSource = dm.dsVLineas
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Calibri'
+        Font.Style = []
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -13
+        TitleFont.Name = 'Calibri'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'articulo_id'
+            Title.Caption = 'Cod'
+            Width = 35
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'articulo_nombre'
+            Title.Caption = 'Articulo'
+            Width = 270
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'articulo_um'
+            Title.Caption = 'UM'
+            Width = 30
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cantidad'
+            Title.Caption = 'Pzs'
+            Width = 30
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'base'
+            Width = 70
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'alto'
+            Width = 70
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CntTotal'
+            Width = 50
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'precio'
+            Title.Caption = 'Precio'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'subtotal'
+            Visible = True
+          end>
       end
-      object Label9: TLabel
-        Left = 26
-        Top = 317
-        Width = 64
-        Height = 19
-        Caption = 'Subrubros'
+      object DBEdit6: TDBEdit
+        Left = 659
+        Top = 353
+        Width = 80
+        Height = 23
+        TabStop = False
+        DataField = 'monto'
+        DataSource = dm.dsVPedidos
+        ReadOnly = True
+        TabOrder = 4
+      end
+      object GroupBox2: TGroupBox
+        Left = 8
+        Top = 49
+        Width = 754
+        Height = 112
+        Caption = ' Cliente '
+        TabOrder = 5
+        object Label2: TLabel
+          Left = 459
+          Top = 22
+          Width = 25
+          Height = 15
+          Caption = 'CUIT'
+        end
+        object Label4: TLabel
+          Left = 19
+          Top = 48
+          Width = 54
+          Height = 15
+          Caption = 'Domicilio'
+        end
+        object Label14: TLabel
+          Left = 594
+          Top = 22
+          Width = 27
+          Height = 15
+          Caption = 'Telef.'
+        end
+        object Label16: TLabel
+          Left = 3
+          Top = 74
+          Width = 70
+          Height = 15
+          Caption = 'Comentarios'
+        end
+        object edtClienteId: TDBEdit
+          Left = 9
+          Top = 19
+          Width = 34
+          Height = 23
+          DataField = 'cliente_id'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object DBEdit5: TDBEdit
+          Left = 489
+          Top = 19
+          Width = 96
+          Height = 23
+          DataField = 'cliente_cuit'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 1
+        end
+        object DBEdit3: TDBEdit
+          Left = 628
+          Top = 19
+          Width = 119
+          Height = 23
+          DataField = 'cliente_telefono'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object DBEdit2: TDBEdit
+          Left = 76
+          Top = 45
+          Width = 356
+          Height = 23
+          DataField = 'cliente_domicilio'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 3
+        end
+        object edtComentario: TDBMemo
+          Left = 76
+          Top = 71
+          Width = 669
+          Height = 36
+          DataField = 'comentario'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 4
+        end
+        object DBLookupComboBox1: TDBLookupComboBox
+          Left = 48
+          Top = 19
+          Width = 393
+          Height = 23
+          DataField = 'cliente_nombre'
+          DataSource = dm.dsVPedidos
+          ReadOnly = True
+          TabOrder = 5
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 8
+        Top = 1
+        Width = 754
+        Height = 49
+        Caption = 'Venta'
+        TabOrder = 0
+        TabStop = True
+        object Label1: TLabel
+          Left = 6
+          Top = 21
+          Width = 6
+          Height = 15
+          Caption = '#'
+        end
+        object DBText1: TDBText
+          Left = 24
+          Top = 21
+          Width = 111
+          Height = 17
+          DataField = 'nro'
+          DataSource = dm.dsAVentas
+        end
+        object Label3: TLabel
+          Left = 555
+          Top = 18
+          Width = 32
+          Height = 15
+          Caption = 'Fecha'
+        end
+        object DBText2: TDBText
+          Left = 604
+          Top = 18
+          Width = 142
+          Height = 17
+          DataField = 'fecha'
+          DataSource = dm.dsAVentas
+        end
+        object Label5: TLabel
+          Left = 237
+          Top = 18
+          Width = 47
+          Height = 15
+          Caption = 'Pedido #'
+        end
+        object edtPedidoNro: TDBEdit
+          Left = 290
+          Top = 14
+          Width = 98
+          Height = 23
+          DataField = 'pedido_id'
+          DataSource = dm.dsAVentas
+          TabOrder = 0
+          OnExit = edtPedidoNroExit
+          OnKeyDown = edtPedidoNroKeyDown
+        end
       end
       object DBEdit1: TDBEdit
-        Left = 128
-        Top = 37
-        Width = 194
-        Height = 27
+        Left = 659
+        Top = 382
+        Width = 80
+        Height = 23
         TabStop = False
-        DataField = 'id'
-        DataSource = dsBrowse
+        DataField = 'dcto_monto'
+        DataSource = dm.dsAVentas
         ReadOnly = True
-        TabOrder = 0
-      end
-      object DBEdit2: TDBEdit
-        Left = 128
-        Top = 93
-        Width = 800
-        Height = 27
-        DataField = 'nombre'
-        DataSource = dsBrowse
-        TabOrder = 1
-      end
-      object DBEdit3: TDBEdit
-        Left = 128
-        Top = 149
-        Width = 194
-        Height = 27
-        DataField = 'costo'
-        DataSource = dsBrowse
         TabOrder = 2
       end
       object DBEdit4: TDBEdit
-        Left = 128
-        Top = 205
-        Width = 194
-        Height = 27
-        DataField = 'um'
-        DataSource = dsBrowse
+        Left = 659
+        Top = 411
+        Width = 80
+        Height = 23
+        TabStop = False
+        DataField = 'total'
+        DataSource = dm.dsAVentas
+        ReadOnly = True
         TabOrder = 3
       end
-      object DBMemo1: TDBMemo
-        Left = 128
-        Top = 376
-        Width = 553
-        Height = 89
-        DataField = 'descripcion'
-        DataSource = dsBrowse
-        TabOrder = 4
-      end
-      object RxDBLookupCombo1: TRxDBLookupCombo
-        Left = 128
-        Top = 261
-        Width = 332
-        Height = 26
-        DropDownCount = 8
-        DataField = 'rubro_id'
-        DataSource = dsBrowse
-        DisplayEmpty = '<SIN RUBRO>'
-        LookupField = 'id'
-        LookupDisplay = 'nombre'
-        LookupSource = dm.dsARubros
-        TabOrder = 5
-      end
-      object RxDBLookupCombo2: TRxDBLookupCombo
-        Left = 128
-        Top = 311
-        Width = 332
-        Height = 26
-        DropDownCount = 8
-        DataField = 'subrubro_id'
-        DataSource = dsBrowse
-        DisplayEmpty = '<SIN SUBRUBRO>'
-        LookupField = 'id'
-        LookupDisplay = 'nombre'
-        LookupSource = dm.dsASubrubros
+      object DBEdit7: TDBEdit
+        Left = 601
+        Top = 382
+        Width = 52
+        Height = 23
+        TabStop = False
+        DataField = 'dcto'
+        DataSource = dm.dsAVentas
         TabOrder = 6
       end
     end
   end
-  inherited imlCRUD: TImageList
+  object imlCRUD: TImageList
+    Left = 456
+    Top = 8
     Bitmap = {
-      494C01010A007400740010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010B009400940010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -276,114 +480,114 @@ inherited frmArticulos: TfrmArticulos
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000006C6C7000174B8200AF7B
       7B00000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000004620900035F
-      090003560600014F0400014C0400014C0400014C0400014C0400014C0400014C
-      0400014C0400013D030000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000003A79B1001A81FF003B5F
       7F00B07D7D000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000078216000C9C2300099A
-      1D000796150005920F0003900B00038F0A00038F0A0003900A0003900A00038F
-      0A0003960B0002740700013D0300000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000010841000189C
+      180031A5310039AD390039AD3900107B100031942900217318005A524200736B
+      5A0000000000000000000000000000000000CC670100CC670100CC670100CC67
+      0100CC670100CC670100CC670100CC670100CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000002996FF0042ADFE001C7E
       F8000C60B800B17D7B0000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000D98250013B53A000FAF
-      2D000AAB230006A7180004A51300FFFFFF0018B02300009D030002A30B0003A4
-      0C0003AC0D0003960A00014C0400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000021A5210031AD
+      31004ABD4A0052C65200399C39008CBD7B0052BD520042BD4200217318004A42
+      290000000000000000000000000000000000FFFEFC00FFFBF700FEF8F000FFF5
+      E800FFF0E100FEEDD900FEEAD200FEE7CC00CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000000000002A96FE00349A
       FF001C7EF8003E5F7E00B07B7B00000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000010A02D001CB4490016AD
-      390021B240009EE9AD00A4EBB000D4FBDA00A4EAAB003EBB4700029D0A00039C
-      0B0003A40C0003900A00014D0400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000299C29004ABD
+      4A006BCE6B006BC66B00F7FFEF00F7FFEF0063C6630063CE630031A531004A6B
+      390000000000000000000000000000000000FFFEFD00FFFCF900FFF9F300FFF6
+      EC00FFF2E400FEEEDC00FEEBD400FEE8CD00CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000002C98
       FE0041ADFE00197BF6000C5EB600000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000011A12F0028B85B001FB2
-      4C0045C26900FAFFFC002CB64700B8E9C20072D18100FBFFFE0044BD4E00039D
-      0B0003A50C0003900A00014C0400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000004ABD
+      4A0073CE730052A54A00FFFFFF00FFFFFF006BC66B0073CE7300319C31000000
+      000000000000000000000000000000000000FFFFFF00FFFDFB00FFFAF500FEF7
+      EE00FEF4E600FEF0DE00FEECD700FEE9D000CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00002D99FE00339CFF00287FE700000000000000000099696400996964009969
-      6400996964000000000000000000000000000000000011A12F003EC270002DBA
-      5F0046C4720077D4930005A42700B6E9C20051C56700FFFFFF0086D79000049E
-      0F0003A40C0003900A00014C0400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      6400996964000000000000000000000000000000000000000000000000000000
+      000018734A003984AD00217BBD00428CAD0063BD6300399C3900000000000000
+      0000000000000000000000000000000000009933000099330000993300009933
+      000099330000993300009933000099330000993300009933000099330000CC67
+      0100000000000066000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000B6877500CCAB8C00FFFFD300FFFFD000FFFF
-      D000FFFFD300D4BAA40099696400000000000000000011A12F005CCC880038BD
-      670025B7580023B6540045C16B00CCF8D900EFFFF300FFFFFF0075D1840008A1
-      190005A7120003910B00014D0400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      D000FFFFD300D4BAA40099696400000000000000000000000000000000000000
+      0000187BC600218CE700298CE700218CE700296B520000000000000000000000
+      000021842900218429000000000000000000FFFFFE00FFFCFA00FFFBF500FFF8
+      F000FEF5EA00FFF2E400FEEFDE00FEEDD800FEEAD300FEE8CD00FEE6C900CC67
+      0100000000000066000000660000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000D4AF8F00FFEFB000FFFFCF00FFFFCE00FFFF
-      D700FFFFDC00FFFFFF00D3BBB800000000000000000011A12F0070D4970042C2
-      70002FBB5F00A9EFC200FFFFFF00FFFFFF00FBFFFF0096DEAA0023B241000BA6
-      230009A91C000593110002540500000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      D700FFFFDC00FFFFFF00D3BBB80000000000000000000000000000000000297B
+      AD00399CFF00399CFF00399CFF00399CFF00298CE70039525200000000000000
+      000094DE8C00218429000000000000000000FFFEFE00FFFDFB00FEFBF600FFF9
+      F200FFF6EC00FFF3E600FEF1E000FFEEDA00FEEBD400FEE8CF00FEE6CA00CC67
+      0100000000000066000066FE9A00006600000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000099696400F6CA8B00EEBA7F00FFFFD000FFFFCF00FFFF
-      EB00FFFFFE00FFFFF200FFFFE500996964000000000011A12F007DD79F004AC5
-      760052C97E00FFFFFF00D9FEE700E3FCED0048C473001CB1460011AC35000FA9
-      2D000DAC270009991B00035F0900000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      EB00FFFFFE00FFFFF200FFFFE500996964000000000000000000000000002184
+      C60042A5FF0042A5FF0042A5FF0042A5FF00399CF700315A6B00218429002184
+      290000EE000000C000002184290021842900FFFFFF00FFFDFC00FFFBF800FFF9
+      F300FEF7ED00FFF4E700FFF1E200FEEEDC00FEEBD500FEE9D000FEE7CB00CC67
+      0100000000000066000000660000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000099696400F0BC7D00EBB07500FEFCCB00FFFFD100FFFF
-      E600FFFFF600FFFFE600FFFFD700996964000000000011A12F0086DAA60054C9
-      7F005ACB8300FFFFFF007ED89F00BDEBCF003ABF6900B0F0C90044CB6E0015AD
-      3B0012AF35000D9E2500056B0C00000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      E600FFFFF600FFFFE600FFFFD7009969640000000000000000006BA5C60042A5
+      F7004AB5FF0052B5FF0052BDFF0052B5FF004AADFF00397394002184290000EE
+      000040FF400000EE000000C00000218429009933000099330000993300009933
+      000099330000993300009933000099330000993300009933000099330000CC67
+      0100000000000066000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000099696400F3C48400E99E6300F4D79F00FCF4C200FFFF
-      D300FFFFD300FFFFD000FFFFCF00996964000000000011A12F0093DEB10066CF
-      8C0042C27000A1EDBD00C5F8D800CBF8DD00B7F3CF00E0FFEB004CCE7A0019B0
-      480017B1420010A12F0006760F00000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      D300FFFFD300FFFFD000FFFFCF009969640000000000000000005294BD0042A5
+      EF005ABDFF005ABDFF0052B5F7004AB5EF0052B5F70039738C00218429002184
+      290000EE000000C000002184290021842900FFFFFF00FFFDFB00FFFAF500FFF7
+      ED00FFF2E500FFEFDC00FEEBD400FEE8CC00CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000099696400FCDE9E00EFBA7E00EFC28400F6DAA100FFFF
-      CF00FFFFD100FFFFD000FFFFD100996964000000000011A1300099E1B50090DD
-      AD006CD191005DCC860070D39500FFFFFF008AE5AB0045C4730023B555001DB2
-      51001CB54F0015A93D0008841400000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      CF00FFFFD100FFFFD000FFFFD10099696400000000000000000063849C002173
+      A5004A94C6006BADD60063ADF7004A9CE700216BA50000000000000000000000
+      000000C00000218429000000000000000000FFFFFF00FFFEFE00FFFBF800FFF8
+      F000FFF4E800FEF0DF00FFECD700FEE8D000CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000D7BB9E00FFFFFF00F6D8AC00EDB47400EDB4
-      7800F0C48A00FFF4B600D3B79900000000000000000011A12F0079D79F0099E1
-      B6009DE2B80093DEB10083DAA5006DD395004FC97E0035BF680024B7590020B5
-      55001FB8580018AD4300098E1600000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      7800F0C48A00FFF4B600D3B79900000000000000000000000000000000002173
+      A5006BADD6008CBDE70073BDE7005AADDE00316B7B0000000000000000000000
+      000021842900218429000000000000000000FFFFFF00FFFFFF00FFFDFA00FFFA
+      F400FEF6EC00FEF2E400FEEEDA00FEEBD200CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000099696400CEB6AF00FFF4CB00F6CF9000F2BF
-      8100F7CE9000D4B193009969640000000000000000000000000022A9400037B5
-      550039B5560037B5540033B250002AAF490021AA40001AA6390013A4310012A1
-      320012A431000C9A230000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      8100F7CE9000D4B1930099696400000000000000000000000000000000000000
+      00006BA5BD004A94B5004A8CAD0063849C000000000000000000000000000000
+      000000000000000000000000000000000000CC670100CC670100CC670100CC67
+      0100CC670100CC670100CC670100CC670100CC67010000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -652,11 +856,11 @@ inherited frmArticulos: TfrmArticulos
       000000000000CC9A9900CC9A9900CC9A99000000000000000000000000000000
       000000000000000000000000000000000000424D3E000000000000003E000000
       2800000040000000300000000100010000000000800100000000000000000000
-      000000000000000000000000FFFFFF00FFFFFFFF000000008FFFC00300000000
-      87FF80010000000083FF800100000000C1FF800100000000E1FF800100000000
-      F187800100000000FE01800100000000FE01800100000000FC00800100000000
-      FC00800100000000FC00800100000000FC00800100000000FE01800100000000
-      FE01C00300000000FF87FFFF00000000C001FFFCF81FFFFFC0019FF9E007C007
+      000000000000000000000000FFFFFF00FFFFFFFFFFFF00008FFFFFFFFFFF0000
+      87FFC00F007F000083FFC00F007F0000C1FFC00F007F0000E1FFE01F007F0000
+      F187F03F000B0000FE01F07300090000FE01E03300080000FC00E00000090000
+      FC00C000000B0000FC00C000007F0000FC00C073007F0000FE01E073007F0000
+      FE01F0FF007F0000FF87FFFFFFFF0000C001FFFCF81FFFFFC0019FF9E007C007
       C0018FF3C0038003C00187E780010001C001C3CF80010001C001F11F00000001
       C001F83F00000000C001FC7F00000000C001F83F00008000C001F19F0000C000
       C001E3CF0000E001C001C7E78001E007C0018FFB8001F007C0031FFFC003F003
@@ -667,17 +871,56 @@ inherited frmArticulos: TfrmArticulos
       C0070010C007C07FC00F0039FFFFF8FF00000000000000000000000000000000
       000000000000}
   end
-  inherited aclCRUD: TActionList
-    inherited dtsCancel: TDataSetCancel
-      Enabled = False
+  object aclCRUD: TActionList
+    Images = imlCRUD
+    Left = 424
+    Top = 8
+    object actExit: TAction
+      Caption = 'Ce&rrar'
+      ImageIndex = 4
+      OnExecute = actExitExecute
     end
-    object actPrecios: TAction [7]
-      Caption = 'Precios'
-      ImageIndex = 9
-      OnExecute = actPreciosExecute
+    object actBuscar: TAction
+      Caption = '&Buscar'
+      ImageIndex = 8
+      OnExecute = actBuscarExecute
+    end
+    object actImprimir: TAction
+      Caption = '&Imprimir'
+      ImageIndex = 7
+    end
+    object dtsInsert: TAction
+      Caption = '&Nuevo'
+      ImageIndex = 0
+      OnExecute = dtsInsertExecute
+    end
+    object dtsEdit: TAction
+      Caption = '&Editar'
+      ImageIndex = 1
+      OnExecute = dtsEditExecute
+    end
+    object dtsPost: TAction
+      Caption = '&Guardar'
+      Enabled = False
+      ImageIndex = 2
+      OnExecute = dtsPostExecute
+    end
+    object dtsCancel: TAction
+      Caption = '&Cancelar'
+      Enabled = False
+      ImageIndex = 6
+      OnExecute = dtsCancelExecute
+    end
+    object dtsDelete: TAction
+      Caption = 'Eliminar'
+      ImageIndex = 5
+      OnExecute = dtsDeleteExecute
     end
   end
-  inherited dsBrowse: TDataSource
-    DataSet = dm.cdsArticulos
+  object dsBrowse: TDataSource
+    AutoEdit = False
+    DataSet = dm.tblVentas
+    Left = 488
+    Top = 8
   end
 end

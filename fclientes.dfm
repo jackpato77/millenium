@@ -1,15 +1,16 @@
 inherited frmClientes: TfrmClientes
   Caption = 'Clientes'
-  ClientHeight = 416
-  ClientWidth = 659
+  ClientHeight = 608
+  ClientWidth = 963
   Position = poMainFormCenter
-  ExplicitWidth = 675
-  ExplicitHeight = 454
+  OnShow = FormShow
+  ExplicitWidth = 971
+  ExplicitHeight = 635
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 19
   inherited tobMain: TToolBar
-    Width = 659
-    ExplicitWidth = 659
+    Width = 963
+    ExplicitWidth = 963
     inherited ToolButton4: TToolButton
       Action = actImprimir
     end
@@ -17,401 +18,155 @@ inherited frmClientes: TfrmClientes
   inherited pgcCRUD: TPageControl
     Left = 0
     Top = 42
-    Width = 659
-    Height = 374
+    Width = 963
+    Height = 566
     Align = alClient
     ExplicitLeft = 0
     ExplicitTop = 42
-    ExplicitWidth = 659
-    ExplicitHeight = 374
+    ExplicitWidth = 963
+    ExplicitHeight = 566
     inherited tabBrowse: TTabSheet
-      ExplicitWidth = 631
-      ExplicitHeight = 366
+      ExplicitWidth = 929
+      ExplicitHeight = 558
       inherited dbgBrowse: TDBGrid
         Left = 0
         Top = 0
-        Width = 631
-        Height = 366
+        Width = 929
+        Height = 558
         Align = alClient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'idcliente'
-            Title.Caption = 'Codigo'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'razonsocial'
-            Title.Caption = 'Razon Social'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'nombre'
-            Title.Caption = 'Nombre'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cuit'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'direccion'
-            Title.Caption = 'Direccion'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cp'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'localidad'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'provincia'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'pais'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'telefono'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'celular'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'fax'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'contacto'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'condiva'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'mail'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'web'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'idcategoria'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'externo'
-            Visible = True
-          end>
       end
     end
     inherited tabDetail: TTabSheet
-      ExplicitWidth = 631
-      ExplicitHeight = 366
+      ExplicitWidth = 929
+      ExplicitHeight = 558
       object Label1: TLabel
-        Left = 9
-        Top = 7
-        Width = 33
-        Height = 13
-        Caption = 'Codigo'
+        Left = 24
+        Top = 32
+        Width = 29
+        Height = 19
+        Caption = 'Cod.'
         FocusControl = DBEdit1
       end
       object Label2: TLabel
-        Left = 14
-        Top = 40
-        Width = 60
-        Height = 13
-        Caption = 'Razon Social'
+        Left = 24
+        Top = 88
+        Width = 51
+        Height = 19
+        Caption = 'Nombre'
         FocusControl = DBEdit2
       end
       object Label3: TLabel
-        Left = 37
-        Top = 67
-        Width = 37
-        Height = 13
-        Caption = 'Nombre'
+        Left = 24
+        Top = 144
+        Width = 31
+        Height = 19
+        Caption = 'CUIT'
         FocusControl = DBEdit3
       end
       object Label4: TLabel
-        Left = 50
-        Top = 96
-        Width = 24
-        Height = 13
-        Caption = 'CUIT'
+        Left = 24
+        Top = 200
+        Width = 61
+        Height = 19
+        Caption = 'Domicilio'
         FocusControl = DBEdit4
       end
       object Label5: TLabel
-        Left = 31
-        Top = 120
-        Width = 43
-        Height = 13
-        Caption = 'Direccion'
+        Left = 24
+        Top = 256
+        Width = 56
+        Height = 19
+        Caption = 'Telefono'
         FocusControl = DBEdit5
       end
       object Label6: TLabel
-        Left = 299
-        Top = 149
-        Width = 55
-        Height = 13
-        Caption = 'Cod. Postal'
+        Left = 24
+        Top = 312
+        Width = 89
+        Height = 19
+        Caption = 'Condicion IVA'
         FocusControl = DBEdit6
       end
       object Label7: TLabel
-        Left = 30
-        Top = 149
-        Width = 44
-        Height = 13
-        Caption = 'Localidad'
+        Left = 24
+        Top = 368
+        Width = 58
+        Height = 19
+        Caption = 'Contacto'
         FocusControl = DBEdit7
       end
-      object Label8: TLabel
-        Left = 31
-        Top = 175
-        Width = 43
-        Height = 13
-        Caption = 'Provincia'
-        FocusControl = DBEdit8
-      end
-      object Label9: TLabel
-        Left = 290
-        Top = 174
-        Width = 19
-        Height = 13
-        Caption = 'Pais'
-        FocusControl = DBEdit9
-      end
-      object Label10: TLabel
-        Left = 32
-        Top = 208
-        Width = 42
-        Height = 13
-        Caption = 'Telefono'
-        FocusControl = DBEdit10
-      end
-      object Label11: TLabel
-        Left = 193
-        Top = 207
-        Width = 33
-        Height = 13
-        Caption = 'Celular'
-        FocusControl = DBEdit11
-      end
-      object Label12: TLabel
-        Left = 353
-        Top = 208
-        Width = 18
-        Height = 13
-        Caption = 'Fax'
-        FocusControl = DBEdit12
-      end
-      object Label13: TLabel
-        Left = 30
-        Top = 235
-        Width = 44
-        Height = 13
-        Caption = 'Contacto'
-        FocusControl = DBEdit13
-      end
-      object Label14: TLabel
-        Left = 25
-        Top = 262
-        Width = 49
-        Height = 13
-        Caption = 'Cond. IVA'
-        FocusControl = DBEdit14
-      end
-      object Label15: TLabel
-        Left = 56
-        Top = 294
-        Width = 18
-        Height = 13
-        Caption = 'Mail'
-        FocusControl = DBEdit15
-      end
-      object Label16: TLabel
-        Left = 52
-        Top = 316
-        Width = 22
-        Height = 13
-        Caption = 'Web'
-        FocusControl = DBEdit16
-      end
       object DBEdit1: TDBEdit
-        Left = 54
-        Top = 3
-        Width = 59
-        Height = 21
-        DataField = 'idcliente'
+        Left = 118
+        Top = 30
+        Width = 194
+        Height = 27
+        TabStop = False
+        DataField = 'id'
         DataSource = dsBrowse
+        ReadOnly = True
         TabOrder = 0
       end
       object DBEdit2: TDBEdit
-        Left = 83
-        Top = 37
-        Width = 466
-        Height = 21
-        DataField = 'razonsocial'
+        Left = 118
+        Top = 86
+        Width = 800
+        Height = 27
+        DataField = 'nombre'
         DataSource = dsBrowse
         TabOrder = 1
       end
       object DBEdit3: TDBEdit
-        Left = 83
-        Top = 64
-        Width = 394
-        Height = 21
-        DataField = 'nombre'
+        Left = 118
+        Top = 142
+        Width = 232
+        Height = 27
+        DataField = 'cuit'
         DataSource = dsBrowse
         TabOrder = 2
       end
       object DBEdit4: TDBEdit
-        Left = 83
-        Top = 91
-        Width = 115
-        Height = 21
-        DataField = 'cuit'
+        Left = 118
+        Top = 198
+        Width = 800
+        Height = 27
+        DataField = 'domicilio'
         DataSource = dsBrowse
         TabOrder = 3
       end
       object DBEdit5: TDBEdit
-        Left = 83
-        Top = 118
-        Width = 394
-        Height = 21
-        DataField = 'direccion'
+        Left = 118
+        Top = 254
+        Width = 289
+        Height = 27
+        DataField = 'telefono'
         DataSource = dsBrowse
         TabOrder = 4
       end
       object DBEdit6: TDBEdit
-        Left = 367
-        Top = 145
-        Width = 80
-        Height = 21
-        DataField = 'cp'
+        Left = 118
+        Top = 310
+        Width = 289
+        Height = 27
+        DataField = 'condicion_iva'
         DataSource = dsBrowse
         TabOrder = 5
       end
       object DBEdit7: TDBEdit
-        Left = 83
-        Top = 145
-        Width = 174
-        Height = 21
-        DataField = 'localidad'
-        DataSource = dsBrowse
-        TabOrder = 6
-      end
-      object DBEdit8: TDBEdit
-        Left = 83
-        Top = 174
-        Width = 174
-        Height = 21
-        DataField = 'provincia'
-        DataSource = dsBrowse
-        TabOrder = 7
-      end
-      object DBEdit9: TDBEdit
-        Left = 315
-        Top = 172
-        Width = 100
-        Height = 21
-        DataField = 'pais'
-        DataSource = dsBrowse
-        TabOrder = 8
-      end
-      object DBEdit10: TDBEdit
-        Left = 83
-        Top = 205
-        Width = 100
-        Height = 21
-        DataField = 'telefono'
-        DataSource = dsBrowse
-        TabOrder = 9
-      end
-      object DBEdit11: TDBEdit
-        Left = 236
-        Top = 205
-        Width = 100
-        Height = 21
-        DataField = 'celular'
-        DataSource = dsBrowse
-        TabOrder = 10
-      end
-      object DBEdit12: TDBEdit
-        Left = 384
-        Top = 204
-        Width = 100
-        Height = 21
-        DataField = 'fax'
-        DataSource = dsBrowse
-        TabOrder = 11
-      end
-      object DBEdit13: TDBEdit
-        Left = 83
-        Top = 232
-        Width = 257
-        Height = 21
+        Left = 118
+        Top = 366
+        Width = 800
+        Height = 27
         DataField = 'contacto'
         DataSource = dsBrowse
-        TabOrder = 12
-      end
-      object DBEdit14: TDBEdit
-        Left = 83
-        Top = 259
-        Width = 200
-        Height = 21
-        DataField = 'condiva'
-        DataSource = dsBrowse
-        TabOrder = 13
-      end
-      object DBEdit15: TDBEdit
-        Left = 83
-        Top = 286
-        Width = 523
-        Height = 21
-        DataField = 'mail'
-        DataSource = dsBrowse
-        TabOrder = 14
-      end
-      object DBEdit16: TDBEdit
-        Left = 83
-        Top = 313
-        Width = 516
-        Height = 21
-        DataField = 'web'
-        DataSource = dsBrowse
-        TabOrder = 15
+        TabOrder = 6
       end
     end
   end
   inherited imlCRUD: TImageList
     Left = 400
     Bitmap = {
-      494C010109004800500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109005C005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -815,14 +570,20 @@ inherited frmClientes: TfrmClientes
       000000000000}
   end
   inherited aclCRUD: TActionList
+    inherited dtsInsert: TDataSetInsert
+      Enabled = False
+    end
+    inherited dtsDelete: TDataSetDelete
+      Enabled = False
+    end
+    inherited dtsEdit: TDataSetEdit
+      Enabled = False
+    end
     inherited dtsCancel: TDataSetCancel
       Enabled = False
     end
     inherited actImprimir: TAction
       OnExecute = actImprimirExecute
     end
-  end
-  inherited dsBrowse: TDataSource
-    DataSet = dm.tblClientes
   end
 end

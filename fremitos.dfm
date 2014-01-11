@@ -88,13 +88,11 @@ object frmRemitos: TfrmRemitos
         end
         item
           Expanded = False
-          FieldName = ''
           Title.Caption = 'Articulo'
           Visible = True
         end
         item
           Expanded = False
-          FieldName = ''
           Title.Caption = 'UM'
           Visible = True
         end
@@ -127,7 +125,6 @@ object frmRemitos: TfrmRemitos
         end
         item
           Expanded = False
-          FieldName = ''
           Visible = True
         end>
     end
@@ -185,9 +182,8 @@ object frmRemitos: TfrmRemitos
     object Label1: TLabel
       Left = 504
       Top = 40
-      Width = 40
+      Width = 3
       Height = 13
-      Caption = ''
     end
     object SpeedButton6: TSpeedButton
       Left = 730
@@ -222,7 +218,6 @@ object frmRemitos: TfrmRemitos
         FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-      OnClick = SpeedButton6Click
     end
     object Label6: TLabel
       Left = 243
@@ -295,7 +290,6 @@ object frmRemitos: TfrmRemitos
       Top = 56
       Width = 51
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 2
     end
@@ -331,7 +325,6 @@ object frmRemitos: TfrmRemitos
       Top = 56
       Width = 134
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 6
     end
@@ -340,7 +333,6 @@ object frmRemitos: TfrmRemitos
       Top = 20
       Width = 632
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 8
     end
@@ -349,7 +341,6 @@ object frmRemitos: TfrmRemitos
       Top = 56
       Width = 87
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 9
     end
@@ -360,7 +351,6 @@ object frmRemitos: TfrmRemitos
       Height = 25
       Caption = 'Agregar'
       TabOrder = 7
-      OnClick = SpeedButton5Click
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
         18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -453,7 +443,6 @@ object frmRemitos: TfrmRemitos
       Height = 25
       Caption = 'Nuevo Remito'
       TabOrder = 2
-      OnClick = Button1Click
     end
   end
   object pnlShip: TPanel
@@ -569,16 +558,14 @@ object frmRemitos: TfrmRemitos
     object Label16: TLabel
       Left = 597
       Top = 7
-      Width = 40
+      Width = 3
       Height = 13
-      Caption = ''
     end
     object DBEdit16: TDBEdit
       Left = 643
       Top = 4
       Width = 81
       Height = 21
-      DataField = ''
       DataSource = dsRemitos
       TabOrder = 0
     end
@@ -598,12 +585,10 @@ object frmRemitos: TfrmRemitos
     Top = 280
   end
   object dsAux: TDataSource
-    DataSet = dm.cdsAux
     Left = 744
     Top = 152
   end
   object dsRemitos: TDataSource
-    DataSet = dm.cdsRemitos
     Left = 560
     Top = 16
   end

@@ -21,16 +21,37 @@ type
       extra: string;
   end;
 
+  TORMEntity = class
+    constructor Create; virtual; abstract;
+    class function Find(aModelName: string; aId: integer): TORMEntity; virtual;
+    function Save: boolean; virtual; abstract;
+  end;
+  TORMEntityClass = class of TORMEntity;
+
+  TORMDBCnx = class
+    constructor Create; virtual; abstract;
+  end;
+
   TLineaList = class;
-  TLinea = class
+  TLinea = class(TORMEntity)
+  private
+    FAlto: double;
+    FBase: double;
+    FCantidad: double;
+    FIdArticulo: integer;
     FIdLinea: integer;
     FIdMaster: integer;
     FMaster: string;
-    FIdArticulo: integer;
     FPrecio: double;
-    FCantidad: double;
-    FBase: double;
-    FAlto: double;
+  public
+    property Alto: double read FAlto write FAlto;
+    property Base: double read FBase write FBase;
+    property Cantidad: double read FCantidad write FCantidad;
+    property IdArticulo: integer read FIdArticulo write FIdArticulo;
+    property IdLinea: integer read FIdLinea write FIdLinea;
+    property IdMaster: integer read FIdMaster write FIdMaster;
+    property Master: string read FMaster write FMaster;
+    property Precio: double read FPrecio write FPrecio;
   end;
 
   TLineaList = class
@@ -47,16 +68,7 @@ type
 //    property Items[Index: integer]: TLinea read GetItem; default;
   end;
 
-  TPresupuesto = class(TObject)
-    private
-      FId: integer;
-      FFecha: TDateTime;
-      FClienteId: integer;
-      FObservaciones: TStrings;
-      FItems: TLineaList;
-  end;
-
-  TCliente = class(TObject)
+  TCliente = class(TORMEntity)
     private
       FData: TClientDataSet;
       FId: integer;
@@ -68,7 +80,23 @@ type
 
     public
       //property Nombre: string read GetNombre write SetNombre;
+      class function Find(aId: integer): TCliente;
   end;
+
+  TPresupuesto = class(TObject)
+    private
+      FId: integer;
+      FFecha: TDateTime;
+      FCliente: TCliente;
+      FObservaciones: TStrings;
+      FItems: TLineaList;
+    public
+      property Cliente: TCliente read FCliente write FCliente;
+      property Id: integer read FId write FId;
+      property Fecha: TDateTime read FFecha write FFecha;
+      property Observaciones: TStrings read FObservaciones write FObservaciones;
+  end;
+
 
   TArticulo = class(TObject)
     private
@@ -82,7 +110,7 @@ type
 
   TCaja = class(TObject)
     private
-      FCajaId: integer;
+      FId: integer;
       FFecha: TDateTime;
       FClienteId: integer;
       FImporte: currency;
@@ -90,5 +118,19 @@ type
   end;
 
 implementation
+
+{ TORMEntity }
+
+class function TCliente.Find(aId: integer): TCliente;
+begin
+  //result:=inherited TORMEntity.Find(self.ClassName,aId);
+end;
+
+{ TORMEntity }
+
+class function TORMEntity.Find(aModelName: string; aId: integer): TORMEntity;
+begin
+  
+end;
 
 end.

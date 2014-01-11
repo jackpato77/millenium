@@ -25,7 +25,7 @@ object rptPResupuesto: TrptPResupuesto
     Frame.DrawBottom = False
     Frame.DrawLeft = False
     Frame.DrawRight = False
-    DataSet = rdm.qryPto
+    DataSet = dm.cdsBPedidos
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -118,7 +118,7 @@ object rptPResupuesto: TrptPResupuesto
       object QRDBText6: TQRDBText
         Left = 117
         Top = 103
-        Width = 93
+        Width = 13
         Height = 20
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -129,14 +129,14 @@ object rptPResupuesto: TrptPResupuesto
           52.916666666666670000
           309.562500000000000000
           272.520833333333300000
-          246.062500000000000000)
+          34.395833333333330000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'idpresupuesto'
+        DataSet = dm.cdsBPedidos
+        DataField = 'id'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -152,7 +152,7 @@ object rptPResupuesto: TrptPResupuesto
       object QRDBText7: TQRDBText
         Left = 552
         Top = 103
-        Width = 31
+        Width = 78
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -163,14 +163,14 @@ object rptPResupuesto: TrptPResupuesto
           44.979166666666670000
           1460.500000000000000000
           272.520833333333300000
-          82.020833333333330000)
+          206.375000000000000000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'fecha'
+        DataSet = dm.cdsBPedidos
+        DataField = 'fecha_ingreso'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -436,7 +436,7 @@ object rptPResupuesto: TrptPResupuesto
       object QRDBText10: TQRDBText
         Left = 70
         Top = 133
-        Width = 50
+        Width = 102
         Height = 20
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -447,14 +447,14 @@ object rptPResupuesto: TrptPResupuesto
           52.916666666666670000
           185.208333333333300000
           351.895833333333300000
-          132.291666666666700000)
+          269.875000000000000000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'nombre'
+        DataSet = dm.cdsBPedidos
+        DataField = 'cliente_nombre'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -470,7 +470,7 @@ object rptPResupuesto: TrptPResupuesto
       object QRDBText11: TQRDBText
         Left = 70
         Top = 156
-        Width = 53
+        Width = 97
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -481,14 +481,14 @@ object rptPResupuesto: TrptPResupuesto
           44.979166666666670000
           185.208333333333300000
           412.750000000000000000
-          140.229166666666700000)
+          256.645833333333300000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'direccion'
+        DataSet = dm.cdsBPedidos
+        DataField = 'cliente_domicilio'
         Mask = '0000-000000'
         Transparent = False
         WordWrap = True
@@ -498,7 +498,7 @@ object rptPResupuesto: TrptPResupuesto
       object QRDBText12: TQRDBText
         Left = 70
         Top = 179
-        Width = 46
+        Width = 91
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -509,14 +509,14 @@ object rptPResupuesto: TrptPResupuesto
           44.979166666666670000
           185.208333333333300000
           473.604166666666700000
-          121.708333333333300000)
+          240.770833333333300000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'telefono'
+        DataSet = dm.cdsBPedidos
+        DataField = 'cliente_telefono'
         Mask = '0000-000000'
         Transparent = False
         WordWrap = True
@@ -875,6 +875,71 @@ object rptPResupuesto: TrptPResupuesto
         ExportAs = exptText
         FontSize = 12
       end
+      object QRDBText16: TQRDBText
+        Left = 606
+        Top = 133
+        Width = 77
+        Height = 20
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        Size.Values = (
+          52.916666666666670000
+          1603.375000000000000000
+          351.895833333333300000
+          203.729166666666700000)
+        Alignment = taLeftJustify
+        AlignToBand = False
+        AutoSize = True
+        AutoStretch = False
+        Color = clWhite
+        DataSet = dm.cdsBPedidos
+        DataField = 'cliente_cuit'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Calibri'
+        Font.Style = []
+        ParentFont = False
+        Transparent = False
+        WordWrap = True
+        ExportAs = exptText
+        FontSize = 12
+      end
+      object QRLabel16: TQRLabel
+        Left = 572
+        Top = 135
+        Width = 29
+        Height = 17
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        Size.Values = (
+          44.979166666666670000
+          1513.416666666667000000
+          357.187500000000000000
+          76.729166666666670000)
+        Alignment = taLeftJustify
+        AlignToBand = False
+        AutoSize = True
+        AutoStretch = False
+        Caption = 'CUIT:'
+        Color = clWhite
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Calibri'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+        WordWrap = True
+        ExportAs = exptText
+        FontSize = 10
+      end
     end
     object QRBand2: TQRBand
       Left = 48
@@ -917,8 +982,8 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
-        DataField = 'idarticulo'
+        DataSet = dm.cdsDetails
+        DataField = 'articulo_id'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -950,7 +1015,7 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
+        DataSet = dm.cdsDetails
         DataField = 'cantidad'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -983,7 +1048,7 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
+        DataSet = dm.cdsDetails
         DataField = 'base'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -1016,7 +1081,7 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
+        DataSet = dm.cdsDetails
         DataField = 'alto'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -1049,7 +1114,7 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
+        DataSet = dm.cdsDetails
         DataField = 'precio'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -1082,7 +1147,7 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
+        DataSet = dm.cdsDetails
         DataField = 'subtotal'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -1115,8 +1180,8 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
-        DataField = 'denominacion'
+        DataSet = dm.cdsDetails
+        DataField = 'articulo_nombre'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1148,8 +1213,8 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryLin
-        DataField = 'umcompra'
+        DataSet = dm.cdsDetails
+        DataField = 'articulo_um'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1164,7 +1229,7 @@ object rptPResupuesto: TrptPResupuesto
     end
     object QRBand3: TQRBand
       Left = 48
-      Top = 330
+      Top = 370
       Width = 720
       Height = 73
       Frame.Color = clBlack
@@ -1184,39 +1249,6 @@ object rptPResupuesto: TrptPResupuesto
       PreCaluculateBandHeight = False
       KeepOnOnePage = False
       BandType = rbPageFooter
-      object QRDBText13: TQRDBText
-        Left = 629
-        Top = 6
-        Width = 58
-        Height = 20
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          52.916666666666670000
-          1664.229166666667000000
-          15.875000000000000000
-          153.458333333333300000)
-        Alignment = taRightJustify
-        AlignToBand = False
-        AutoSize = False
-        AutoStretch = False
-        Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'subtotal'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Calibri'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 12
-      end
       object QRDBText14: TQRDBText
         Left = 32
         Top = 24
@@ -1237,13 +1269,35 @@ object rptPResupuesto: TrptPResupuesto
         AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryPto
-        DataField = 'observaciones'
+        DataSet = dm.cdsBPedidos
+        DataField = 'comentario'
         Transparent = False
         WordWrap = True
         ExportAs = exptText
         FontSize = 10
       end
+    end
+    object QRBand4: TQRBand
+      Left = 48
+      Top = 330
+      Width = 720
+      Height = 40
+      Frame.Color = clBlack
+      Frame.DrawTop = False
+      Frame.DrawBottom = False
+      Frame.DrawLeft = False
+      Frame.DrawRight = False
+      AlignToBottom = False
+      Color = clWhite
+      TransparentBand = False
+      ForceNewColumn = False
+      ForceNewPage = False
+      Size.Values = (
+        105.833333333333300000
+        1905.000000000000000000)
+      PreCaluculateBandHeight = False
+      KeepOnOnePage = False
+      BandType = rbSummary
       object QRLabel7: TQRLabel
         Left = 582
         Top = 6
@@ -1265,6 +1319,39 @@ object rptPResupuesto: TrptPResupuesto
         AutoStretch = False
         Caption = 'Total'
         Color = clWhite
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Calibri'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+        WordWrap = True
+        ExportAs = exptText
+        FontSize = 12
+      end
+      object QRDBText13: TQRDBText
+        Left = 629
+        Top = 6
+        Width = 58
+        Height = 20
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        Size.Values = (
+          52.916666666666670000
+          1664.229166666667000000
+          15.875000000000000000
+          153.458333333333300000)
+        Alignment = taRightJustify
+        AlignToBand = False
+        AutoSize = False
+        AutoStretch = False
+        Color = clWhite
+        DataSet = dm.cdsDetails
+        DataField = 'total'
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -16

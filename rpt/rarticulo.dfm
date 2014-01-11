@@ -1,7 +1,7 @@
-object rptArticulo: TrptArticulo
+object rLArticulo: TrLArticulo
   Left = 0
   Top = 0
-  Caption = 'rptArticulo'
+  Caption = 'rLArticulos'
   ClientHeight = 398
   ClientWidth = 774
   Color = clBtnFace
@@ -14,7 +14,7 @@ object rptArticulo: TrptArticulo
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
-  object QuickRep1: TQuickRep
+  object qrpArticulos: TQuickRep
     Left = 0
     Top = 0
     Width = 816
@@ -24,7 +24,7 @@ object rptArticulo: TrptArticulo
     Frame.DrawBottom = False
     Frame.DrawLeft = False
     Frame.DrawRight = False
-    DataSet = rdm.qryArt
+    DataSet = dm.cdsArticulos
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -367,7 +367,7 @@ object rptArticulo: TrptArticulo
       Left = 48
       Top = 219
       Width = 720
-      Height = 32
+      Height = 19
       Frame.Color = clBlack
       Frame.DrawTop = False
       Frame.DrawBottom = False
@@ -379,15 +379,15 @@ object rptArticulo: TrptArticulo
       ForceNewColumn = False
       ForceNewPage = False
       Size.Values = (
-        84.666666666666670000
+        50.270833333333330000
         1905.000000000000000000)
       PreCaluculateBandHeight = False
       KeepOnOnePage = False
       BandType = rbDetail
       object QRDBText1: TQRDBText
         Left = 16
-        Top = 8
-        Width = 53
+        Top = 0
+        Width = 25
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -397,24 +397,24 @@ object rptArticulo: TrptArticulo
         Size.Values = (
           44.979166666666670000
           42.333333333333330000
-          21.166666666666670000
-          140.229166666666700000)
+          0.000000000000000000
+          66.145833333333330000)
         Alignment = taLeftJustify
         AlignToBand = False
-        AutoSize = True
+        AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryArt
-        DataField = 'idarticulo'
+        DataSet = dm.cdsArticulos
+        DataField = 'id'
         Transparent = False
         WordWrap = True
         ExportAs = exptText
         FontSize = 10
       end
       object QRDBText2: TQRDBText
-        Left = 80
-        Top = 8
-        Width = 81
+        Left = 47
+        Top = 0
+        Width = 570
         Height = 17
         Frame.Color = clBlack
         Frame.DrawTop = False
@@ -423,16 +423,16 @@ object rptArticulo: TrptArticulo
         Frame.DrawRight = False
         Size.Values = (
           44.979166666666670000
-          211.666666666666700000
-          21.166666666666670000
-          214.312500000000000000)
+          124.354166666666700000
+          0.000000000000000000
+          1508.125000000000000000)
         Alignment = taLeftJustify
         AlignToBand = False
-        AutoSize = True
+        AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryArt
-        DataField = 'denominacion'
+        DataSet = dm.cdsArticulos
+        DataField = 'nombre'
         Transparent = False
         WordWrap = True
         ExportAs = exptText
@@ -440,7 +440,7 @@ object rptArticulo: TrptArticulo
       end
       object QRDBText3: TQRDBText
         Left = 648
-        Top = 6
+        Top = 0
         Width = 36
         Height = 17
         Frame.Color = clBlack
@@ -451,15 +451,15 @@ object rptArticulo: TrptArticulo
         Size.Values = (
           44.979166666666670000
           1714.500000000000000000
-          15.875000000000000000
+          0.000000000000000000
           95.250000000000000000)
         Alignment = taRightJustify
         AlignToBand = False
-        AutoSize = True
+        AutoSize = False
         AutoStretch = False
         Color = clWhite
-        DataSet = rdm.qryArt
-        DataField = 'precio'
+        DataSet = dm.cdsArticulos
+        DataField = 'costo'
         Transparent = False
         WordWrap = True
         ExportAs = exptNumeric

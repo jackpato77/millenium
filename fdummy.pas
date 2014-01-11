@@ -4,41 +4,34 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, JvExComCtrls, JvComCtrls, JvTabBar, ExtCtrls;
+  Dialogs, ExtCtrls, StdCtrls;
 
 type
-  TfrmDock = class(TForm)
-    Edit1: TEdit;
+  TForm4 = class(TForm)
+    GridPanel1: TGridPanel;
     Button1: TButton;
-    JvTabBar1: TJvTabBar;
-    JvPageControl1: TJvPageControl;
-    TabSheet1: TTabSheet;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    class function CreateDockForm(const aColor: string): TCustomForm;
-
   end;
 
 var
-  frmDock: TfrmDock;
+  Form4: TForm4;
 
 implementation
 
 {$R *.dfm}
 
-{ TfrmDock }
-
-class function TfrmDock.CreateDockForm(const aColor: string): TCustomForm;
+procedure TForm4.Button1Click(Sender: TObject);
+var
+  tri: TRowItem;
 begin
- result := TfrmDock.Create(Application);
-
-  //result.Color := aColor;
-
-  result.Caption := aColor;
-
-  result.Show;
+  tri:=GridPanel1.RowCollection.Add;
+  
 end;
 
 end.

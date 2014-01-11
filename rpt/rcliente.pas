@@ -7,7 +7,7 @@ uses
   Dialogs, QRCtrls, jpeg, QuickRpt, ExtCtrls;
 
 type
-  TfrClientes = class(TForm)
+  TrLClientes = class(TForm)
     qrpCliente: TQuickRep;
     QRBand1: TQRBand;
     QRBand2: TQRBand;
@@ -30,7 +30,7 @@ type
   end;
 
 var
-  frClientes: TfrClientes;
+  rLClientes: TrLClientes;
 
 implementation
 

@@ -87,13 +87,11 @@ object frmVentas: TfrmVentas
         end
         item
           Expanded = False
-          FieldName = ''
           Title.Caption = 'Articulo'
           Visible = True
         end
         item
           Expanded = False
-          FieldName = ''
           Title.Caption = 'UM'
           Visible = True
         end
@@ -285,7 +283,6 @@ object frmVentas: TfrmVentas
         FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-      OnClick = SpeedButton6Click
     end
     object Label6: TLabel
       Left = 485
@@ -395,7 +392,6 @@ object frmVentas: TfrmVentas
       Top = 23
       Width = 294
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 8
     end
@@ -404,7 +400,6 @@ object frmVentas: TfrmVentas
       Top = 23
       Width = 87
       Height = 21
-      DataField = ''
       DataSource = dsAux
       TabOrder = 9
     end
@@ -415,7 +410,6 @@ object frmVentas: TfrmVentas
       Height = 25
       Caption = 'Agregar'
       TabOrder = 7
-      OnClick = SpeedButton5Click
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
         18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -640,7 +634,6 @@ object frmVentas: TfrmVentas
     Top = 280
   end
   object dsAux: TDataSource
-    DataSet = dm.cdsAux
     Left = 608
     Top = 200
   end

@@ -1,13 +1,10 @@
-object frmDock: TfrmDock
+object Form4: TForm4
   Left = 0
   Top = 0
-  BorderStyle = bsSizeToolWin
-  Caption = 'frmDock'
-  ClientHeight = 520
-  ClientWidth = 612
+  Caption = 'Form4'
+  ClientHeight = 213
+  ClientWidth = 455
   Color = clBtnFace
-  DragKind = dkDock
-  DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,48 +13,71 @@ object frmDock: TfrmDock
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Edit1: TEdit
-    Left = 176
-    Top = 312
-    Width = 121
-    Height = 21
+  object GridPanel1: TGridPanel
+    Left = 16
+    Top = 16
+    Width = 431
+    Height = 129
+    Caption = 'GridPanel1'
+    ColumnCollection = <
+      item
+        Value = 25.581395348837210000
+      end
+      item
+        Value = 74.418604651162800000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = Edit1
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = Edit2
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
     TabOrder = 0
-    Text = 'Edit1'
+    DesignSize = (
+      431
+      129)
+    object Edit1: TEdit
+      Left = 1
+      Top = 22
+      Width = 109
+      Height = 21
+      Anchors = []
+      TabOrder = 0
+      Text = 'Edit1'
+      ExplicitLeft = 160
+      ExplicitTop = 24
+    end
+    object Edit2: TEdit
+      Left = 215
+      Top = 22
+      Width = 121
+      Height = 21
+      Anchors = []
+      TabOrder = 1
+      Text = 'Edit1'
+      ExplicitLeft = 160
+      ExplicitTop = 24
+    end
   end
   object Button1: TButton
-    Left = 312
-    Top = 312
+    Left = 320
+    Top = 160
     Width = 75
     Height = 25
     Caption = 'Button1'
     TabOrder = 1
-  end
-  object JvTabBar1: TJvTabBar
-    Left = 0
-    Top = 0
-    Width = 612
-    Tabs = <
-      item
-        Caption = 'tres'
-        Selected = True
-      end
-      item
-        Caption = 'dos'
-      end
-      item
-        Caption = 'uno'
-      end>
-  end
-  object JvPageControl1: TJvPageControl
-    Left = 8
-    Top = 29
-    Width = 289
-    Height = 193
-    ActivePage = TabSheet1
-    TabOrder = 3
-    DotNetHighlighting = True
-    object TabSheet1: TTabSheet
-      Caption = 'TabSheet1'
-    end
+    OnClick = Button1Click
   end
 end

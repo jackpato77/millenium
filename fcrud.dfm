@@ -79,15 +79,10 @@ object frmCRUD: TfrmCRUD
       ImageIndex = 5
       Style = tbsSeparator
     end
-    object ToolButton6: TToolButton
-      Left = 464
-      Top = 0
-      Action = actExit
-    end
   end
   object pgcCRUD: TPageControl
-    Left = 8
-    Top = 48
+    Left = 88
+    Top = 83
     Width = 633
     Height = 377
     ActivePage = tabBrowse
@@ -97,10 +92,6 @@ object frmCRUD: TfrmCRUD
     OnChange = pgcCRUDChange
     object tabBrowse: TTabSheet
       Caption = 'tabBrowse'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 605
-      ExplicitHeight = 0
       object dbgBrowse: TDBGrid
         Left = 3
         Top = 3
@@ -114,22 +105,19 @@ object frmCRUD: TfrmCRUD
         TitleFont.Name = 'Calibri'
         TitleFont.Style = []
         OnDblClick = dbgBrowseDblClick
+        OnKeyDown = dbgBrowseKeyDown
       end
     end
     object tabDetail: TTabSheet
       Caption = 'tabDetail'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
   end
   object imlCRUD: TImageList
     Left = 432
     Top = 40
     Bitmap = {
-      494C010109004C00580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109007800780010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

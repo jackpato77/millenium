@@ -16,7 +16,6 @@ type
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
-    ToolButton6: TToolButton;
     aclCRUD: TActionList;
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
@@ -46,11 +45,13 @@ type
     procedure actBuscarExecute(Sender: TObject);
     procedure dtsDeleteExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure dbgBrowseKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     //procedure dsMainStateChange(Sender: TObject);
   private
     { Private declarations }
     FScaffold: boolean;
     FTableName: string;
+    FMainDataset: TDataset;
 
     procedure SetTableName(ATableName: string);
   public
@@ -61,6 +62,7 @@ type
 
     property Scaffold: boolean read FScaffold write FScaffold default true;
     property TableName: string read FTableName write FTableName;
+    property MainDataSet: TDataset read FMainDataset;
   end;
 
 var
@@ -68,7 +70,7 @@ var
 
 implementation
 
-uses uDmVm, fbuscar;
+uses uDmVm, fbuscar, uUtils;
 
 {$R *.dfm}
 
@@ -79,7 +81,7 @@ var
   fb: TfrmBuscar;
 begin
   inherited;
-  fb:= TfrmBuscar.CreateSearchFor(nil,self.TableName);
+  fb:= TfrmBuscar.CreateSearchFor(nil,self.TableName,'Nombre');
   try
     if fb.ShowModal = mrOk then
     begin
@@ -106,9 +108,39 @@ end;
 
 
 constructor TfrmCRUD.Create(AOwner: TComponent; ATableName: string);
+var
+  i, underScore: integer;
+  LUDataset: TDataSet;
+  LUTable, LUField: string;
+  LUFieldList: TStringList;
 begin
   inherited Create(AOwner);
-  TableName:=ATableName;
+//  TableName:=ATableName;
+//  FMainDataSet := dm.FindComponent('cds'+TableName) as TDataset;
+//  FMainDataSet.Open;
+  //Link DataSource
+//    dsBrowse.DataSet := FMainDataset;
+  // Detect Lookup Fields
+  {
+  LUFieldList:=TStringList.Create;
+  for I := 0 to FMainDataSet.Fields.Count - 1 do
+  begin
+    underScore:= pos('_id',FMainDataSet.Fields[i].DisplayName);
+    if underScore>0 then LUFieldList.Add(FMainDataSet.Fields[i].DisplayName);
+  end;
+  FMainDataSet.Close;
+  //Persist All Fields & Add Lookups
+  CreatePersistentFields(FMainDataSet);
+  for I := 0 to LUFieldList.Count - 1 do
+  begin
+    LUField:=copy(LUFieldList[i],1,Length(LUFieldList[i])-3);
+    LUTable:=LUField+'s';
+    LUDataset:= dm.FindComponent('tbl'+LUTable) as TDataset;
+    CreateLookUpField(FMainDataSet,LUField,LUDataset,LUFieldList[i],'id','nombre');
+  end;
+  LUFieldList.Free;}
+  //Create CRUD Grid
+
 end;
 
 constructor TfrmCRUD.CreateCRUD(AOwner: TComponent; ATableName: string);
@@ -120,8 +152,15 @@ end;
 procedure TfrmCRUD.dbgBrowseDblClick(Sender: TObject);
 begin
   inherited;
-  //dsBrowse.DataSet.Edit;
+  dsBrowse.DataSet.Edit;
   pgcCRUD.ActivePageIndex:=1;
+end;
+
+procedure TfrmCRUD.dbgBrowseKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  inherited;
+   if (Key = 13) and (Shift = [ssCtrl]) then
+   dbgBrowseDblClick(self);
 end;
 
 procedure TfrmCRUD.dtsCancelExecute(Sender: TObject);
@@ -133,9 +172,13 @@ begin
 end;
 
 procedure TfrmCRUD.dtsDeleteExecute(Sender: TObject);
+var
+  buttonSelected: integer;
 begin
   inherited;
-  dsBrowse.DataSet.Delete;
+  buttonSelected := MessageDlg('Seguro de Eliminar?',mtWarning , mbOkCancel, 0);
+  if buttonSelected= mrOk then
+    dsBrowse.Dataset.Delete;
 end;
 
 procedure TfrmCRUD.dtsEditExecute(Sender: TObject);
