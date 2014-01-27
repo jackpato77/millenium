@@ -42,8 +42,7 @@ uses uDmVm;
 procedure TfrmPrecios.FormActivate(Sender: TObject);
 begin
   inherited;
-  dm.tblRubros.Open;
-  dm.tblSubrubros.Open;
+  dm.cdsCategorias.Open;
 end;
 
 end.

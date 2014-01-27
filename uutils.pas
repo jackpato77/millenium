@@ -1,7 +1,7 @@
 unit uutils;
 
 interface
-uses Classes, DBGrids, DB, SysUtils;
+uses Classes, DBGrids, DB, SysUtils, Controls, ComCtrls;
 
 type
   TVMForms = (Articulos, Clientes, Presupuestos, Cajas);
@@ -17,6 +17,8 @@ procedure FixDBGridColumnsWidth(const DBGrid: TDBGrid; DBFieldDefs: TFieldDefs);
 procedure SetDBGridColumnsCaption(const DBGrid: TDBGrid; DBFieldDefs: TFieldDefs; ShowId: boolean = true);
 
 function MakeColumnCaption(FieldName: string): string;
+
+procedure SetListViewHeader(const lv: TListView; ATable: TDataset);
 
 var
   VMForms: TStringList;
@@ -179,6 +181,17 @@ end;
 procedure EnhanceDBGrid(const DBGrid: TDBGrid);
 begin
 
+end;
+
+procedure SetListViewHeader(const lv: TListView; ATable: TDataset);
+var
+  i: integer;
+begin
+  for I := 0 to ATable.FieldDefs.Count - 1 do
+    with lv.Columns.Add do
+    begin
+      Caption:=ATable.FieldDefs.Items[i].DisplayName;
+    end;
 end;
 
 initialization

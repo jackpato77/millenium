@@ -250,6 +250,8 @@ type
     qryRubros: TMyTable;
     dspCategorias: TDataSetProvider;
     cdsCategorias: TClientDataSet;
+    cdsVentasCliente: TStringField;
+    cdsVentasPedido_Nro: TIntegerField;
     procedure cdsBPedidosNewRecord(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure tblPresupuestosCalcFields(DataSet: TDataSet);

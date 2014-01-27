@@ -129,7 +129,6 @@ inherited frmPrecios: TfrmPrecios
           FieldName = 'costo'
           Title.Alignment = taCenter
           Title.Caption = 'Costo'
-          Width = 64
           Visible = True
         end
         item
@@ -137,7 +136,6 @@ inherited frmPrecios: TfrmPrecios
           FieldName = 'precio'
           Title.Alignment = taCenter
           Title.Caption = 'Precio'
-          Width = 64
           Visible = True
         end>
     end

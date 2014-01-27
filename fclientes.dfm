@@ -1,16 +1,16 @@
 inherited frmClientes: TfrmClientes
   Caption = 'Clientes'
-  ClientHeight = 608
-  ClientWidth = 963
+  ClientHeight = 448
+  ClientWidth = 710
   Position = poMainFormCenter
   OnShow = FormShow
-  ExplicitWidth = 971
-  ExplicitHeight = 635
+  ExplicitWidth = 718
+  ExplicitHeight = 475
   PixelsPerInch = 96
-  TextHeight = 19
+  TextHeight = 14
   inherited tobMain: TToolBar
-    Width = 963
-    ExplicitWidth = 963
+    Width = 710
+    ExplicitWidth = 710
     inherited ToolButton4: TToolButton
       Action = actImprimir
     end
@@ -18,89 +18,92 @@ inherited frmClientes: TfrmClientes
   inherited pgcCRUD: TPageControl
     Left = 0
     Top = 42
-    Width = 963
-    Height = 566
+    Width = 710
+    Height = 406
+    ActivePage = tabDetail
     Align = alClient
     ExplicitLeft = 0
     ExplicitTop = 42
-    ExplicitWidth = 963
-    ExplicitHeight = 566
+    ExplicitWidth = 710
+    ExplicitHeight = 406
     inherited tabBrowse: TTabSheet
-      ExplicitWidth = 929
-      ExplicitHeight = 558
+      ExplicitWidth = 681
+      ExplicitHeight = 398
       inherited dbgBrowse: TDBGrid
         Left = 0
         Top = 0
-        Width = 929
-        Height = 558
+        Width = 681
+        Height = 398
         Align = alClient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
       end
     end
     inherited tabDetail: TTabSheet
-      ExplicitWidth = 929
-      ExplicitHeight = 558
+      ExplicitLeft = 4
+      ExplicitTop = 4
+      ExplicitWidth = 681
+      ExplicitHeight = 398
       object Label1: TLabel
-        Left = 24
-        Top = 32
-        Width = 29
-        Height = 19
+        Left = 18
+        Top = 24
+        Width = 23
+        Height = 14
         Caption = 'Cod.'
         FocusControl = DBEdit1
       end
       object Label2: TLabel
-        Left = 24
-        Top = 88
-        Width = 51
-        Height = 19
+        Left = 18
+        Top = 65
+        Width = 43
+        Height = 14
         Caption = 'Nombre'
         FocusControl = DBEdit2
       end
       object Label3: TLabel
-        Left = 24
-        Top = 144
-        Width = 31
-        Height = 19
+        Left = 18
+        Top = 106
+        Width = 24
+        Height = 14
         Caption = 'CUIT'
         FocusControl = DBEdit3
       end
       object Label4: TLabel
-        Left = 24
-        Top = 200
-        Width = 61
-        Height = 19
+        Left = 18
+        Top = 147
+        Width = 53
+        Height = 14
         Caption = 'Domicilio'
         FocusControl = DBEdit4
       end
       object Label5: TLabel
-        Left = 24
-        Top = 256
-        Width = 56
-        Height = 19
+        Left = 18
+        Top = 189
+        Width = 48
+        Height = 14
         Caption = 'Telefono'
         FocusControl = DBEdit5
       end
       object Label6: TLabel
-        Left = 24
-        Top = 312
-        Width = 89
-        Height = 19
+        Left = 18
+        Top = 230
+        Width = 74
+        Height = 14
         Caption = 'Condicion IVA'
         FocusControl = DBEdit6
       end
       object Label7: TLabel
-        Left = 24
-        Top = 368
-        Width = 58
-        Height = 19
+        Left = 18
+        Top = 271
+        Width = 47
+        Height = 14
         Caption = 'Contacto'
         FocusControl = DBEdit7
       end
       object DBEdit1: TDBEdit
-        Left = 118
-        Top = 30
-        Width = 194
-        Height = 27
+        Left = 87
+        Top = 22
+        Width = 143
+        Height = 22
         TabStop = False
         DataField = 'id'
         DataSource = dsBrowse
@@ -108,55 +111,55 @@ inherited frmClientes: TfrmClientes
         TabOrder = 0
       end
       object DBEdit2: TDBEdit
-        Left = 118
-        Top = 86
-        Width = 800
-        Height = 27
+        Left = 87
+        Top = 63
+        Width = 589
+        Height = 22
         DataField = 'nombre'
         DataSource = dsBrowse
         TabOrder = 1
       end
       object DBEdit3: TDBEdit
-        Left = 118
-        Top = 142
-        Width = 232
-        Height = 27
+        Left = 87
+        Top = 105
+        Width = 171
+        Height = 22
         DataField = 'cuit'
         DataSource = dsBrowse
         TabOrder = 2
       end
       object DBEdit4: TDBEdit
-        Left = 118
-        Top = 198
-        Width = 800
-        Height = 27
+        Left = 87
+        Top = 146
+        Width = 589
+        Height = 22
         DataField = 'domicilio'
         DataSource = dsBrowse
         TabOrder = 3
       end
       object DBEdit5: TDBEdit
-        Left = 118
-        Top = 254
-        Width = 289
-        Height = 27
+        Left = 87
+        Top = 187
+        Width = 213
+        Height = 22
         DataField = 'telefono'
         DataSource = dsBrowse
         TabOrder = 4
       end
       object DBEdit6: TDBEdit
-        Left = 118
-        Top = 310
-        Width = 289
-        Height = 27
+        Left = 87
+        Top = 228
+        Width = 213
+        Height = 22
         DataField = 'condicion_iva'
         DataSource = dsBrowse
         TabOrder = 5
       end
       object DBEdit7: TDBEdit
-        Left = 118
-        Top = 366
-        Width = 800
-        Height = 27
+        Left = 87
+        Top = 270
+        Width = 589
+        Height = 22
         DataField = 'contacto'
         DataSource = dsBrowse
         TabOrder = 6
@@ -166,7 +169,7 @@ inherited frmClientes: TfrmClientes
   inherited imlCRUD: TImageList
     Left = 400
     Bitmap = {
-      494C010109005C005C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109006000600010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -4,14 +4,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, JvExComCtrls, JvListView, fBase;
 
 type
-  TForm4 = class(TForm)
-    GridPanel1: TGridPanel;
+  TForm4 = class(TfrmBase)
     Button1: TButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
+    JvListView1: TJvListView;
+    ListView1: TListView;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -24,14 +23,12 @@ var
 
 implementation
 
+uses udmvm, uutils;
 {$R *.dfm}
 
 procedure TForm4.Button1Click(Sender: TObject);
-var
-  tri: TRowItem;
 begin
-  tri:=GridPanel1.RowCollection.Add;
-  
+  SetListViewHeader(ListView1, dm.cdsArticulos);
 end;
 
 end.

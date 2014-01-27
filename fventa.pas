@@ -67,6 +67,7 @@ type
     Label6: TLabel;
     Label7: TLabel;
     DBEdit7: TDBEdit;
+    DBEdit8: TDBEdit;
     procedure FormCreate(Sender: TObject);
     procedure dbgBrowseDblClick(Sender: TObject);
     procedure actExitExecute(Sender: TObject);
@@ -103,11 +104,10 @@ uses uDmVm, fBuscar;
 procedure TfVta.FormCreate(Sender: TObject);
 begin
   inherited;
-  dm.cdsLinea.Open;
-  dm.cdsLineas.Open;
   dm.cdsVentas.Open;
-  dm.cdsPedidos.Open;
+  dm.cdsVPedidos.Open;
   dm.cdsDetails.Open;
+  dm.cdsClientes.Open;
 end;
 
 function TfVta.CreateSearch(EntityName, SearchField: string; ReturnField: string = 'id'): integer;
@@ -166,8 +166,8 @@ procedure TfVta.dtsCancelExecute(Sender: TObject);
 begin
   inherited;
   dm.cdsVentas.Cancel;
-  dm.cdsVentas.First;
   dm.cdsVLineas.Cancel;
+  dm.cdsVentas.First;
   xState:=xdsBrowse;
   dtsEdit.Enabled:=true;
   dtsInsert.Enabled:=true;
@@ -199,8 +199,9 @@ var
 begin
   inherited;
   CurrentId:=dsBrowse.DataSet.FieldByName('id').Value;
-  dm.tblDetails.Refresh;
-  dm.CargarPedido(CurrentId,dm.cdsVPedidos,dm.cdsVLineas);
+//  dm.tblDetails.Refresh;
+  //dm.CargarPedido(CurrentId,dm.cdsVPedidos,dm.cdsVLineas);
+  dm.cdsVentas.Cancel;
   dm.cdsVentas.Edit;
   xState:=xdsEdit;
   dtsEdit.Enabled:=false;
@@ -213,11 +214,9 @@ end;
 procedure TfVta.dtsInsertExecute(Sender: TObject);
 begin
   inherited;
-  dm.cdsVPedidos.Open;
-  dm.cdsVLineas.Open;
-  //dm.cdsVLineas.EmptyDataSet;
-  //dm.cdsVentas.Append;
+  dm.cdsVentas.Cancel;
   dm.cdsVentas.Insert;
+  edtPedidoNro.Enabled := true;
   xState:=xdsInsert;
   dtsEdit.Enabled:=false;
   dtsInsert.Enabled:=false;
@@ -230,15 +229,17 @@ procedure TfVta.dtsPostExecute(Sender: TObject);
 begin
   inherited;
   dm.cdsVentas.Post;
-  if xState=xdsInsert then
-  begin
-    dm.tblVentas.Insert;
-    dm.SetNextID('venta_nro');
-  end
-  else
-    dm.tblVentas.Edit;
-  dm.cdsDetails.Close;
-  dm.cdsDetails.Open;
+//  if xState=xdsInsert then
+//  begin
+//    dm.cdsVentas.Insert;
+//    dm.SetNextID('venta_nro');
+//  end
+//  else
+//    dm.cdsVentas.Edit;
+
+  dm.cdsVentas.ApplyUpdates(0);
+
+  edtPedidoNro.Enabled := false;
   xState:=xdsBrowse;
   dtsEdit.Enabled:=true;
   dtsInsert.Enabled:=true;
@@ -264,11 +265,11 @@ end;
 constructor TfVta.Create(AOwner: TComponent; ATableName: string);
 begin
   inherited Create(AOwner);
-  dm.tblVentas.Open;
-  dm.tblDetails.Open;
+  //dm.tblVentas.Open;
+  //dm.tblDetails.Open;
   dm.cdsVentas.Open;
-  dm.cdsPedidos.Open;
-  dm.cdsDetails.Open;
+  dm.cdsVPedidos.Close;
+  dm.cdsVLineas.Close;
 
   xState:=xdsBrowse;
   SetupPage;
@@ -279,9 +280,11 @@ var
   CurrentId: integer;
 begin
   inherited;
+  if dm.cdsVentas.State<>dsInsert then exit;
+  
   dm.cdsVPedidos.Open;
-   dm.cdsVLineas.Open;
-  if not dm.cdsVPedidos.Locate('nro',edtPedidoNro.Field.Value,[]) then
+  dm.cdsVLineas.Open;
+  if not dm.cdsVPedidos.Locate('id',edtPedidoNro.Field.Value,[]) then
   begin
    edtPedidoNro.SetFocus;
   end
@@ -293,7 +296,7 @@ begin
   inherited;
   if Key = VK_F2 then
   begin
-    TEdit(Sender).Text:=IntToStr(CreateSearch('pedidos','nro','nro'));
+    TDBEdit(Sender).Field.Value :=IntToStr(CreateSearch('pedidos','nro'));
   end;
 end;
 

@@ -7,7 +7,7 @@ object frmCRUD: TfrmCRUD
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -16
+  Font.Height = -12
   Font.Name = 'Calibri'
   Font.Style = []
   KeyPreview = True
@@ -16,14 +16,14 @@ object frmCRUD: TfrmCRUD
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 19
+  TextHeight = 14
   object tobMain: TToolBar
     Left = 0
     Top = 0
     Width = 750
     Height = 42
-    ButtonHeight = 42
-    ButtonWidth = 64
+    ButtonHeight = 37
+    ButtonWidth = 54
     Images = imlCRUD
     ShowCaptions = True
     TabOrder = 0
@@ -33,33 +33,33 @@ object frmCRUD: TfrmCRUD
       Action = dtsInsert
     end
     object ToolButton2: TToolButton
-      Left = 64
+      Left = 54
       Top = 0
       Action = dtsEdit
     end
     object ToolButton3: TToolButton
-      Left = 128
+      Left = 108
       Top = 0
       Action = dtsPost
     end
     object ToolButton9: TToolButton
-      Left = 192
+      Left = 162
       Top = 0
       Action = dtsCancel
     end
     object ToolButton10: TToolButton
-      Left = 256
+      Left = 216
       Top = 0
       Action = actBuscar
     end
     object ToolButton4: TToolButton
-      Left = 320
+      Left = 270
       Top = 0
       Caption = '&Imprimir'
       ImageIndex = 7
     end
     object ToolButton5: TToolButton
-      Left = 384
+      Left = 324
       Top = 0
       Width = 8
       Caption = 'ToolButton5'
@@ -67,12 +67,12 @@ object frmCRUD: TfrmCRUD
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 392
+      Left = 332
       Top = 0
       Action = dtsDelete
     end
     object ToolButton8: TToolButton
-      Left = 456
+      Left = 386
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -92,6 +92,7 @@ object frmCRUD: TfrmCRUD
     OnChange = pgcCRUDChange
     object tabBrowse: TTabSheet
       Caption = 'tabBrowse'
+      ExplicitWidth = 599
       object dbgBrowse: TDBGrid
         Left = 3
         Top = 3
@@ -101,7 +102,7 @@ object frmCRUD: TfrmCRUD
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -16
+        TitleFont.Height = -12
         TitleFont.Name = 'Calibri'
         TitleFont.Style = []
         OnDblClick = dbgBrowseDblClick
@@ -111,13 +112,17 @@ object frmCRUD: TfrmCRUD
     object tabDetail: TTabSheet
       Caption = 'tabDetail'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object imlCRUD: TImageList
     Left = 432
     Top = 40
     Bitmap = {
-      494C010109007800780010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109007C007C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

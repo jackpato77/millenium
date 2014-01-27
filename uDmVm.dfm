@@ -144,7 +144,6 @@ object dm: Tdm
     Database = 'dbmillenium'
     Username = 'root'
     Server = '127.0.0.1'
-    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 8
@@ -402,7 +401,6 @@ object dm: Tdm
     object cdsVentaspedido_id: TIntegerField
       FieldName = 'pedido_id'
       Origin = 'ventas.pedido_id'
-      DisplayFormat = '000-00000'
     end
     object cdsVentasfecha: TDateTimeField
       FieldName = 'fecha'
@@ -430,6 +428,26 @@ object dm: Tdm
       Origin = 'ventas.tipo'
       Size = 10
     end
+    object cdsVentasCliente: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Cliente'
+      LookupDataSet = cdsVPedidos
+      LookupKeyFields = 'id'
+      LookupResultField = 'cliente_nombre'
+      KeyFields = 'pedido_id'
+      Size = 35
+      Lookup = True
+    end
+    object cdsVentasPedido_Nro: TIntegerField
+      FieldKind = fkLookup
+      FieldName = 'Pedido_Nro'
+      LookupDataSet = cdsVPedidos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nro'
+      KeyFields = 'pedido_id'
+      DisplayFormat = '000-00000'
+      Lookup = True
+    end
   end
   object dspVentas: TDataSetProvider
     DataSet = tblVentas
@@ -439,7 +457,6 @@ object dm: Tdm
   object tblClientes: TMyTable
     TableName = 'clientes'
     Connection = cnxVM
-    Active = True
     Left = 40
     Top = 64
   end
@@ -1203,7 +1220,6 @@ object dm: Tdm
   object tblEstados: TMyTable
     TableName = 'estados'
     Connection = cnxVM
-    Active = True
     Left = 96
     Top = 440
   end
@@ -1415,7 +1431,22 @@ object dm: Tdm
         DataType = ftString
         Size = 20
       end>
-    IndexDefs = <>
+    IndexDefs = <
+      item
+        Name = 'DEFAULT_ORDER'
+        DescFields = 'fecha'
+        Fields = 'fecha;id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'PRIMARY_KEY'
+        Fields = 'id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'CHANGEINDEX'
+      end>
+    IndexFieldNames = 'nro'
     Params = <>
     ProviderName = 'dspPedidos'
     StoreDefs = True
@@ -1841,7 +1872,6 @@ object dm: Tdm
     TableName = 'categorias'
     OrderFields = 'id'
     Connection = cnxVM
-    Active = True
     Left = 448
     Top = 80
   end

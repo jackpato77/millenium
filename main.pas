@@ -33,6 +33,8 @@ type
     procedure actSalirExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure actCajaExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     function FindPage(ACaption: string): integer;
@@ -62,6 +64,18 @@ begin
       Break;
     end;
    Result:= PageIdx;
+end;
+
+procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  dm.cnxVM.Close;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  inherited;
+  dm.cnxVM.Open;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -99,7 +113,7 @@ begin
       0 : aForm := TfrmArticulos.Create(tabsheet,'articulos');
       1 : aForm := TfrmClientes.Create(tabsheet,'clientes');
       2 : aForm := TfPto.Create(tabsheet,'pedidos');
-      4 : aForm := TfTestForm.Create(tabsheet);
+      4 : aForm := TForm4.Create(tabsheet);
       5 : aForm := TfVta.Create(tabsheet,'ventas');
     end;
     tabSheet := TTabSheet.Create(PageControl1) ;

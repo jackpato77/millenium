@@ -7,12 +7,12 @@ object frmBase: TfrmBase
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -13
+  Font.Height = -12
   Font.Name = 'Calibri'
   Font.Style = []
   KeyPreview = True
   OldCreateOrder = False
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
-  TextHeight = 15
+  TextHeight = 14
 end

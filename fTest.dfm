@@ -1,21 +1,21 @@
 inherited fTestForm: TfTestForm
   Caption = 'Test'
-  ClientHeight = 451
-  ClientWidth = 694
-  ExplicitWidth = 702
-  ExplicitHeight = 478
+  ClientHeight = 421
+  ClientWidth = 648
+  ExplicitWidth = 656
+  ExplicitHeight = 448
   PixelsPerInch = 96
-  TextHeight = 15
+  TextHeight = 14
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 32
-    Width = 409
-    Height = 120
-    DataSource = dm.dsBPedidos
+    Top = 130
+    Width = 382
+    Height = 112
+    DataSource = dm.dsVPedidos
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -13
+    TitleFont.Height = -12
     TitleFont.Name = 'Calibri'
     TitleFont.Style = []
     Columns = <
@@ -76,15 +76,15 @@ inherited fTestForm: TfTestForm
       end>
   end
   object DBGrid2: TDBGrid
-    Left = 8
-    Top = 192
-    Width = 425
-    Height = 201
-    DataSource = dm.dsDetails
+    Left = 7
+    Top = 248
+    Width = 397
+    Height = 119
+    DataSource = dm.dsVLineas
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -13
+    TitleFont.Height = -12
     TitleFont.Name = 'Calibri'
     TitleFont.Style = []
     Columns = <
@@ -145,7 +145,7 @@ inherited fTestForm: TfTestForm
       end
       item
         Expanded = False
-        FieldName = 'cnttotal'
+        FieldName = 'CntTotal'
         Visible = True
       end
       item
@@ -155,66 +155,127 @@ inherited fTestForm: TfTestForm
       end>
   end
   object Button1: TButton
-    Left = 8
-    Top = 399
-    Width = 75
-    Height = 25
+    Left = 7
+    Top = 372
+    Width = 70
+    Height = 24
     Caption = 'Button1'
     TabOrder = 2
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 89
-    Top = 399
-    Width = 75
-    Height = 25
+    Left = 83
+    Top = 372
+    Width = 70
+    Height = 24
     Caption = 'Button1'
     TabOrder = 3
     OnClick = Button2Click
   end
   object Panel1: TPanel
-    Left = 440
-    Top = 16
-    Width = 246
-    Height = 408
+    Left = 411
+    Top = 15
+    Width = 229
+    Height = 381
     Caption = 'Panel1'
     TabOrder = 4
     object Splitter1: TSplitter
       Left = 1
-      Top = 90
-      Width = 244
+      Top = 84
+      Width = 227
       Height = 3
       Cursor = crVSplit
       Align = alTop
-      ExplicitLeft = 242
-      ExplicitWidth = 317
+      ExplicitWidth = 228
     end
     object Memo1: TMemo
       Left = 1
       Top = 1
-      Width = 244
-      Height = 89
+      Width = 227
+      Height = 83
       Align = alTop
       Lines.Strings = (
         'Memo1')
       TabOrder = 0
-      ExplicitLeft = 40
-      ExplicitTop = 56
-      ExplicitWidth = 185
     end
     object Memo2: TMemo
       Left = 1
-      Top = 93
-      Width = 244
-      Height = 314
+      Top = 87
+      Width = 227
+      Height = 293
       Align = alClient
       Lines.Strings = (
         'Memo2')
       TabOrder = 1
-      ExplicitLeft = 40
-      ExplicitTop = 112
-      ExplicitWidth = 185
-      ExplicitHeight = 89
     end
+  end
+  object DBGrid3: TDBGrid
+    Left = 8
+    Top = 12
+    Width = 382
+    Height = 112
+    DataSource = dm.dsAVentas
+    TabOrder = 5
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Calibri'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'id'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nro'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cliente_id'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fecha'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'monto'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fecha_ingreso'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'fecha_requerido'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estado_id'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'comentario'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'empleado_id'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'tipo'
+        Visible = True
+      end>
   end
 end

@@ -1,18 +1,18 @@
 inherited fVta: TfVta
   Caption = 'Ventas'
-  ClientHeight = 507
-  ClientWidth = 825
-  ExplicitWidth = 833
-  ExplicitHeight = 534
+  ClientHeight = 473
+  ClientWidth = 770
+  ExplicitWidth = 778
+  ExplicitHeight = 500
   PixelsPerInch = 96
-  TextHeight = 15
+  TextHeight = 14
   object tobMain: TToolBar
     Left = 0
     Top = 0
-    Width = 825
+    Width = 770
     Height = 42
-    ButtonHeight = 38
-    ButtonWidth = 56
+    ButtonHeight = 37
+    ButtonWidth = 54
     Images = imlCRUD
     ShowCaptions = True
     TabOrder = 0
@@ -22,33 +22,33 @@ inherited fVta: TfVta
       Action = dtsInsert
     end
     object ToolButton2: TToolButton
-      Left = 56
+      Left = 54
       Top = 0
       Action = dtsEdit
     end
     object ToolButton3: TToolButton
-      Left = 112
+      Left = 108
       Top = 0
       Action = dtsPost
     end
     object ToolButton9: TToolButton
-      Left = 168
+      Left = 162
       Top = 0
       Action = dtsCancel
     end
     object ToolButton10: TToolButton
-      Left = 224
+      Left = 216
       Top = 0
       Action = actBuscar
     end
     object ToolButton4: TToolButton
-      Left = 280
+      Left = 270
       Top = 0
       Caption = '&Imprimir'
       ImageIndex = 7
     end
     object ToolButton5: TToolButton
-      Left = 336
+      Left = 324
       Top = 0
       Width = 8
       Caption = 'ToolButton5'
@@ -56,12 +56,12 @@ inherited fVta: TfVta
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 344
+      Left = 332
       Top = 0
       Action = dtsDelete
     end
     object ToolButton8: TToolButton
-      Left = 400
+      Left = 386
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -72,13 +72,13 @@ inherited fVta: TfVta
   object pgcCRUD: TPageControl
     Left = 0
     Top = 42
-    Width = 825
-    Height = 465
+    Width = 770
+    Height = 431
     ActivePage = tabDetail
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Calibri'
     Font.Style = []
     MultiLine = True
@@ -90,15 +90,15 @@ inherited fVta: TfVta
       object dbgBrowse: TDBGrid
         Left = 0
         Top = 0
-        Width = 792
-        Height = 457
+        Width = 740
+        Height = 423
         Align = alClient
         DataSource = dsBrowse
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -15
+        TitleFont.Height = -13
         TitleFont.Name = 'Calibri'
         TitleFont.Style = []
         OnDblClick = dbgBrowseDblClick
@@ -112,13 +112,7 @@ inherited fVta: TfVta
           item
             Expanded = False
             FieldName = 'nro'
-            Title.Caption = 'Nro'
             Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'cliente_id'
-            Visible = False
           end
           item
             Expanded = False
@@ -127,32 +121,33 @@ inherited fVta: TfVta
           end
           item
             Expanded = False
+            FieldName = 'pedido_id'
+            Visible = True
+          end
+          item
+            Expanded = False
             FieldName = 'fecha'
-            Title.Caption = 'Fecha'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'Estado'
+            FieldName = 'dcto'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'monto'
-            Title.Caption = 'Total'
+            FieldName = 'dcto_monto'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'fecha_requerido'
-            Title.Caption = 'Fecha Requerido'
+            FieldName = 'total'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'forma_entrega'
-            Title.Caption = 'Forma Entrega'
-            Visible = True
+            FieldName = 'tipo'
+            Visible = False
           end>
       end
     end
@@ -160,42 +155,42 @@ inherited fVta: TfVta
       Caption = 'tabDetail'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -13
+      Font.Height = -12
       Font.Name = 'Calibri'
       Font.Style = []
       ImageIndex = 1
       ParentFont = False
       object Label12: TLabel
-        Left = 626
-        Top = 357
+        Left = 584
+        Top = 333
         Width = 27
-        Height = 15
+        Height = 14
         Caption = 'Total'
       end
       object Label6: TLabel
-        Left = 568
-        Top = 385
-        Width = 25
-        Height = 15
+        Left = 530
+        Top = 359
+        Width = 24
+        Height = 14
         Caption = 'Dcto'
       end
       object Label7: TLabel
-        Left = 568
-        Top = 414
-        Width = 82
-        Height = 15
+        Left = 530
+        Top = 386
+        Width = 79
+        Height = 14
         Caption = 'Total a Pagar $'
       end
       object dbgDetalle: TDBGrid
-        Left = 8
-        Top = 172
-        Width = 754
-        Height = 175
+        Left = 7
+        Top = 161
+        Width = 704
+        Height = 163
         TabStop = False
         DataSource = dm.dsVLineas
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
+        Font.Height = -12
         Font.Name = 'Calibri'
         Font.Style = []
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
@@ -267,10 +262,10 @@ inherited fVta: TfVta
           end>
       end
       object DBEdit6: TDBEdit
-        Left = 659
-        Top = 353
-        Width = 80
-        Height = 23
+        Left = 615
+        Top = 329
+        Width = 75
+        Height = 22
         TabStop = False
         DataField = 'monto'
         DataSource = dm.dsVPedidos
@@ -278,95 +273,95 @@ inherited fVta: TfVta
         TabOrder = 4
       end
       object GroupBox2: TGroupBox
-        Left = 8
-        Top = 49
-        Width = 754
-        Height = 112
+        Left = 7
+        Top = 46
+        Width = 704
+        Height = 104
         Caption = ' Cliente '
         TabOrder = 5
         object Label2: TLabel
-          Left = 459
-          Top = 22
-          Width = 25
-          Height = 15
+          Left = 428
+          Top = 21
+          Width = 24
+          Height = 14
           Caption = 'CUIT'
         end
         object Label4: TLabel
-          Left = 19
-          Top = 48
-          Width = 54
-          Height = 15
+          Left = 18
+          Top = 45
+          Width = 53
+          Height = 14
           Caption = 'Domicilio'
         end
         object Label14: TLabel
-          Left = 594
-          Top = 22
-          Width = 27
-          Height = 15
+          Left = 554
+          Top = 21
+          Width = 29
+          Height = 14
           Caption = 'Telef.'
         end
         object Label16: TLabel
           Left = 3
-          Top = 74
-          Width = 70
-          Height = 15
+          Top = 69
+          Width = 69
+          Height = 14
           Caption = 'Comentarios'
         end
         object edtClienteId: TDBEdit
-          Left = 9
-          Top = 19
-          Width = 34
-          Height = 23
+          Left = 8
+          Top = 18
+          Width = 32
+          Height = 22
           DataField = 'cliente_id'
           DataSource = dm.dsVPedidos
           ReadOnly = True
           TabOrder = 0
         end
         object DBEdit5: TDBEdit
-          Left = 489
-          Top = 19
-          Width = 96
-          Height = 23
+          Left = 456
+          Top = 18
+          Width = 90
+          Height = 22
           DataField = 'cliente_cuit'
           DataSource = dm.dsVPedidos
           ReadOnly = True
           TabOrder = 1
         end
         object DBEdit3: TDBEdit
-          Left = 628
-          Top = 19
-          Width = 119
-          Height = 23
+          Left = 586
+          Top = 18
+          Width = 111
+          Height = 22
           DataField = 'cliente_telefono'
           DataSource = dm.dsVPedidos
           ReadOnly = True
           TabOrder = 2
         end
         object DBEdit2: TDBEdit
-          Left = 76
-          Top = 45
-          Width = 356
-          Height = 23
+          Left = 71
+          Top = 42
+          Width = 332
+          Height = 22
           DataField = 'cliente_domicilio'
           DataSource = dm.dsVPedidos
           ReadOnly = True
           TabOrder = 3
         end
         object edtComentario: TDBMemo
-          Left = 76
-          Top = 71
-          Width = 669
-          Height = 36
+          Left = 71
+          Top = 66
+          Width = 624
+          Height = 34
           DataField = 'comentario'
           DataSource = dm.dsVPedidos
           ReadOnly = True
           TabOrder = 4
         end
         object DBLookupComboBox1: TDBLookupComboBox
-          Left = 48
-          Top = 19
-          Width = 393
-          Height = 23
+          Left = 45
+          Top = 18
+          Width = 367
+          Height = 22
           DataField = 'cliente_nombre'
           DataSource = dm.dsVPedidos
           ReadOnly = True
@@ -374,67 +369,79 @@ inherited fVta: TfVta
         end
       end
       object GroupBox3: TGroupBox
-        Left = 8
+        Left = 7
         Top = 1
-        Width = 754
-        Height = 49
+        Width = 704
+        Height = 46
         Caption = 'Venta'
         TabOrder = 0
         TabStop = True
         object Label1: TLabel
           Left = 6
-          Top = 21
+          Top = 20
           Width = 6
-          Height = 15
+          Height = 14
           Caption = '#'
         end
         object DBText1: TDBText
-          Left = 24
-          Top = 21
-          Width = 111
-          Height = 17
+          Left = 22
+          Top = 20
+          Width = 104
+          Height = 15
           DataField = 'nro'
           DataSource = dm.dsAVentas
         end
         object Label3: TLabel
-          Left = 555
-          Top = 18
+          Left = 518
+          Top = 17
           Width = 32
-          Height = 15
+          Height = 14
           Caption = 'Fecha'
         end
         object DBText2: TDBText
-          Left = 604
-          Top = 18
-          Width = 142
-          Height = 17
+          Left = 564
+          Top = 17
+          Width = 132
+          Height = 16
           DataField = 'fecha'
           DataSource = dm.dsAVentas
         end
         object Label5: TLabel
-          Left = 237
-          Top = 18
+          Left = 221
+          Top = 17
           Width = 47
-          Height = 15
+          Height = 14
           Caption = 'Pedido #'
         end
         object edtPedidoNro: TDBEdit
-          Left = 290
-          Top = 14
-          Width = 98
-          Height = 23
+          Left = 271
+          Top = 13
+          Width = 91
+          Height = 22
           DataField = 'pedido_id'
           DataSource = dm.dsAVentas
+          Enabled = False
           TabOrder = 0
+          OnExit = edtPedidoNroExit
+          OnKeyDown = edtPedidoNroKeyDown
+        end
+        object DBEdit8: TDBEdit
+          Left = 368
+          Top = 13
+          Width = 65
+          Height = 22
+          DataField = 'Pedido_Nro'
+          DataSource = dm.dsAVentas
+          TabOrder = 1
           OnExit = edtPedidoNroExit
           OnKeyDown = edtPedidoNroKeyDown
         end
       end
       object DBEdit1: TDBEdit
-        Left = 659
-        Top = 382
-        Width = 80
-        Height = 23
+        Left = 615
+        Top = 357
+        Width = 75
+        Height = 22
         TabStop = False
         DataField = 'dcto_monto'
         DataSource = dm.dsAVentas
@@ -442,10 +449,10 @@ inherited fVta: TfVta
         TabOrder = 2
       end
       object DBEdit4: TDBEdit
-        Left = 659
-        Top = 411
-        Width = 80
-        Height = 23
+        Left = 615
+        Top = 384
+        Width = 75
+        Height = 22
         TabStop = False
         DataField = 'total'
         DataSource = dm.dsAVentas
@@ -453,10 +460,10 @@ inherited fVta: TfVta
         TabOrder = 3
       end
       object DBEdit7: TDBEdit
-        Left = 601
-        Top = 382
-        Width = 52
-        Height = 23
+        Left = 561
+        Top = 357
+        Width = 48
+        Height = 22
         TabStop = False
         DataField = 'dcto'
         DataSource = dm.dsAVentas
@@ -468,7 +475,7 @@ inherited fVta: TfVta
     Left = 456
     Top = 8
     Bitmap = {
-      494C01010B009400940010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010B009C009C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -919,7 +926,7 @@ inherited fVta: TfVta
   end
   object dsBrowse: TDataSource
     AutoEdit = False
-    DataSet = dm.tblVentas
+    DataSet = dm.cdsVentas
     Left = 488
     Top = 8
   end

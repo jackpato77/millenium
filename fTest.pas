@@ -16,6 +16,7 @@ type
     Memo1: TMemo;
     Splitter1: TSplitter;
     Memo2: TMemo;
+    DBGrid3: TDBGrid;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
   private
