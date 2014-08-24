@@ -144,6 +144,7 @@ object dm: Tdm
     Database = 'dbmillenium'
     Username = 'root'
     Server = '127.0.0.1'
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 8

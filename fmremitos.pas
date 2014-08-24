@@ -121,7 +121,6 @@ type
   private
     { Private declarations }
     FTableName: string;
-    aPto: TPresupuesto;
     procedure SetupPage;
 
   public
@@ -364,12 +363,9 @@ end;
 procedure TfrmMRemitos.dtsInsertExecute(Sender: TObject);
 begin
   //inherited;
-  aPto:=TPresupuesto.Create;
   cdsPto.Open;
   cdsALine.Open;
   //cdsLines.Open;
-  aPto.Id:=dm.GetNextID('presupuestos');
-  aPto.Fecha:=Now;
   pgcCRUD.ActivePageIndex:=1;
   edtClienteId.SetFocus;
 end;

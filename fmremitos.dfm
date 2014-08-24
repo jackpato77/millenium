@@ -1,21 +1,20 @@
 inherited frmMRemitos: TfrmMRemitos
   Top = -55
   Caption = 'Presupuestos'
-  ClientHeight = 544
-  ClientWidth = 884
+  ClientHeight = 401
+  ClientWidth = 651
   OnDestroy = FormDestroy
-  ExplicitLeft = -102
-  ExplicitWidth = 892
-  ExplicitHeight = 571
+  ExplicitWidth = 659
+  ExplicitHeight = 428
   PixelsPerInch = 96
-  TextHeight = 19
+  TextHeight = 14
   object tobMain: TToolBar
     Left = 0
     Top = 0
-    Width = 884
+    Width = 651
     Height = 38
-    ButtonHeight = 42
-    ButtonWidth = 64
+    ButtonHeight = 37
+    ButtonWidth = 54
     Images = imlCRUD
     ShowCaptions = True
     TabOrder = 0
@@ -25,32 +24,32 @@ inherited frmMRemitos: TfrmMRemitos
       Action = actNuevo
     end
     object ToolButton2: TToolButton
-      Left = 64
+      Left = 54
       Top = 0
       Action = actEditar
     end
     object ToolButton3: TToolButton
-      Left = 128
+      Left = 108
       Top = 0
       Action = actGuardar
     end
     object ToolButton4: TToolButton
-      Left = 192
+      Left = 162
       Top = 0
       Action = actCancelar
     end
     object ToolButton5: TToolButton
-      Left = 256
+      Left = 216
       Top = 0
       Action = actBuscar
     end
     object ToolButton6: TToolButton
-      Left = 320
+      Left = 270
       Top = 0
       Action = actImprimir
     end
     object ToolButton7: TToolButton
-      Left = 384
+      Left = 324
       Top = 0
       Width = 8
       Caption = 'ToolButton7'
@@ -58,17 +57,17 @@ inherited frmMRemitos: TfrmMRemitos
       Style = tbsSeparator
     end
     object ToolButton8: TToolButton
-      Left = 392
+      Left = 332
       Top = 0
       Action = actEliminar
     end
     object ToolButton10: TToolButton
-      Left = 456
+      Left = 386
       Top = 0
       Action = actSalir
     end
     object ToolButton9: TToolButton
-      Left = 520
+      Left = 440
       Top = 0
       Width = 8
       Caption = 'ToolButton9'
@@ -79,8 +78,8 @@ inherited frmMRemitos: TfrmMRemitos
   object pgcCRUD: TPageControl
     Left = 0
     Top = 38
-    Width = 884
-    Height = 506
+    Width = 651
+    Height = 363
     ActivePage = tabDetail
     Align = alClient
     MultiLine = True
@@ -88,18 +87,22 @@ inherited frmMRemitos: TfrmMRemitos
     TabPosition = tpRight
     object tabBrowse: TTabSheet
       OnShow = tabBrowseShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object dbgBrowse: TDBGrid
         Left = 0
         Top = 0
-        Width = 850
-        Height = 498
+        Width = 626
+        Height = 367
         Align = alClient
         DataSource = dsRemitos
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -16
+        TitleFont.Height = -12
         TitleFont.Name = 'Calibri'
         TitleFont.Style = []
         OnDblClick = dbgBrowseDblClick
@@ -158,48 +161,48 @@ inherited frmMRemitos: TfrmMRemitos
       object pnlHead: TPanel
         Left = 0
         Top = 0
-        Width = 850
-        Height = 39
+        Width = 622
+        Height = 29
         Align = alTop
         TabOrder = 0
         object Label2: TLabel
-          Left = 11
-          Top = 10
-          Width = 83
-          Height = 13
+          Left = 8
+          Top = 7
+          Width = 58
+          Height = 10
           Caption = 'Presupuesto #'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -8
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
         end
         object Label4: TLabel
-          Left = 599
-          Top = 10
-          Width = 32
-          Height = 15
+          Left = 441
+          Top = 7
+          Width = 21
+          Height = 11
           Caption = 'Fecha'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -13
+          Font.Height = -9
           Font.Name = 'Calibri'
           Font.Style = []
           ParentFont = False
         end
         object cbxListaPrecios: TComboBox
-          Left = 312
-          Top = 7
-          Width = 145
-          Height = 23
+          Left = 230
+          Top = 5
+          Width = 107
+          Height = 19
           Style = csDropDownList
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -13
+          Font.Height = -9
           Font.Name = 'Calibri'
           Font.Style = []
-          ItemHeight = 15
+          ItemHeight = 11
           ItemIndex = 0
           ParentFont = False
           TabOrder = 0
@@ -210,11 +213,11 @@ inherited frmMRemitos: TfrmMRemitos
             'LISTA 3')
         end
         object CurrencyEdit1: TCurrencyEdit
-          Left = 112
-          Top = 8
-          Width = 121
-          Height = 27
-          Margins.Left = 5
+          Left = 83
+          Top = 6
+          Width = 89
+          Height = 22
+          Margins.Left = 4
           Margins.Top = 1
           DecimalPlaces = 0
           DisplayFormat = '0;-,0'
@@ -223,60 +226,60 @@ inherited frmMRemitos: TfrmMRemitos
       end
       object pnlShip: TPanel
         Left = 0
-        Top = 39
-        Width = 850
-        Height = 134
+        Top = 29
+        Width = 622
+        Height = 98
         Align = alTop
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
+        Font.Height = -9
         Font.Name = 'Calibri'
         Font.Style = []
         ParentFont = False
         TabOrder = 1
         object Label10: TLabel
-          Left = 30
-          Top = 23
-          Width = 39
-          Height = 13
+          Left = 22
+          Top = 17
+          Width = 27
+          Height = 10
           Caption = 'Cliente'
           FocusControl = edtClienteId
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -8
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
         end
         object Label13: TLabel
-          Left = 26
-          Top = 50
-          Width = 53
-          Height = 15
+          Left = 19
+          Top = 37
+          Width = 35
+          Height = 11
           Caption = 'Direccion'
           FocusControl = DBEdit14
         end
         object Label7: TLabel
-          Left = 9
-          Top = 80
-          Width = 70
-          Height = 15
+          Left = 7
+          Top = 59
+          Width = 47
+          Height = 11
           Caption = 'Comentarios'
           FocusControl = DBEdit14
         end
         object Label12: TLabel
-          Left = 617
-          Top = 50
-          Width = 46
-          Height = 15
+          Left = 455
+          Top = 37
+          Width = 31
+          Height = 11
           Caption = 'Telefono'
           FocusControl = DBEdit14
         end
         object btnCliNew: TSpeedButton
-          Left = 142
-          Top = 19
-          Width = 23
-          Height = 22
+          Left = 105
+          Top = 14
+          Width = 17
+          Height = 16
           Action = actNuevoCliente
           Flat = True
           Glyph.Data = {
@@ -316,10 +319,10 @@ inherited frmMRemitos: TfrmMRemitos
             B900DABBB000B8857A00FF00FF00FF00FF00FF00FF00FF00FF00}
         end
         object btnCliFnd: TSpeedButton
-          Left = 117
-          Top = 19
-          Width = 23
-          Height = 22
+          Left = 86
+          Top = 14
+          Width = 17
+          Height = 16
           Action = actBuscarCliente
           Flat = True
           Glyph.Data = {
@@ -359,98 +362,98 @@ inherited frmMRemitos: TfrmMRemitos
             6400996964009969640099696400FF00FF00FF00FF00FF00FF00}
         end
         object Label14: TLabel
-          Left = 638
-          Top = 22
-          Width = 25
-          Height = 15
+          Left = 470
+          Top = 16
+          Width = 17
+          Height = 11
           Caption = 'CUIT'
           FocusControl = DBEdit14
         end
         object edtClienteId: TDBEdit
-          Left = 82
-          Top = 20
-          Width = 29
-          Height = 23
+          Left = 60
+          Top = 15
+          Width = 22
+          Height = 19
           DataField = 'id'
           DataSource = dsRemitos
           TabOrder = 0
         end
         object DBEdit14: TDBEdit
-          Left = 82
-          Top = 47
-          Width = 506
-          Height = 23
+          Left = 60
+          Top = 35
+          Width = 373
+          Height = 19
           DataField = 'domicilio'
           DataSource = dsCliente
           TabOrder = 1
         end
         object DBMemo1: TDBMemo
-          Left = 82
-          Top = 80
-          Width = 713
-          Height = 41
+          Left = 60
+          Top = 59
+          Width = 526
+          Height = 30
           DataField = 'observaciones'
           DataSource = dsRemitos
           TabOrder = 3
         end
         object DBEdit8: TDBEdit
-          Left = 668
-          Top = 47
-          Width = 127
-          Height = 23
+          Left = 492
+          Top = 35
+          Width = 94
+          Height = 19
           DataField = 'telefono'
           DataSource = dsCliente
           TabOrder = 2
         end
         object DBEdit13: TDBEdit
-          Left = 668
-          Top = 19
-          Width = 127
-          Height = 23
+          Left = 492
+          Top = 14
+          Width = 94
+          Height = 19
           TabStop = False
           DataField = 'cuit'
           DataSource = dsCliente
           TabOrder = 4
         end
         object Cliente: TJvDBSearchEdit
-          Left = 176
-          Top = 19
-          Width = 415
-          Height = 23
+          Left = 130
+          Top = 14
+          Width = 305
+          Height = 19
           DataSource = dm.dsClientes
           DataResult = 'id'
           DataField = 'nombre'
           TabOrder = 5
-          Text = 'Consumidor Final'
+          Text = 'Cliente'
           OnChange = ClienteChange
         end
       end
       object pnlAux: TPanel
         Left = 0
-        Top = 173
-        Width = 850
-        Height = 90
+        Top = 127
+        Width = 622
+        Height = 67
         Align = alTop
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
+        Font.Height = -9
         Font.Name = 'Calibri'
         Font.Style = []
         ParentFont = False
         TabOrder = 2
         object Label3: TLabel
-          Left = 10
-          Top = 3
-          Width = 50
-          Height = 15
+          Left = 7
+          Top = 2
+          Width = 35
+          Height = 11
           Caption = 'Producto'
           FocusControl = edtArticuloId
         end
         object btnPrdFnd: TSpeedButton
-          Left = 48
-          Top = 19
-          Width = 23
-          Height = 22
+          Left = 35
+          Top = 14
+          Width = 17
+          Height = 16
           Action = actBuscarProducto
           Flat = True
           Glyph.Data = {
@@ -490,17 +493,17 @@ inherited frmMRemitos: TfrmMRemitos
             6400996964009969640099696400FF00FF00FF00FF00FF00FF00}
         end
         object Label1: TLabel
-          Left = 711
-          Top = 3
-          Width = 46
-          Height = 15
+          Left = 524
+          Top = 2
+          Width = 31
+          Height = 11
           Caption = 'Subtotal'
         end
         object btnReset: TSpeedButton
-          Left = 766
-          Top = 49
-          Width = 23
-          Height = 24
+          Left = 564
+          Top = 36
+          Width = 17
+          Height = 18
           Flat = True
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -532,55 +535,55 @@ inherited frmMRemitos: TfrmMRemitos
           OnClick = btnResetClick
         end
         object Label6: TLabel
-          Left = 665
-          Top = 3
-          Width = 18
-          Height = 15
+          Left = 490
+          Top = 2
+          Width = 13
+          Height = 11
           Caption = 'Cnt'
         end
         object Label8: TLabel
-          Left = 515
-          Top = 3
-          Width = 35
-          Height = 15
+          Left = 379
+          Top = 2
+          Width = 23
+          Height = 11
           Caption = 'Precio'
           FocusControl = DBEdit3
         end
         object Label9: TLabel
-          Left = 565
-          Top = 3
-          Width = 26
-          Height = 15
+          Left = 416
+          Top = 2
+          Width = 17
+          Height = 11
           Caption = 'Base'
         end
         object Label11: TLabel
-          Left = 611
-          Top = 3
-          Width = 34
-          Height = 15
+          Left = 450
+          Top = 2
+          Width = 22
+          Height = 11
           Caption = 'Altura'
         end
         object Label5: TLabel
-          Left = 472
-          Top = 2
-          Width = 31
-          Height = 15
+          Left = 348
+          Top = 1
+          Width = 22
+          Height = 11
           Caption = ' U.M. '
         end
         object edtArticuloId: TDBEdit
-          Left = 10
-          Top = 19
-          Width = 30
-          Height = 23
+          Left = 7
+          Top = 14
+          Width = 22
+          Height = 19
           DataField = 'id'
           DataSource = dm.dsArticulos
           TabOrder = 0
         end
         object DBEdit3: TDBEdit
-          Left = 505
-          Top = 19
-          Width = 51
-          Height = 23
+          Left = 372
+          Top = 14
+          Width = 38
+          Height = 19
           TabStop = False
           DataField = 'precio'
           DataSource = dsALine
@@ -588,10 +591,10 @@ inherited frmMRemitos: TfrmMRemitos
           TabOrder = 2
         end
         object DBEdit7: TDBEdit
-          Left = 703
-          Top = 19
-          Width = 57
-          Height = 23
+          Left = 518
+          Top = 14
+          Width = 42
+          Height = 19
           TabStop = False
           DataField = 'Subtotal'
           DataSource = dsALine
@@ -599,20 +602,20 @@ inherited frmMRemitos: TfrmMRemitos
           TabOrder = 6
         end
         object DBEdit9: TDBEdit
-          Left = 472
-          Top = 19
-          Width = 29
-          Height = 23
+          Left = 348
+          Top = 14
+          Width = 21
+          Height = 19
           TabStop = False
           DataField = 'UM'
           DataSource = dsALine
           TabOrder = 1
         end
         object btnAgregar: TBitBtn
-          Left = 687
-          Top = 46
-          Width = 73
-          Height = 25
+          Left = 506
+          Top = 34
+          Width = 54
+          Height = 18
           Caption = 'Agregar'
           TabOrder = 7
           OnClick = btnAgregarClick
@@ -645,37 +648,37 @@ inherited frmMRemitos: TfrmMRemitos
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
         end
         object DBEdit1: TDBEdit
-          Left = 656
-          Top = 19
-          Width = 41
-          Height = 23
+          Left = 483
+          Top = 14
+          Width = 31
+          Height = 19
           DataField = 'Cantidad'
           DataSource = dsALine
           TabOrder = 5
         end
         object DBEdit2: TDBEdit
-          Left = 558
-          Top = 19
-          Width = 47
-          Height = 23
+          Left = 411
+          Top = 14
+          Width = 35
+          Height = 19
           DataField = 'Base'
           DataSource = dsALine
           TabOrder = 3
         end
         object DBEdit4: TDBEdit
-          Left = 609
-          Top = 19
-          Width = 42
-          Height = 23
+          Left = 449
+          Top = 14
+          Width = 31
+          Height = 19
           DataField = 'alto'
           DataSource = dsALine
           TabOrder = 4
         end
         object JvDBSearchEdit1: TJvDBSearchEdit
-          Left = 77
-          Top = 18
-          Width = 385
-          Height = 23
+          Left = 57
+          Top = 13
+          Width = 283
+          Height = 19
           DataSource = dm.dsArticulos
           DataResult = 'id'
           DataField = 'nombre'
@@ -686,16 +689,16 @@ inherited frmMRemitos: TfrmMRemitos
       end
       object pnlBody: TPanel
         Left = 0
-        Top = 263
-        Width = 850
-        Height = 202
+        Top = 194
+        Width = 622
+        Height = 137
         Align = alClient
         TabOrder = 3
         object btnDelete: TSpeedButton
-          Left = 802
-          Top = 5
-          Width = 23
-          Height = 24
+          Left = 591
+          Top = 4
+          Width = 17
+          Height = 17
           Flat = True
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -729,38 +732,38 @@ inherited frmMRemitos: TfrmMRemitos
         object DBGrid1: TDBGrid
           Left = 1
           Top = 1
-          Width = 795
-          Height = 200
+          Width = 586
+          Height = 135
           Align = alLeft
           DataSource = dsDetails
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
-          TitleFont.Height = -16
+          TitleFont.Height = -12
           TitleFont.Name = 'Calibri'
           TitleFont.Style = []
         end
       end
       object pnlFoot: TPanel
         Left = 0
-        Top = 465
-        Width = 850
-        Height = 33
+        Top = 331
+        Width = 622
+        Height = 24
         Align = alBottom
         TabOrder = 4
         object Label16: TLabel
-          Left = 597
-          Top = 7
-          Width = 53
-          Height = 19
+          Left = 440
+          Top = 5
+          Width = 46
+          Height = 14
           Caption = 'Subtotal'
         end
         object DBEdit16: TDBEdit
-          Left = 711
-          Top = 2
-          Width = 81
-          Height = 27
+          Left = 524
+          Top = 1
+          Width = 60
+          Height = 22
           DataField = 'subtotal'
           DataSource = dsRemitos
           ReadOnly = True
@@ -773,7 +776,7 @@ inherited frmMRemitos: TfrmMRemitos
     Left = 384
     Top = 32
     Bitmap = {
-      494C01010A009C009C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A00A000A00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

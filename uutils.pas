@@ -186,12 +186,14 @@ end;
 procedure SetListViewHeader(const lv: TListView; ATable: TDataset);
 var
   i: integer;
+  lvc: TListColumn;
 begin
+  lv.Columns.Clear;
   for I := 0 to ATable.FieldDefs.Count - 1 do
-    with lv.Columns.Add do
-    begin
-      Caption:=ATable.FieldDefs.Items[i].DisplayName;
-    end;
+  begin
+    lvc := lv.Columns.Add;
+    lvc.Caption:=ATable.FieldDefs.Items[i].DisplayName;
+  end;
 end;
 
 initialization

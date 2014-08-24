@@ -2,7 +2,7 @@ unit uCore;
 
 interface
 
-uses Classes, Contnrs, DBCLient;
+uses Classes, Contnrs, DBCLient, DB, MyAccess;
 
 type
   TMeta = class
@@ -21,116 +21,120 @@ type
       extra: string;
   end;
 
+  TORMBase = class(TOBject)
+  private
+    FID: Variant;
+    FTable: String;
+    FDataQuery: TMyQuery;
+    procedure Load;
+  public
+    constructor Create(const AID: Variant);virtual;
+    procedure Save;
+    class function GetConnection: TMyConnection;
+    property DataSet: TMyQuery read FDataQuery;
+  end;
+
   TORMEntity = class
     constructor Create; virtual; abstract;
     class function Find(aModelName: string; aId: integer): TORMEntity; virtual;
     function Save: boolean; virtual; abstract;
   end;
-  TORMEntityClass = class of TORMEntity;
 
-  TORMDBCnx = class
-    constructor Create; virtual; abstract;
-  end;
-
-  TLineaList = class;
-  TLinea = class(TORMEntity)
-  private
-    FAlto: double;
-    FBase: double;
-    FCantidad: double;
-    FIdArticulo: integer;
-    FIdLinea: integer;
-    FIdMaster: integer;
-    FMaster: string;
-    FPrecio: double;
+  TDetalle = class(TORMBase)
   public
-    property Alto: double read FAlto write FAlto;
-    property Base: double read FBase write FBase;
-    property Cantidad: double read FCantidad write FCantidad;
-    property IdArticulo: integer read FIdArticulo write FIdArticulo;
-    property IdLinea: integer read FIdLinea write FIdLinea;
-    property IdMaster: integer read FIdMaster write FIdMaster;
-    property Master: string read FMaster write FMaster;
-    property Precio: double read FPrecio write FPrecio;
+    constructor Create(const ID, Owner: Variant); overload;
   end;
 
-  TLineaList = class
+  TPedido = class(TORMBase)
   private
-    FList: TList;
-//    function GetCount: integer;
-//    function GetItem(Index: integer): TLinea;
+    Lineas: TDetalle;
+    function GetId: integer;
+    procedure SetId(aValue: integer);
   public
-//    constructor Create;
-//    destructor Destroy; override;
-//    procedure Clear;
-//    procedure Add(aItem: TLinea);
-//    property Count: integer read GetCount;
-//    property Items[Index: integer]: TLinea read GetItem; default;
+    constructor Create(const ID: Variant);
+    function FieldValue(const AFieldName: string): TField;
+    property Id: integer read GetId;
   end;
 
-  TCliente = class(TORMEntity)
-    private
-      FData: TClientDataSet;
-      FId: integer;
-      FNombre: string;
-      FApellido: string;
-      FDomicilio: string;
-      FTelefono: string;
-      FCUIT: string;
-
-    public
-      //property Nombre: string read GetNombre write SetNombre;
-      class function Find(aId: integer): TCliente;
-  end;
-
-  TPresupuesto = class(TObject)
-    private
-      FId: integer;
-      FFecha: TDateTime;
-      FCliente: TCliente;
-      FObservaciones: TStrings;
-      FItems: TLineaList;
-    public
-      property Cliente: TCliente read FCliente write FCliente;
-      property Id: integer read FId write FId;
-      property Fecha: TDateTime read FFecha write FFecha;
-      property Observaciones: TStrings read FObservaciones write FObservaciones;
-  end;
-
-
-  TArticulo = class(TObject)
-    private
-      FId: integer;
-      FNombre: string;
-      FUndMedida: string;
-      FCosto: string;
-      FRubroId: integer;
-      FSubrubroId: integer;
-  end;
-
-  TCaja = class(TObject)
-    private
-      FId: integer;
-      FFecha: TDateTime;
-      FClienteId: integer;
-      FImporte: currency;
-      FTipoMov: integer;
-  end;
 
 implementation
 
-{ TORMEntity }
-
-class function TCliente.Find(aId: integer): TCliente;
-begin
-  //result:=inherited TORMEntity.Find(self.ClassName,aId);
-end;
+uses SysUtils, udmvm;
 
 { TORMEntity }
 
 class function TORMEntity.Find(aModelName: string; aId: integer): TORMEntity;
 begin
-  
+
+end;
+
+{ TPedido }
+
+constructor TPedido.Create(const ID: Variant);
+begin
+  inherited;
+  Lineas := TDetalle.Create('',self.Id);
+end;
+
+function TPedido.FieldValue(const AFieldName: string): TField;
+begin
+  Result := FDataquery.FieldByName(AFieldName);
+end;
+
+function TPedido.GetId: integer;
+begin
+  Result:= integer(FId);
+end;
+
+procedure TPedido.SetId(aValue: integer);
+begin
+  self.Fid := aValue;
+  Load;
+end;
+
+{ TORMBase }
+
+constructor TORMBase.Create(const AID: Variant);
+begin
+  self.FID := AID;
+  self.FTable := copy(self.ClassName,2,length(self.ClassName))+ 's';
+  if not Assigned(FDataQuery) then
+  begin
+    FDataQuery := TMyQuery.Create(nil);
+    FDataQuery.Connection := TORMBase.GetConnection;
+    FDataQuery.SQL.Text := Format('SELECT * FROM %s WHERE id = :id',[FTable]);
+  end;
+  Load;
+end;
+
+class function TORMBase.GetConnection: TMyConnection;
+begin
+  Result := dm.cnxVM;
+end;
+
+procedure TORMBase.Load;
+begin
+  FDataQuery.Close;
+  FDataQuery.ParamByName('id').Value := FID;
+  FDataQuery.Prepared := true;
+  try
+    FDataQuery.Open;
+  except
+
+  end;
+end;
+
+procedure TORMBase.Save;
+begin
+  if Assigned(FDataQuery) then
+    if FDataQuery.State in [dsInsert,dsEdit] then
+      FDataQuery.Post;
+end;
+
+{ TDetalle }
+
+constructor TDetalle.Create(const ID, Owner: Variant);
+begin
 end;
 
 end.
