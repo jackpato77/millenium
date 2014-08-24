@@ -1,43 +1,238 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.0.67-community-nt - MySQL Community Edition (GPL)
--- Server OS:                    Win32
--- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2013-02-16 14:55:40
--- --------------------------------------------------------
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+DROP SCHEMA IF EXISTS `dbmillenium` ;
+CREATE SCHEMA IF NOT EXISTS `dbmillenium` DEFAULT CHARACTER SET latin1 ;
+USE `dbmillenium` ;
 
--- Dumping database structure for dbmillenium
-DROP DATABASE IF EXISTS `dbmillenium`;
-CREATE DATABASE IF NOT EXISTS `dbmillenium` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `dbmillenium`;
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`articulos`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`articulos` (
+  `id` INT(10) NOT NULL ,
+  `nombre` VARCHAR(60) NULL DEFAULT NULL ,
+  `costo` DECIMAL(10,4) NULL DEFAULT NULL ,
+  `um` VARCHAR(10) NULL DEFAULT NULL ,
+  `rubro_id` INT(11) NULL DEFAULT NULL ,
+  `subrubro_id` INT(11) NULL DEFAULT NULL ,
+  `descripcion` VARCHAR(240) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 
--- Dumping structure for table dbmillenium.cajas
-DROP TABLE IF EXISTS `cajas`;
-CREATE TABLE IF NOT EXISTS `cajas` (
-  `idcaja` int(11) NOT NULL auto_increment,
-  `fecha` datetime default NULL,
-  `idcliente` int(11) default NULL,
-  `idconcepto` int(11) default NULL,
-  `importe` decimal(8,2) default NULL,
-  `idtipo` int(11) default NULL,
-  `observaciones` varchar(255) default NULL,
-  `tipomov` char(1) default NULL,
-  PRIMARY KEY  (`idcaja`),
-  UNIQUE KEY `fecha_UNIQUE` (`fecha`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`articulos1`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`articulos1` (
+  `id` INT(10) NOT NULL ,
+  `nombre` VARCHAR(60) NULL DEFAULT NULL ,
+  `costo` DECIMAL(10,4) NULL DEFAULT NULL ,
+  `um` VARCHAR(10) NULL DEFAULT NULL ,
+  `categoria_id` INT(11) NULL DEFAULT NULL ,
+  `descripcion` VARCHAR(240) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
--- Dumping data for table dbmillenium.cajas: ~4 rows (approximately)
-/*!40000 ALTER TABLE `cajas` DISABLE KEYS */;
-INSERT INTO `cajas` (`idcaja`, `fecha`, `idcliente`, `idconcepto`, `importe`, `idtipo`, `observaciones`, `tipomov`) VALUES
-	(1, '2013-02-06 00:00:00', NULL, NULL, 100.00, NULL, NULL, NULL),
-	(2, '2013-02-06 20:06:15', NULL, NULL, 50.00, NULL, NULL, NULL),
-	(3, '2013-02-07 19:40:34', 2, NULL, 75.00, NULL, NULL, 'D'),
-	(4, '2013-02-07 20:16:29', 2, NULL, 75.00, NULL, NULL, 'H');
-/*!40000 ALTER TABLE `cajas` ENABLE KEYS */;
-/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`categorias`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`categorias` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(50) NULL DEFAULT NULL ,
+  `parent` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 122
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`clientes`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`clientes` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(100) NULL DEFAULT NULL ,
+  `cuit` VARCHAR(12) NULL DEFAULT NULL ,
+  `domicilio` VARCHAR(150) NULL DEFAULT NULL ,
+  `telefono` VARCHAR(15) NULL DEFAULT NULL ,
+  `condicion_iva` VARCHAR(15) NULL DEFAULT NULL ,
+  `contacto` VARCHAR(50) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 54
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`detalles`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`detalles` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `pedido_id` INT(10) NULL DEFAULT NULL ,
+  `articulo_id` INT(10) NULL DEFAULT NULL ,
+  `cantidad` INT(10) NULL DEFAULT NULL ,
+  `base` INT(10) NULL DEFAULT NULL ,
+  `alto` INT(10) NULL DEFAULT NULL ,
+  `precio` DECIMAL(10,2) NULL DEFAULT NULL ,
+  `estado` VARCHAR(1) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `PEDIDO` (`pedido_id` ASC) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 120
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`empleados`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`empleados` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(150) NULL DEFAULT NULL ,
+  `cuil` VARCHAR(15) NULL DEFAULT NULL ,
+  `domicilio` VARCHAR(150) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`estados`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`estados` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(50) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`pagos`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`pagos` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `venta_id` INT(10) NULL DEFAULT '0' ,
+  `formapago_id` INT(10) NULL DEFAULT '0' ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`pedidos`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`pedidos` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nro` INT(10) NULL DEFAULT '0' ,
+  `cliente_id` INT(10) NULL DEFAULT '0' ,
+  `fecha` DATE NULL DEFAULT NULL ,
+  `fecha_ingreso` DATETIME NULL DEFAULT NULL ,
+  `fecha_requerido` DATE NULL DEFAULT NULL ,
+  `estado_id` INT(10) NULL DEFAULT '1' ,
+  `comentario` TINYTEXT NULL DEFAULT NULL ,
+  `empleado_id` INT(11) NULL DEFAULT NULL ,
+  `monto` DECIMAL(10,2) NULL DEFAULT NULL ,
+  `tipo` VARCHAR(20) NULL DEFAULT NULL ,
+  `dcto` DECIMAL(10,2) NULL DEFAULT NULL ,
+  `factura_nro` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `NRO` (`nro` ASC) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 16
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`precios`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`precios` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `articulo_id` INT(10) NULL DEFAULT NULL ,
+  `grupo` VARCHAR(50) NULL DEFAULT NULL ,
+  `fecha` DATE NULL DEFAULT NULL ,
+  `vcosto1` DECIMAL(8,4) NULL DEFAULT '0.2500' ,
+  `vcosto2` DECIMAL(8,4) NULL DEFAULT '0.2500' ,
+  `vcosto3` DECIMAL(8,4) NULL DEFAULT '0.2500' ,
+  `vcosto4` DECIMAL(8,4) NULL DEFAULT '0.2500' ,
+  `deleted` CHAR(1) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 842
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`rubros`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`rubros` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(50) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 28
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`subrubros`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`subrubros` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(150) NULL DEFAULT NULL ,
+  `rubro_id` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 94
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`tmprubros`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`tmprubros` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(150) NULL DEFAULT NULL ,
+  `parent` BIGINT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 121
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`ventas`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`ventas` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT ,
+  `nro` INT(10) NOT NULL DEFAULT '0' ,
+  `pedido_id` INT(10) NULL DEFAULT NULL ,
+  `fecha` DATETIME NULL DEFAULT NULL ,
+  `dcto` DECIMAL(8,4) NULL DEFAULT NULL ,
+  `total` DECIMAL(8,2) NULL DEFAULT NULL ,
+  `tipo` VARCHAR(10) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `dbmillenium`.`vmconfig`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `dbmillenium`.`vmconfig` (
+  `nombre` VARCHAR(50) NULL DEFAULT NULL ,
+  `valor` INT(10) NULL DEFAULT NULL )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+USE `dbmillenium` ;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
