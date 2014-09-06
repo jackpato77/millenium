@@ -7,6 +7,11 @@ uses
 
 type
   TModelPedido = class
+  private
+    cdsPedido: TClientDataset;
+  public
+    constructor Create;
+    destructor Destroy; override;
 
   end;
 
