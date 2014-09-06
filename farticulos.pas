@@ -6,10 +6,13 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, fcrud, StdCtrls, Mask, DBCtrls, DB, StdActns, DBActns, ActnList,
   ImgList, Grids, DBGrids, ComCtrls, ToolWin, ExtCtrls, JvExStdCtrls, JvCombobox, JvDBSearchComboBox, JvEdit,
-  JvDBSearchEdit, rxToolEdit, rxCurrEdit;
+  JvDBSearchEdit, rxToolEdit, rxCurrEdit, RxLookup, JvExComCtrls, JvDBTreeView;
 
 type
   TfrmArticulos = class(TfrmCRUD)
+    ToolButton11: TToolButton;
+    actPrecios: TAction;
+    ToolButton12: TToolButton;
     Label1: TLabel;
     DBEdit1: TDBEdit;
     Label2: TLabel;
@@ -18,47 +21,21 @@ type
     DBEdit3: TDBEdit;
     Label4: TLabel;
     DBEdit4: TDBEdit;
-    Label5: TLabel;
-    DBEdit5: TDBEdit;
-    Label6: TLabel;
-    DBEdit6: TDBEdit;
     Label7: TLabel;
-    DBEdit7: TDBEdit;
+    DBMemo1: TDBMemo;
     Label8: TLabel;
-    DBEdit8: TDBEdit;
     Label9: TLabel;
-    DBEdit9: TDBEdit;
-    Label10: TLabel;
-    DBEdit10: TDBEdit;
-    DBEdit11: TDBEdit;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    ToolButton11: TToolButton;
-    actPrecios: TAction;
-    DBLookupComboBox1: TDBLookupComboBox;
-    DBLookupComboBox2: TDBLookupComboBox;
-    pnlFiltro: TPanel;
-    Button1: TButton;
-    cbxRubro: TJvDBSearchComboBox;
-    cbxSubrubro: TJvDBSearchComboBox;
-    JvDBSearchEdit1: TJvDBSearchEdit;
-    Label16: TLabel;
-    Label17: TLabel;
-    chkActivar: TCheckBox;
-    cbxOperador: TComboBox;
-    Label18: TLabel;
-    edtValor: TCurrencyEdit;
-    ToolButton12: TToolButton;
+    RxDBLookupCombo1: TRxDBLookupCombo;
+    RxDBLookupCombo2: TRxDBLookupCombo;
+    JvDBTreeView1: TJvDBTreeView;
+    Splitter1: TSplitter;
     procedure actPreciosExecute(Sender: TObject);
     procedure dtsPostExecute(Sender: TObject);
     procedure dtsCancelExecute(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure chkActivarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure dbgBrowseDblClick(Sender: TObject);
+    procedure JvDBTreeView1Change(Sender: TObject; Node: TTreeNode);
+    procedure ToolButton4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,39 +47,20 @@ var
 
 implementation
 
-uses udmvm, fprecios, uutils;
+uses udmvm, fprecios, uutils, rarticulo;
 {$R *.dfm}
 
 procedure TfrmArticulos.actPreciosExecute(Sender: TObject);
+var
+  fPrecios: TfrmPrecios;
 begin
   inherited;
-  frmPrecios.ShowModal;
-end;
-
-procedure TfrmArticulos.Button1Click(Sender: TObject);
-begin
-  inherited;
-  pnlFiltro.Visible:=not pnlFiltro.Visible;
-end;
-
-procedure TfrmArticulos.chkActivarClick(Sender: TObject);
-begin
-  inherited;
-  if chkActivar.Checked then
-  with dsBrowse.Dataset do
-  begin
-    Filtered:=false;
-    Filter:='1=1 ';
-    if cbxRubro.GetResult<>1 then
-    Filter:=Filter+'and idrubro='+VarToStr(cbxRubro.GetResult);
-    if cbxSubRubro.GetResult<>1 then
-    Filter:=Filter+' and idsubrubro='+VarToStr(cbxSubRubro.GetResult);
-    if edtValor.Value<>0 then
-    Filter:=Filter+' and precio '+cbxOperador.Text+FloatToStr(edtValor.Value);
-    Filtered:=true;
-  end
-  else
-    dsBrowse.DataSet.Filtered:=false;
+  fPrecios:=TfrmPrecios.Create(self);
+  try
+    fPrecios.ShowModal;
+  finally
+    fPrecios.free
+  end;
 end;
 
 procedure TfrmArticulos.dbgBrowseDblClick(Sender: TObject);
@@ -126,12 +84,49 @@ end;
 procedure TfrmArticulos.FormShow(Sender: TObject);
 begin
   inherited;
+  dm.tblRubros.Open;
+  dm.tblSubRubros.Open;
   dm.tblArticulos.Open;
-  dm.cdsRubros.Open;
-  dm.cdsSubrubros.Open;
-  dm.dsARubros.DataSet.Open;
-  dm.dsASubrubros.DataSet.Open;
-  //FixDBGridColumnsWidth(dbgBrowse);
+  dm.tblRubros.Open;
+  dm.tblSubrubros.Open;
+  //SetDBGridColumnsCaption(dbgBrowse, MainDataSet.FieldDefs);
+end;
+
+procedure TfrmArticulos.JvDBTreeView1Change(Sender: TObject; Node: TTreeNode);
+begin
+  inherited;
+  if Assigned(node) then
+  begin
+    if dm.qryRubros.Locate('nombre',node.Text,[]) then
+    begin
+      if node.level=0 then
+      dsBrowse.DataSet.Filter:='rubro_id = '+dm.qryRubros.FieldByName('id').AsString;
+
+      if node.level=1 then
+      dsBrowse.DataSet.Filter:='subrubro_id = '+dm.qryRubros.FieldByName('id').AsString;
+
+      dsBrowse.dataset.Filtered:=true;
+      dsBrowse.dataset.Refresh;
+    end;
+  end
+  else
+  begin
+    dsBrowse.dataset.Filtered:=false;
+    dsBrowse.dataset.Refresh;
+  end;
+end;
+
+procedure TfrmArticulos.ToolButton4Click(Sender: TObject);
+var
+  rp: TrLArticulo;
+begin
+  inherited;
+  if pgcCRUD.ActivePageIndex=0 then
+  begin
+    rp:=TrLArticulo.Create(self);
+    rp.qrpArticulos.Preview;
+    rp.free;
+  end;
 end;
 
 end.

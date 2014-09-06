@@ -1,7 +1,9 @@
 inherited frmMVentas: TfrmMVentas
   Caption = 'frmMVentas'
+  ExplicitWidth = 758
+  ExplicitHeight = 518
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 19
   inherited pgcCRUD: TPageControl
     Left = 0
     Top = 42
@@ -13,18 +15,28 @@ inherited frmMVentas: TfrmMVentas
     ExplicitWidth = 750
     ExplicitHeight = 449
     inherited tabBrowse: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 4
+      ExplicitWidth = 716
+      ExplicitHeight = 441
       inherited dbgBrowse: TDBGrid
         Left = 0
         Top = 0
-        Width = 722
+        Width = 716
         Height = 441
         Align = alClient
       end
     end
+    inherited tabDetail: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 4
+      ExplicitWidth = 716
+      ExplicitHeight = 441
+    end
   end
   inherited imlCRUD: TImageList
     Bitmap = {
-      494C01010E002400400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010E004400440010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

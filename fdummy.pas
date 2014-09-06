@@ -4,41 +4,43 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, JvExComCtrls, JvComCtrls, JvTabBar, ExtCtrls;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, JvExComCtrls, JvListView, fBase, Buttons, DB, Mask, DBCtrls, ucore;
 
 type
-  TfrmDock = class(TForm)
-    Edit1: TEdit;
-    Button1: TButton;
-    JvTabBar1: TJvTabBar;
-    JvPageControl1: TJvPageControl;
-    TabSheet1: TTabSheet;
+  TForm4 = class(TfrmBase)
+    edtPedido: TEdit;
+    BitBtn1: TBitBtn;
+    DataSource1: TDataSource;
+    edtFecha: TDBEdit;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    class function CreateDockForm(const aColor: string): TCustomForm;
-
+  Pedido: TPedido;
   end;
 
 var
-  frmDock: TfrmDock;
+  Form4: TForm4;
 
 implementation
 
+uses udmvm, uutils;
 {$R *.dfm}
 
-{ TfrmDock }
-
-class function TfrmDock.CreateDockForm(const aColor: string): TCustomForm;
+procedure TForm4.BitBtn1Click(Sender: TObject);
 begin
- result := TfrmDock.Create(Application);
+  Pedido:=TPedido.Create(edtPedido.Text);
 
-  //result.Color := aColor;
-
-  result.Caption := aColor;
-
-  result.Show;
+  DataSource1.DataSet:=Pedido.DataSet as TDataSet;
 end;
+
+procedure TForm4.BitBtn2Click(Sender: TObject);
+begin
+  Pedido.Save;
+end;
+
 
 end.

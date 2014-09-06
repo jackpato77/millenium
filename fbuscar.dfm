@@ -2,8 +2,8 @@ object frmBuscar: TfrmBuscar
   Left = 0
   Top = 0
   Caption = 'frmBuscar'
-  ClientHeight = 298
-  ClientWidth = 529
+  ClientHeight = 368
+  ClientWidth = 541
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,28 +11,53 @@ object frmBuscar: TfrmBuscar
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
-    Left = 8
-    Top = 8
-    Width = 513
-    Height = 290
+    Left = 0
+    Top = 41
+    Width = 541
+    Height = 327
+    Align = alClient
     Caption = 'Panel1'
-    TabOrder = 0
-    object labTable: TLabel
-      Left = 15
-      Top = 11
-      Width = 69
-      Height = 13
-      Caption = '<TableName>'
+    TabOrder = 1
+    object dbgResult: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 539
+      Height = 325
+      Align = alClient
+      DataSource = DataSource1
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDblClick = btnOkClick
+      OnKeyDown = dbgResultKeyDown
     end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 0
+    Width = 541
+    Height = 41
+    Align = alTop
+    Caption = 'Panel2'
+    TabOrder = 0
+    DesignSize = (
+      541
+      41)
     object btnOk: TSpeedButton
-      Left = 416
-      Top = 8
-      Width = 89
-      Height = 22
+      Left = 454
+      Top = 7
+      Width = 78
+      Height = 26
+      Anchors = [akRight]
       Caption = 'Ok'
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
@@ -63,30 +88,21 @@ object frmBuscar: TfrmBuscar
         00FFFF00FFA77E70A98073A4786EFF00FFFF00FFFF00FFFF00FF}
       OnClick = btnOkClick
     end
+    object labTable: TLabel
+      Left = 15
+      Top = 11
+      Width = 69
+      Height = 13
+      Caption = '<TableName>'
+    end
     object edtSearch: TEdit
       Left = 104
       Top = 8
-      Width = 305
+      Width = 344
       Height = 21
       TabOrder = 0
       OnChange = edtSearchChange
       OnKeyDown = edtSearchKeyDown
-    end
-    object dbgResult: TDBGrid
-      Left = 9
-      Top = 35
-      Width = 496
-      Height = 246
-      DataSource = DataSource1
-      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
-      TabOrder = 1
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-      OnDblClick = btnOkClick
-      OnKeyDown = dbgResultKeyDown
     end
   end
   object DataSource1: TDataSource

@@ -14,6 +14,8 @@ object frmMain: TfrmMain
   OldCreateOrder = False
   Position = poScreenCenter
   WindowState = wsMaximized
+  OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 19
@@ -25,7 +27,6 @@ object frmMain: TfrmMain
     Align = alClient
     HotTrack = True
     Images = ImageList1
-    PopupMenu = PopupMenu1
     TabOrder = 0
   end
   object ToolBar1: TToolBar
@@ -84,21 +85,25 @@ object frmMain: TfrmMain
     object actArticulos: TAction
       Caption = 'Articulos'
       ImageIndex = 0
+      ShortCut = 16449
       OnExecute = actArticulosExecute
     end
     object actClientes: TAction
       Caption = 'Clientes'
       ImageIndex = 1
+      ShortCut = 16451
       OnExecute = actClientesExecute
     end
     object actRemitos: TAction
       Caption = 'Presupuesto'
       ImageIndex = 2
+      ShortCut = 16464
       OnExecute = actRemitosExecute
     end
     object actVentas: TAction
       Caption = 'Ventas'
       ImageIndex = 3
+      ShortCut = 16470
       OnExecute = actVentasExecute
     end
     object actCaja: TAction
@@ -109,6 +114,7 @@ object frmMain: TfrmMain
     object actSalir: TAction
       Caption = 'Salir'
       ImageIndex = 5
+      ShortCut = 16472
       OnExecute = actSalirExecute
     end
   end
@@ -116,7 +122,7 @@ object frmMain: TfrmMain
     Left = 584
     Top = 24
     Bitmap = {
-      494C010109003800500010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109007C007C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -518,16 +524,5 @@ object frmMain: TfrmMain
       00030000F000C003003F0000F000C003007F8000F000C003007FC001F000C003
       00FFE301F001C00701FFFF87F003C00F00000000000000000000000000000000
       000000000000}
-  end
-  object PopupMenu1: TPopupMenu
-    Images = ImageList1
-    Left = 544
-    Top = 24
-    object Cerrar1: TMenuItem
-      Caption = 'Cerrar'
-      SubMenuImages = ImageList1
-      ImageIndex = 7
-      OnClick = Cerrar1Click
-    end
   end
 end

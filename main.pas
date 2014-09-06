@@ -13,8 +13,6 @@ type
     actArticulos: TAction;
     ImageList1: TImageList;
     PageControl1: TPageControl;
-    PopupMenu1: TPopupMenu;
-    Cerrar1: TMenuItem;
     ToolBar1: TToolBar;
     actClientes: TAction;
     actRemitos: TAction;
@@ -35,11 +33,12 @@ type
     procedure actSalirExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure actCajaExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     function FindPage(ACaption: string): integer;
     procedure CreatePage(ACaption: string); overload;
-    procedure CreatePage(VMForm: TVMForms); overload;
   public
     { Public declarations }
   end;
@@ -49,7 +48,7 @@ var
 
 implementation
 
-uses fdummy, fcrud, fventas, farticulos, fcajas, fclientes, fremitos, fmremitos,udmvm, TypInfo;
+uses fdummy, fcrud, fventa, farticulos, fcajas, fclientes, udmvm, fpresupuesto, ftest, TypInfo;
 
 {$R *.dfm}
 
@@ -67,6 +66,18 @@ begin
    Result:= PageIdx;
 end;
 
+procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  dm.cnxVM.Close;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  inherited;
+  dm.cnxVM.Open;
+end;
+
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   inherited;
@@ -74,53 +85,17 @@ begin
   dm.tblArticulos.Open;
   dm.tblClientes.Open;
   dm.tblDetails.Open;
-  dm.tblPresupuestos.Open;
+  dm.tblPedidos.Open;
   dm.tblVentas.Open;
   dm.tblRubros.Open;
   dm.tblSubRubros.Open;
-  dm.tblHPrecios.Open;
+  dm.tblPrecios.Open;
 
 end;
 
 procedure TfrmMain.Cerrar1Click(Sender: TObject);
 begin
   PageControl1.ActivePage.Free;
-end;
-
-procedure TfrmMain.CreatePage(VMForm: TVMForms);
-var
-  PageIdx: integer;
-  aForm: TfrmBase;
-  tabsheet: TTabSheet;
-  ACaption: string;
-begin
-  ACaption:=GetEnumName(TypeInfo(TVMForms),integer(VMForm));
-  PageIdx:= FindPage(ACaption);
-  if PageIdx>=0 then
-    PageControl1.ActivePageIndex:=PageIdx
-  else
-  begin
-  tabSheet := TTabSheet.Create(PageControl1) ;
-  case VMForm of
-    Articulos: aForm:=TfrmArticulos.Create(tabsheet,'articulos');
-    Clientes : aForm := TfrmClientes.Create(tabsheet,'clientes');
-    Presupuestos : aForm := TfrmMRemitos.Create(tabsheet,'presupuestos');
-    Cajas : aForm := TfrmCajas.Create(self);//(tabsheet, ACaption);
-  end;
-   tabSheet.PageControl := PageControl1;
-   tabSheet.ImageIndex := Ord(VMForm);
-
-   //create a form
-   aForm.Parent := tabSheet;
-   aForm.Align := alClient;
-   aForm.BorderStyle := bsNone;
-   aForm.Visible := true;
-   tabSheet.Caption := aCaption;
-
-   //activate the sheet
-   PageControl1.ActivePage := tabSheet;
-  end;
-
 end;
 
 procedure TfrmMain.CreatePage(ACaption: string);
@@ -134,27 +109,26 @@ begin
     PageControl1.ActivePageIndex:=PageIdx
   else
   begin
-  case VMForms.IndexOf(ACaption) of
-  0 : aForm := TfrmArticulos.Create(tabsheet,'articulos');
-  2 : aForm := TfrmClientes.Create(tabsheet,'clientes');
-  //2 : aForm := TfrmProveedores.Create(tabsheet);
-  3 : aForm := TfrmMRemitos.Create(tabsheet,'presupuestos');
-  4 : aForm := TfrmVentas.Create(tabsheet);
-//  1 : aForm := TfrmCajas.Create(tabsheet,'cajas');
-  end;
-   tabSheet := TTabSheet.Create(PageControl1) ;
-   tabSheet.PageControl := PageControl1;
-   tabSheet.ImageIndex := VMForms.IndexOf(ACaption);
+    case VMForms.IndexOf(ACaption) of
+      0 : aForm := TfrmArticulos.Create(tabsheet,'articulos');
+      1 : aForm := TfrmClientes.Create(tabsheet,'clientes');
+      2 : aForm := TfPto.Create(tabsheet,'pedidos');
+      4 : aForm := TForm4.Create(tabsheet);
+      5 : aForm := TfVta.Create(tabsheet,'ventas');
+    end;
+    tabSheet := TTabSheet.Create(PageControl1) ;
+    tabSheet.PageControl := PageControl1;
+    tabSheet.ImageIndex := VMForms.IndexOf(ACaption);
 
-   //create a form
-   aForm.Parent := tabSheet;
-   aForm.Align := alClient;
-   aForm.BorderStyle := bsNone;
-   aForm.Visible := true;
-   tabSheet.Caption := aForm.Caption;
+    //create a form
+    aForm.Parent := tabSheet;
+    aForm.Align := alClient;
+    aForm.BorderStyle := bsNone;
+    aForm.Visible := true;
+    tabSheet.Caption := aForm.Caption;
 
-   //activate the sheet
-   PageControl1.ActivePage := tabSheet;
+    //activate the sheet
+    PageControl1.ActivePage := tabSheet;
   end;
 end;
 
@@ -164,11 +138,9 @@ begin
 end;
 
 procedure TfrmMain.actCajaExecute(Sender: TObject);
-var
-  aFType: TVMForms;
 begin
-  aFType:=Cajas;
-  CreatePage(aFType);
+  inherited;
+  CreatePage('Test');
 end;
 
 procedure TfrmMain.actClientesExecute(Sender: TObject);
@@ -193,7 +165,7 @@ end;
 
 procedure TfrmMain.actVentasExecute(Sender: TObject);
 begin
-  CreatePAge('Ventas');
+  CreatePage('Ventas');
 end;
 
 end.

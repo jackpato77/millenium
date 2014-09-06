@@ -5,24 +5,23 @@ inherited frmArticulos: TfrmArticulos
   ClientWidth = 1144
   Position = poMainFormCenter
   OnShow = FormShow
-  ExplicitWidth = 799
-  ExplicitHeight = 488
+  ExplicitWidth = 1152
+  ExplicitHeight = 685
   PixelsPerInch = 96
   TextHeight = 19
   inherited tobMain: TToolBar
     Width = 1144
-    ExplicitWidth = 783
-    inherited ToolButton6: TToolButton
-      Left = 416
-      ExplicitLeft = 416
+    ExplicitWidth = 1144
+    inherited ToolButton4: TToolButton
+      OnClick = ToolButton4Click
     end
     object ToolButton11: TToolButton
-      Left = 359
+      Left = 464
       Top = 0
       Action = actPrecios
     end
     object ToolButton12: TToolButton
-      Left = 408
+      Left = 528
       Top = 0
       Width = 8
       Caption = 'ToolButton12'
@@ -37,443 +36,235 @@ inherited frmArticulos: TfrmArticulos
     Height = 616
     Align = alClient
     ExplicitLeft = 0
-    ExplicitTop = 61
+    ExplicitTop = 42
     ExplicitWidth = 1144
-    ExplicitHeight = 597
+    ExplicitHeight = 616
     inherited tabBrowse: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 4
-      ExplicitWidth = 755
-      ExplicitHeight = 400
+      ExplicitWidth = 1110
+      ExplicitHeight = 608
+      object Splitter1: TSplitter [0]
+        Left = 193
+        Top = 0
+        Height = 608
+        ExplicitLeft = 216
+        ExplicitTop = 88
+        ExplicitHeight = 100
+      end
       inherited dbgBrowse: TDBGrid
-        Left = 0
-        Top = 177
-        Width = 1110
-        Height = 431
+        Left = 196
+        Top = 0
+        Width = 914
+        Height = 608
         Align = alClient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         Columns = <
           item
             Expanded = False
-            FieldName = 'idarticulo'
+            FieldName = 'id'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'denominacion'
-            Width = 325
+            FieldName = 'nombre'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'Rubro'
-            Width = 180
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'SubRubro'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'umcompra'
+            FieldName = 'um'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'costo'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'rubro_id'
             Visible = False
           end
           item
             Expanded = False
-            FieldName = 'vcosto1'
+            FieldName = 'subrubro_id'
             Visible = False
           end
           item
             Expanded = False
-            FieldName = 'vcosto2'
+            FieldName = 'descripcion'
             Visible = False
           end
           item
             Expanded = False
-            FieldName = 'vcosto3'
-            Visible = False
+            FieldName = 'rubro'
+            Visible = True
           end
           item
             Expanded = False
-            FieldName = 'vcosto4'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'precio'
+            FieldName = 'subrubro'
             Visible = True
           end>
       end
-      object pnlFiltro: TPanel
-        Left = 0
-        Top = 37
-        Width = 1110
-        Height = 140
-        Align = alTop
-        TabOrder = 1
-        Visible = False
-        ExplicitWidth = 1095
-        object Label16: TLabel
-          Left = 10
-          Top = 47
-          Width = 105
-          Height = 19
-          Caption = 'Rubro/Subrubro:'
-        end
-        object Label17: TLabel
-          Left = 26
-          Top = 9
-          Width = 97
-          Height = 19
-          Caption = 'Denominaci'#243'n:'
-        end
-        object Label18: TLabel
-          Left = 80
-          Top = 88
-          Width = 44
-          Height = 19
-          Caption = 'Precio:'
-        end
-        object cbxRubro: TJvDBSearchComboBox
-          Left = 137
-          Top = 44
-          Width = 212
-          Height = 27
-          DataField = 'rubro'
-          DataResult = 'idrubro'
-          DataSource = dm.dsARubros
-          TabOrder = 0
-          Text = '<TODOS>'
-        end
-        object cbxSubrubro: TJvDBSearchComboBox
-          Left = 371
-          Top = 44
-          Width = 344
-          Height = 21
-          DataField = 'subrubro'
-          DataResult = 'idsubrubro'
-          DataSource = dm.dsASubrubros
-          TabOrder = 1
-          Text = '<TODOS>'
-        end
-        object JvDBSearchEdit1: TJvDBSearchEdit
-          Left = 137
-          Top = 4
-          Width = 578
-          Height = 27
-          DataSource = dm.dsArticulos
-          DataResult = 'idarticulo'
-          DataField = 'denominacion'
-          TabOrder = 2
-          Text = 'CRISTAL FLOAT 2 MM INCOLORO '
-        end
-        object chkActivar: TCheckBox
-          Left = 748
-          Top = 45
-          Width = 142
-          Height = 25
-          Caption = 'Acti&var'
-          TabOrder = 3
-          OnClick = chkActivarClick
-        end
-        object cbxOperador: TComboBox
-          Left = 140
-          Top = 82
-          Width = 69
-          Height = 27
-          Style = csDropDownList
-          ItemHeight = 19
-          ItemIndex = 0
-          TabOrder = 4
-          Text = '='
-          Items.Strings = (
-            '='
-            '>'
-            '<'
-            '>='
-            '<='
-            '<>')
-        end
-        object edtValor: TCurrencyEdit
-          Left = 219
-          Top = 82
-          Width = 177
-          Height = 21
-          Margins.Left = 4
-          Margins.Top = 1
-          TabOrder = 5
-        end
-      end
-      object Button1: TButton
+      object JvDBTreeView1: TJvDBTreeView
         Left = 0
         Top = 0
-        Width = 1110
-        Height = 37
-        Align = alTop
-        Caption = 'Filtro'
-        TabOrder = 2
-        OnClick = Button1Click
-        ExplicitWidth = 1095
+        Width = 193
+        Height = 608
+        DataSource = dm.dsRubros
+        MasterField = 'id'
+        DetailField = 'parent'
+        IconField = 'id'
+        ItemField = 'nombre'
+        StartMasterValue = '0'
+        UseFilter = False
+        PersistentNode = True
+        Indent = 19
+        OnChange = JvDBTreeView1Change
+        Align = alLeft
+        TabOrder = 1
+        RowSelect = True
+        Mirror = False
       end
     end
     inherited tabDetail: TTabSheet
       ExplicitLeft = 4
       ExplicitTop = 4
-      ExplicitWidth = 755
-      ExplicitHeight = 400
+      ExplicitWidth = 1110
+      ExplicitHeight = 608
       object Label1: TLabel
-        Left = 23
-        Top = 23
-        Width = 45
+        Left = 26
+        Top = 40
+        Width = 29
         Height = 19
-        Caption = 'Codigo'
+        Caption = 'Cod.'
         FocusControl = DBEdit1
       end
       object Label2: TLabel
         Left = 26
-        Top = 58
-        Width = 93
+        Top = 95
+        Width = 51
         Height = 19
-        Caption = 'Denominacion'
+        Caption = 'Nombre'
         FocusControl = DBEdit2
       end
       object Label3: TLabel
         Left = 26
-        Top = 200
-        Width = 119
+        Top = 151
+        Width = 37
         Height = 19
-        Caption = 'Unidad de Medida'
+        Caption = 'Costo'
         FocusControl = DBEdit3
       end
       object Label4: TLabel
         Left = 26
-        Top = 278
-        Width = 37
+        Top = 207
+        Width = 23
         Height = 19
-        Caption = 'Costo'
+        Caption = 'UM'
         FocusControl = DBEdit4
       end
-      object Label5: TLabel
-        Left = 26
-        Top = 121
-        Width = 38
-        Height = 19
-        Caption = 'Rubro'
-        FocusControl = DBEdit5
-      end
-      object Label6: TLabel
-        Left = 308
-        Top = 121
-        Width = 61
-        Height = 19
-        Caption = 'SubRubro'
-        FocusControl = DBEdit6
-      end
       object Label7: TLabel
-        Left = 31
-        Top = 348
+        Left = 26
+        Top = 375
         Width = 76
         Height = 19
-        Caption = 'Desperdc %'
-        FocusControl = DBEdit7
+        Caption = 'Descripcion'
       end
       object Label8: TLabel
-        Left = 126
-        Top = 348
-        Width = 50
+        Left = 30
+        Top = 269
+        Width = 45
         Height = 19
-        Caption = 'vcosto2'
-        FocusControl = DBEdit8
+        Caption = 'Rubros'
       end
       object Label9: TLabel
-        Left = 225
-        Top = 348
-        Width = 50
+        Left = 26
+        Top = 317
+        Width = 64
         Height = 19
-        Caption = 'vcosto3'
-        FocusControl = DBEdit9
-      end
-      object Label10: TLabel
-        Left = 319
-        Top = 348
-        Width = 50
-        Height = 19
-        Caption = 'vcosto4'
-        FocusControl = DBEdit10
-      end
-      object Label11: TLabel
-        Left = 424
-        Top = 348
-        Width = 40
-        Height = 19
-        Caption = 'Precio'
-        FocusControl = DBEdit11
-      end
-      object Label12: TLabel
-        Left = 98
-        Top = 376
-        Width = 15
-        Height = 19
-        Caption = ' x '
-      end
-      object Label13: TLabel
-        Left = 197
-        Top = 376
-        Width = 15
-        Height = 19
-        Caption = ' x '
-      end
-      object Label14: TLabel
-        Left = 292
-        Top = 376
-        Width = 15
-        Height = 19
-        Caption = ' x '
-      end
-      object Label15: TLabel
-        Left = 390
-        Top = 376
-        Width = 16
-        Height = 19
-        Caption = ' = '
+        Caption = 'Subrubros'
       end
       object DBEdit1: TDBEdit
-        Left = 80
-        Top = 19
-        Width = 69
-        Height = 21
-        DataField = 'idarticulo'
+        Left = 128
+        Top = 37
+        Width = 194
+        Height = 27
+        TabStop = False
+        DataField = 'id'
         DataSource = dsBrowse
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
         ReadOnly = True
         TabOrder = 0
       end
       object DBEdit2: TDBEdit
-        Left = 26
-        Top = 82
-        Width = 782
-        Height = 21
-        DataField = 'denominacion'
+        Left = 128
+        Top = 93
+        Width = 800
+        Height = 27
+        DataField = 'nombre'
         DataSource = dsBrowse
         TabOrder = 1
       end
       object DBEdit3: TDBEdit
-        Left = 26
-        Top = 224
-        Width = 84
-        Height = 21
-        DataField = 'umcompra'
-        DataSource = dm.dsArticulos
+        Left = 128
+        Top = 149
+        Width = 194
+        Height = 27
+        DataField = 'costo'
+        DataSource = dsBrowse
         TabOrder = 2
       end
       object DBEdit4: TDBEdit
-        Left = 26
-        Top = 301
-        Width = 84
-        Height = 21
-        DataField = 'costo'
-        DataSource = dm.dsArticulos
-        TabOrder = 5
-      end
-      object DBEdit5: TDBEdit
-        Left = 26
-        Top = 145
-        Width = 43
-        Height = 21
-        DataField = 'idrubro'
+        Left = 128
+        Top = 205
+        Width = 194
+        Height = 27
+        DataField = 'um'
         DataSource = dsBrowse
         TabOrder = 3
       end
-      object DBEdit6: TDBEdit
-        Left = 308
-        Top = 145
-        Width = 49
-        Height = 21
-        DataField = 'idsubrubro'
-        DataSource = dm.dsArticulos
+      object DBMemo1: TDBMemo
+        Left = 128
+        Top = 376
+        Width = 553
+        Height = 89
+        DataField = 'descripcion'
+        DataSource = dsBrowse
         TabOrder = 4
       end
-      object DBEdit7: TDBEdit
-        Left = 26
-        Top = 371
-        Width = 63
-        Height = 21
-        DataField = 'vcosto1'
-        DataSource = dm.dsArticulos
-        TabOrder = 6
-      end
-      object DBEdit8: TDBEdit
-        Left = 126
-        Top = 371
-        Width = 63
-        Height = 21
-        DataField = 'vcosto2'
-        DataSource = dm.dsArticulos
-        TabOrder = 7
-      end
-      object DBEdit9: TDBEdit
-        Left = 225
-        Top = 371
-        Width = 63
-        Height = 21
-        DataField = 'vcosto3'
-        DataSource = dm.dsArticulos
-        TabOrder = 8
-      end
-      object DBEdit10: TDBEdit
-        Left = 319
-        Top = 371
-        Width = 62
-        Height = 21
-        DataField = 'vcosto4'
-        DataSource = dm.dsArticulos
-        TabOrder = 9
-      end
-      object DBEdit11: TDBEdit
-        Left = 424
-        Top = 371
-        Width = 83
-        Height = 21
-        DataField = 'precio'
+      object RxDBLookupCombo1: TRxDBLookupCombo
+        Left = 128
+        Top = 261
+        Width = 332
+        Height = 26
+        DropDownCount = 8
+        DataField = 'rubro_id'
         DataSource = dsBrowse
-        ReadOnly = True
-        TabOrder = 10
+        DisplayEmpty = '<SIN RUBRO>'
+        LookupField = 'id'
+        LookupDisplay = 'nombre'
+        LookupSource = dm.dsARubros
+        TabOrder = 5
       end
-      object DBLookupComboBox1: TDBLookupComboBox
-        Left = 77
-        Top = 145
-        Width = 212
-        Height = 27
-        DataField = 'Rubro'
-        DataSource = dm.dsArticulos
-        TabOrder = 11
-      end
-      object DBLookupComboBox2: TDBLookupComboBox
-        Left = 365
-        Top = 145
-        Width = 212
-        Height = 27
-        DataField = 'SubRubro'
-        DataSource = dm.dsArticulos
-        TabOrder = 12
+      object RxDBLookupCombo2: TRxDBLookupCombo
+        Left = 128
+        Top = 311
+        Width = 332
+        Height = 26
+        DropDownCount = 8
+        DataField = 'subrubro_id'
+        DataSource = dsBrowse
+        DisplayEmpty = '<SIN SUBRUBRO>'
+        LookupField = 'id'
+        LookupDisplay = 'nombre'
+        LookupSource = dm.dsASubrubros
+        TabOrder = 6
       end
     end
   end
   inherited imlCRUD: TImageList
     Bitmap = {
-      494C01010A004C00540010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010A007400740010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -887,6 +678,6 @@ inherited frmArticulos: TfrmArticulos
     end
   end
   inherited dsBrowse: TDataSource
-    DataSet = dm.tblArticulos
+    DataSet = dm.cdsArticulos
   end
 end

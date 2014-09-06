@@ -7,8 +7,8 @@ uses
   Dialogs, QRCtrls, jpeg, QuickRpt, ExtCtrls;
 
 type
-  TrptArticulo = class(TForm)
-    QuickRep1: TQuickRep;
+  TrLArticulo = class(TForm)
+    qrpArticulos: TQuickRep;
     QRBand1: TQRBand;
     QRBand2: TQRBand;
     QRBand3: TQRBand;
@@ -30,7 +30,7 @@ type
   end;
 
 var
-  rptArticulo: TrptArticulo;
+  rLArticulo: TrLArticulo;
 
 implementation
 

@@ -7,7 +7,7 @@ uses
   Dialogs, fbase, DB, StdActns, DBActns, ActnList, ImgList, Grids, DBGrids,
   ComCtrls, ToolWin, Buttons, StdCtrls, DBCtrls, Mask, ExtCtrls, JvExStdCtrls,
   JvEdit, JvDBSearchEdit, JvCombobox, JvDBSearchComboBox, DBClient, fcrud, JvExMask, JvToolEdit, JvMaskEdit,
-  JvDBControls;
+  JvDBControls, rxToolEdit, rxCurrEdit, uCore;
 
 type
   TfrmMRemitos = class(TfrmBase)
@@ -21,8 +21,6 @@ type
     pnlHead: TPanel;
     Label2: TLabel;
     Label4: TLabel;
-    DBEdit10: TDBEdit;
-    DBEdit11: TDBEdit;
     pnlShip: TPanel;
     Label10: TLabel;
     Label13: TLabel;
@@ -59,17 +57,7 @@ type
     DBEdit2: TDBEdit;
     DBEdit4: TDBEdit;
     cdsALine: TClientDataSet;
-    cdsLines: TClientDataSet;
-    DBEdit5: TDBEdit;
-    DBEdit6: TDBEdit;
     cdsPto: TClientDataSet;
-    cdsPtoidpresupuesto: TIntegerField;
-    cdsPtoidcliente: TIntegerField;
-    cdsPtofecha: TDateTimeField;
-    cdsPtodescuento: TFloatField;
-    cdsPtoobservaciones: TStringField;
-    cdsPtotipo: TStringField;
-    cdsPtosubtotal: TCurrencyField;
     dsCliente: TDataSource;
     btnCliNew: TSpeedButton;
     actBuscarCliente: TAction;
@@ -77,22 +65,6 @@ type
     actNuevoCliente: TAction;
     Label12: TLabel;
     DBEdit8: TDBEdit;
-    cdsALineidarticulo: TIntegerField;
-    cdsALineCantidad: TFloatField;
-    cdsALineBase: TFloatField;
-    cdsALineAlto: TFloatField;
-    cdsALineArticulo: TStringField;
-    cdsALineUM: TStringField;
-    cdsALinePrecio: TCurrencyField;
-    cdsALineSubtotal: TCurrencyField;
-    cdsLinesidarticulo: TIntegerField;
-    cdsLinesCantidad: TFloatField;
-    cdsLinesPrecio: TCurrencyField;
-    cdsLinesBase: TFloatField;
-    cdsLinesAlto: TFloatField;
-    cdsLinesArticulo: TStringField;
-    cdsLinesUM: TStringField;
-    cdsLinesSubtotal: TCurrencyField;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
@@ -115,6 +87,9 @@ type
     Label14: TLabel;
     DBEdit13: TDBEdit;
     cbxListaPrecios: TComboBox;
+    JvDBSearchEdit1: TJvDBSearchEdit;
+    Cliente: TJvDBSearchEdit;
+    CurrencyEdit1: TCurrencyEdit;
     procedure btnResetClick(Sender: TObject);
     procedure btnPrdFndClick(Sender: TObject);
     procedure btnDeleteClick(Sender: TObject);
@@ -141,6 +116,7 @@ type
     procedure aclTranUpdate(Action: TBasicAction; var Handled: Boolean);
     procedure actImprimirExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ClienteChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -171,18 +147,18 @@ constructor TfrmMRemitos.Create(AOwner: TComponent; ATableName: string);
 begin
   inherited Create(AOwner);
   TableName:=ATableName;
-  dm.tblPresupuestos.Open;
+  dm.tblPedidos.Open;
   dm.tblClientes.Open;
   dm.tblArticulos.Open;
   dm.tblDetails.Open;
-  cdsPtos:= dm.cdsPresupuestos;
+  {cdsPtos:= dm.cdsPresupuestos;
   cdsLin:= dm.cdsDetails;
   cdsCli:= dm.cdsClientes;
   dsRemitos.DataSet:=cdsPto;
   cdsALine.LoadFromFile('dlinea.xml');
   cdsALine.Open;
   cdsLines.LoadFromFile('dlineas.xml');
-  cdsLines.Open;
+  cdsLines.Open;}
   SetupPage;
 end;
 
@@ -207,7 +183,7 @@ var
   fb: TfrmBuscar;
 begin
   inherited;
-  fb:= TfrmBuscar.CreateSearchFor(self,'clientes');
+  fb:= TfrmBuscar.CreateSearchFor(self,'clientes','nombre');
   try
   if fb.ShowModal = mrOk then
     dsRemitos.DataSet.FieldByName('idcliente').Value:=fb.ResultId;
@@ -221,7 +197,7 @@ var
   fb: TfrmBuscar;
 begin
 inherited;
-  fb:= TfrmBuscar.CreateSearchFor(self,'articulos');
+  fb:= TfrmBuscar.CreateSearchFor(self,'articulos','nombre');
   try
   if fb.ShowModal = mrOk then
     edtArticuloId.Text:=IntToStr(fb.ResultId);
@@ -232,6 +208,7 @@ end;
 
 procedure TfrmMRemitos.actLoad(AId: integer);
 begin
+{
   cdsPto.Close;
   cdspto.Open;
   cdsPto.Insert;
@@ -252,7 +229,7 @@ begin
     dm.tblDetails.Next;
   end;
   dm.tblDetails.Filtered:=false;
-  cdsALine.Open;
+  cdsALine.Open;}
 end;
 
 procedure TfrmMRemitos.actNuevoClienteExecute(Sender: TObject);
@@ -276,6 +253,7 @@ end;
 procedure TfrmMRemitos.btnAgregarClick(Sender: TObject);
 begin
   inherited;
+  {
   cdsLines.Append;
   with cdsALine do
   begin
@@ -289,7 +267,7 @@ begin
   cdsLines.Post;
   cdsALine.Cancel;
   cdsPto.FieldByName('subtotal').AsCurrency:=UpdateTotal;
-  edtArticuloId.SetFocus;
+  edtArticuloId.SetFocus;}
 end;
 
 procedure TfrmMRemitos.btnGuardarClick(Sender: TObject);
@@ -297,6 +275,7 @@ var
   idventa: integer;
 begin
   inherited;
+  {
   idventa:=cdsPto.FieldByName('idpresupuesto').AsInteger;
   cdsPtos.Insert;
   dm.CopyTo(cdsPto,cdsPtos);
@@ -321,14 +300,14 @@ begin
     Next;
   end;
 
-  cdsPtos.ApplyUpdates(0);
+  cdsPtos.ApplyUpdates(0);}
 end;
 
 procedure TfrmMRemitos.btnPrdFndClick(Sender: TObject);
 var
   fb: TfrmBuscar;
 begin
-  fb:= TfrmBuscar.CreateSearchFor(self,'articulos');
+  fb:= TfrmBuscar.CreateSearchFor(self,'articulos','nombre');
   try
   if fb.ShowModal = mrOk then
     edtArticuloId.Text:=IntToStr(fb.ResultId);
@@ -346,7 +325,7 @@ end;
 procedure TfrmMRemitos.cdsLinesCalcFields(DataSet: TDataSet);
 begin
   inherited;
-  cdsLines.FieldByName('SubTotal').Value:= cdsLines.FieldByName('Base').Value*cdsLines.FieldByName('Alto').Value*cdsLines.FieldByName('Cantidad').Value*cdsLines.FieldByName('Precio').Value;
+//  cdsLines.FieldByName('SubTotal').Value:= cdsLines.FieldByName('Base').Value*cdsLines.FieldByName('Alto').Value*cdsLines.FieldByName('Cantidad').Value*cdsLines.FieldByName('Precio').Value;
 end;
 
 procedure TfrmMRemitos.dbgBrowseDblClick(Sender: TObject);
@@ -361,7 +340,7 @@ begin
 //  inherited;
   cdsPto.Cancel;
   cdsALine.Cancel;
-  cdsLines.Cancel;
+  //cdsLines.Cancel;
 end;
 
 procedure TfrmMRemitos.actImprimirExecute(Sender: TObject);
@@ -383,13 +362,10 @@ end;
 
 procedure TfrmMRemitos.dtsInsertExecute(Sender: TObject);
 begin
-//  inherited;
+  //inherited;
   cdsPto.Open;
   cdsALine.Open;
-  cdsLines.Open;
-  cdsPto.Insert;
-  cdsPto.FieldByName('idpresupuesto').Value:=dm.GetNextID('presupuestos');
-  cdsPto.FieldByName('fecha').AsDateTime:=Now;
+  //cdsLines.Open;
   pgcCRUD.ActivePageIndex:=1;
   edtClienteId.SetFocus;
 end;
@@ -411,7 +387,8 @@ begin
     dm.qryCleanDetail.ParamByName('idmaster').Value:=idventa;
     dm.qryCleanDetail.ParamByName('master').Value:='presupuesto';
     dm.qryCleanDetail.Execute;
-  cdsLines.First;
+  //cdsLines.First;
+  {
   while not cdsLines.Eof do
   with cdsLines do
   begin
@@ -429,7 +406,7 @@ begin
     Next;
   end;
   cdsPtos.ApplyUpdates(0);
-  cdsPto.Cancel;
+  cdsPto.Cancel;}
   inherited;
 end;
 
@@ -450,6 +427,12 @@ begin
    Screen.OnActiveControlChange := nil;
 end;
 
+procedure TfrmMRemitos.ClienteChange(Sender: TObject);
+begin
+  inherited;
+//  aPto.Cliente:=TCliente.Find(Cliente.GetResult);
+end;
+
 procedure TfrmMRemitos.btnDeleteClick(Sender: TObject);
 begin
   dsDetails.DataSet.Delete;
@@ -467,28 +450,22 @@ begin
    begin
      pgcCRUD.Pages[page].TabVisible := false;
    end;
-
    //select the first tab
    pgcCRUD.ActivePageIndex := 0;
+   SetDBGridColumnsCaption(dbgBrowse,dsRemitos.DataSet.FieldDefs);
+   //FixDBGridColumnsWidth(dbgBrowse,dsLista.DataSet.FieldDefs);
 end;
 
 procedure TfrmMRemitos.SpeedButton2Click(Sender: TObject);
 var
   fb: TfrmBuscar;
 begin
-  fb:= TfrmBuscar.CreateSearchFor(self,'clientes');
-  try
-  if fb.ShowModal = mrOk then
-    dm.cdsRemitosIdCLiente.Value:=fb.ResultId;
-  finally
-    fb.free;
-  end;
 end;
 
 procedure TfrmMRemitos.tabBrowseShow(Sender: TObject);
 begin
   inherited;
-  dsLista.DataSet.Refresh;
+  dsRemitos.DataSet.Refresh;
 end;
 
 procedure TfrmMRemitos.btnResetClick(Sender: TObject);
@@ -502,14 +479,14 @@ var
   tot: double;
 begin
   tot:=0;
-  cdsLines.DisableControls;
+  {cdsLines.DisableControls;
   cdsLines.First;
   while not cdsLines.Eof do
   begin
     tot:=tot+cdsLines.FieldByName('subtotal').AsFloat;
     cdsLines.Next;
   end;
-  cdsLines.EnableControls;
+  cdsLines.EnableControls;}
   result:=tot;
 end;
 

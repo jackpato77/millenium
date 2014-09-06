@@ -1,9 +1,9 @@
-object rLClientes: TrLClientes
+object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Listado Clientes'
-  ClientHeight = 446
-  ClientWidth = 782
+  Caption = 'Form3'
+  ClientHeight = 301
+  ClientWidth = 788
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object rLClientes: TrLClientes
   Scaled = False
   PixelsPerInch = 96
   TextHeight = 13
-  object qrpCliente: TQuickRep
+  object QuickRep1: TQuickRep
     Left = 0
     Top = 0
     Width = 816
@@ -24,7 +24,6 @@ object rLClientes: TrLClientes
     Frame.DrawBottom = False
     Frame.DrawLeft = False
     Frame.DrawRight = False
-    DataSet = dm.cdsClientes
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -77,7 +76,7 @@ object rLClientes: TrLClientes
       Left = 48
       Top = 48
       Width = 720
-      Height = 105
+      Height = 113
       Frame.Color = clBlack
       Frame.DrawTop = False
       Frame.DrawBottom = False
@@ -89,7 +88,7 @@ object rLClientes: TrLClientes
       ForceNewColumn = False
       ForceNewPage = False
       Size.Values = (
-        277.812500000000000000
+        298.979166666666700000
         1905.000000000000000000)
       PreCaluculateBandHeight = False
       KeepOnOnePage = False
@@ -213,38 +212,6 @@ object rLClientes: TrLClientes
           C0BFF04D6F87DAF786FC09AA78B355B1F116A2353BA935EBB82E2659444B1610
           C50C402ED51C104E7BD145007D0545145007FFD9}
       end
-      object QRLabel1: TQRLabel
-        Left = 250
-        Top = 4
-        Width = 176
-        Height = 34
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          89.958333333333330000
-          661.458333333333300000
-          10.583333333333330000
-          465.666666666666700000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Caption = 'VITRIU VIDRIOS'
-        Color = clWhite
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -27
-        Font.Name = 'Calibri'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 20
-      end
       object QRMemo1: TQRMemo
         Left = 154
         Top = 40
@@ -281,66 +248,44 @@ object rLClientes: TrLClientes
         WordWrap = True
         FontSize = 9
       end
-    end
-    object QRBand2: TQRBand
-      Left = 48
-      Top = 153
-      Width = 720
-      Height = 24
-      Frame.Color = clBlack
-      Frame.DrawTop = False
-      Frame.DrawBottom = False
-      Frame.DrawLeft = False
-      Frame.DrawRight = False
-      AlignToBottom = False
-      Color = clWhite
-      TransparentBand = False
-      ForceNewColumn = False
-      ForceNewPage = False
-      Size.Values = (
-        63.500000000000000000
-        1905.000000000000000000)
-      PreCaluculateBandHeight = False
-      KeepOnOnePage = False
-      BandType = rbTitle
-      object QRLabel2: TQRLabel
-        Left = 256
+      object QRLabel1: TQRLabel
+        Left = 250
         Top = 4
-        Width = 146
-        Height = 17
+        Width = 176
+        Height = 34
         Frame.Color = clBlack
         Frame.DrawTop = False
         Frame.DrawBottom = False
         Frame.DrawLeft = False
         Frame.DrawRight = False
         Size.Values = (
-          44.979166666666670000
-          677.333333333333300000
+          89.958333333333330000
+          661.458333333333300000
           10.583333333333330000
-          386.291666666666700000)
+          465.666666666666700000)
         Alignment = taLeftJustify
         AlignToBand = False
         AutoSize = True
         AutoStretch = False
-        Caption = 'LISTADO DE CLIENTES'
+        Caption = 'VITRIU VIDRIOS'
         Color = clWhite
-        Font.Charset = DEFAULT_CHARSET
+        Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Arial'
-        Font.Style = [fsBold, fsUnderline]
+        Font.Height = -27
+        Font.Name = 'Calibri'
+        Font.Style = [fsBold]
         ParentFont = False
         Transparent = False
         WordWrap = True
         ExportAs = exptText
-        FontSize = 10
+        FontSize = 20
       end
     end
-    object QRBand3: TQRBand
+    object QRBand2: TQRBand
       Left = 48
-      Top = 211
+      Top = 161
       Width = 720
-      Height = 24
+      Height = 40
       Frame.Color = clBlack
       Frame.DrawTop = False
       Frame.DrawBottom = False
@@ -352,192 +297,11 @@ object rLClientes: TrLClientes
       ForceNewColumn = False
       ForceNewPage = False
       Size.Values = (
-        63.500000000000000000
+        105.833333333333300000
         1905.000000000000000000)
       PreCaluculateBandHeight = False
       KeepOnOnePage = False
-      BandType = rbDetail
-      object QRDBText1: TQRDBText
-        Left = 68
-        Top = 3
-        Width = 22
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          179.916666666666700000
-          7.937500000000000000
-          58.208333333333330000)
-        Alignment = taRightJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Color = clWhite
-        DataSet = dm.cdsClientes
-        DataField = 'cuit'
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
-      object QRDBText2: TQRDBText
-        Left = 96
-        Top = 3
-        Width = 44
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          254.000000000000000000
-          7.937500000000000000
-          116.416666666666700000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Color = clWhite
-        DataSet = dm.cdsClientes
-        DataField = 'nombre'
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
-      object QRDBText3: TQRDBText
-        Left = 560
-        Top = 3
-        Width = 46
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          1481.666666666667000000
-          7.937500000000000000
-          121.708333333333300000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Color = clWhite
-        DataSet = dm.cdsClientes
-        DataField = 'telefono'
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
-    end
-    object QRBand4: TQRBand
-      Left = 48
-      Top = 177
-      Width = 720
-      Height = 34
-      Frame.Color = clBlack
-      Frame.DrawTop = False
-      Frame.DrawBottom = False
-      Frame.DrawLeft = False
-      Frame.DrawRight = False
-      AlignToBottom = False
-      Color = clWhite
-      TransparentBand = False
-      ForceNewColumn = False
-      ForceNewPage = False
-      Size.Values = (
-        89.958333333333330000
-        1905.000000000000000000)
-      PreCaluculateBandHeight = False
-      KeepOnOnePage = False
-      BandType = rbColumnHeader
-      object QRLabel3: TQRLabel
-        Left = 61
-        Top = 6
-        Width = 29
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          161.395833333333300000
-          15.875000000000000000
-          76.729166666666670000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Caption = 'CUIT'
-        Color = clWhite
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
-      object QRLabel4: TQRLabel
-        Left = 96
-        Top = 6
-        Width = 41
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          254.000000000000000000
-          15.875000000000000000
-          108.479166666666700000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Caption = 'Cliente'
-        Color = clWhite
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
-      object QRLabel5: TQRLabel
-        Left = 560
-        Top = 6
-        Width = 49
-        Height = 17
-        Frame.Color = clBlack
-        Frame.DrawTop = False
-        Frame.DrawBottom = False
-        Frame.DrawLeft = False
-        Frame.DrawRight = False
-        Size.Values = (
-          44.979166666666670000
-          1481.666666666667000000
-          15.875000000000000000
-          129.645833333333300000)
-        Alignment = taLeftJustify
-        AlignToBand = False
-        AutoSize = True
-        AutoStretch = False
-        Caption = 'Telefono'
-        Color = clWhite
-        Transparent = False
-        WordWrap = True
-        ExportAs = exptText
-        FontSize = 10
-      end
+      BandType = rbTitle
     end
   end
 end

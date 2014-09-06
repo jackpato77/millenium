@@ -7,7 +7,6 @@ object rdm: Trdm
     Username = 'root'
     Password = 'gabiru22'
     Server = '127.0.0.1'
-    Connected = True
     Left = 24
     Top = 16
   end
@@ -19,7 +18,6 @@ object rdm: Trdm
         ' c.telefono, observaciones, subtotal '
       'from presupuestos p join clientes c on p.idcliente = c.idcliente'
       'where idpresupuesto=:idpresupuesto')
-    Active = True
     Left = 112
     Top = 16
     ParamData = <
@@ -41,7 +39,6 @@ object rdm: Trdm
     MasterSource = dsPto
     MasterFields = 'idpresupuesto'
     DetailFields = 'idmaster'
-    Active = True
     Left = 160
     Top = 16
     ParamData = <
@@ -112,7 +109,6 @@ object rdm: Trdm
         'mcompra, articulos.costo, articulos.idrubro, articulos.idsubrubr' +
         'o, (costo*vcosto1*vcosto2*vcosto3*vcosto4) precio'
       'FROM articulos')
-    Active = True
     Left = 112
     Top = 88
   end
@@ -123,7 +119,6 @@ object rdm: Trdm
         'SELECT clientes.idcliente, clientes.razonsocial, clientes.nombre' +
         ', clientes.cuit, clientes.telefono '
       'FROM clientes')
-    Active = True
     Left = 168
     Top = 88
   end

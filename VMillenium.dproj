@@ -34,7 +34,7 @@
       <Excluded_Packages Name="$(BDS)\bin\bcbofficexp100.bpl">CodeGear C++Builder Office XP Servers Package</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dclofficexp100.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-    </Excluded_Packages><Source><Source Name="MainSource">VMillenium.dpr</Source></Source></Delphi.Personality></BorlandProject></BorlandProject>
+    </Excluded_Packages><Source><Source Name="MainSource">VMillenium.dpr</Source></Source></Delphi.Personality><ModelSupport>False</ModelSupport></BorlandProject></BorlandProject>
   </ProjectExtensions>
   <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
   <ItemGroup>
@@ -59,14 +59,23 @@
     <DCCReference Include="fcrud.pas">
       <Form>frmCRUD</Form>
     </DCCReference>
+    <DCCReference Include="fdummy.pas">
+      <Form>Form4</Form>
+    </DCCReference>
     <DCCReference Include="fmremitos.pas">
       <Form>frmMRemitos</Form>
     </DCCReference>
-    <DCCReference Include="fmventas.pas">
-      <Form>frmMVentas</Form>
-    </DCCReference>
     <DCCReference Include="fprecios.pas">
       <Form>frmPrecios</Form>
+    </DCCReference>
+    <DCCReference Include="fpresupuesto.pas">
+      <Form>fPto</Form>
+    </DCCReference>
+    <DCCReference Include="fTest.pas">
+      <Form>fTestForm</Form>
+    </DCCReference>
+    <DCCReference Include="fventa.pas">
+      <Form>fVta</Form>
     </DCCReference>
     <DCCReference Include="main.pas">
       <Form>frmMain</Form>
@@ -78,26 +87,23 @@
       <Form>Form1</Form>
     </DCCReference>
     <DCCReference Include="rpt\rarticulo.pas">
-      <Form>rptArticulo</Form>
+      <Form>rLArticulo</Form>
     </DCCReference>
     <DCCReference Include="rpt\rcliente.pas">
-      <Form>frClientes</Form>
+      <Form>rLClientes</Form>
     </DCCReference>
     <DCCReference Include="rpt\rdmvm.pas">
       <Form>rdm</Form>
     </DCCReference>
+    <DCCReference Include="rpt\reportBaseVM.pas">
+      <Form>Form3</Form>
+    </DCCReference>
     <DCCReference Include="rpt\rpresupuesto.pas">
       <Form>rptPResupuesto</Form>
-    </DCCReference>
-    <DCCReference Include="rpt\rPresupuestos.pas">
-      <Form>Form3</Form>
     </DCCReference>
     <DCCReference Include="uCore.pas" />
     <DCCReference Include="uDmVm.pas">
       <Form>dm</Form>
-    </DCCReference>
-    <DCCReference Include="uDummy.pas">
-      <Form>frmBase1</Form>
     </DCCReference>
     <DCCReference Include="uutils.pas" />
   </ItemGroup>

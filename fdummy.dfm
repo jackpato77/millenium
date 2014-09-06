@@ -1,13 +1,10 @@
-object frmDock: TfrmDock
+object Form4: TForm4
   Left = 0
   Top = 0
-  BorderStyle = bsSizeToolWin
-  Caption = 'frmDock'
-  ClientHeight = 520
-  ClientWidth = 612
+  Caption = 'Form4'
+  ClientHeight = 395
+  ClientWidth = 651
   Color = clBtnFace
-  DragKind = dkDock
-  DragMode = dmAutomatic
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,48 +13,43 @@ object frmDock: TfrmDock
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object Edit1: TEdit
-    Left = 176
-    Top = 312
+  object edtPedido: TEdit
+    Left = 104
+    Top = 16
     Width = 121
     Height = 21
     TabOrder = 0
-    Text = 'Edit1'
+    Text = 'edtPedido'
   end
-  object Button1: TButton
-    Left = 312
-    Top = 312
+  object BitBtn1: TBitBtn
+    Left = 232
+    Top = 14
     Width = 75
     Height = 25
-    Caption = 'Button1'
+    Caption = 'BitBtn1'
     TabOrder = 1
+    OnClick = BitBtn1Click
   end
-  object JvTabBar1: TJvTabBar
-    Left = 0
-    Top = 0
-    Width = 612
-    Tabs = <
-      item
-        Caption = 'tres'
-        Selected = True
-      end
-      item
-        Caption = 'dos'
-      end
-      item
-        Caption = 'uno'
-      end>
+  object edtFecha: TDBEdit
+    Left = 104
+    Top = 56
+    Width = 121
+    Height = 21
+    DataField = 'fecha'
+    DataSource = DataSource1
+    TabOrder = 2
   end
-  object JvPageControl1: TJvPageControl
-    Left = 8
-    Top = 29
-    Width = 289
-    Height = 193
-    ActivePage = TabSheet1
+  object BitBtn2: TBitBtn
+    Left = 232
+    Top = 56
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn2'
     TabOrder = 3
-    DotNetHighlighting = True
-    object TabSheet1: TTabSheet
-      Caption = 'TabSheet1'
-    end
+    OnClick = BitBtn2Click
+  end
+  object DataSource1: TDataSource
+    Left = 368
+    Top = 16
   end
 end

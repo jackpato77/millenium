@@ -23,26 +23,9 @@ type
     DBEdit6: TDBEdit;
     Label7: TLabel;
     DBEdit7: TDBEdit;
-    Label8: TLabel;
-    DBEdit8: TDBEdit;
-    Label9: TLabel;
-    DBEdit9: TDBEdit;
-    Label10: TLabel;
-    DBEdit10: TDBEdit;
-    Label11: TLabel;
-    DBEdit11: TDBEdit;
-    Label12: TLabel;
-    DBEdit12: TDBEdit;
-    Label13: TLabel;
-    DBEdit13: TDBEdit;
-    Label14: TLabel;
-    DBEdit14: TDBEdit;
-    Label15: TLabel;
-    DBEdit15: TDBEdit;
-    Label16: TLabel;
-    DBEdit16: TDBEdit;
     procedure dbgBrowseDblClick(Sender: TObject);
     procedure actImprimirExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,17 +37,17 @@ var
 
 implementation
 
-uses udmvm, rcliente;
+uses udmvm, rcliente, uutils;
 {$R *.dfm}
 
 procedure TfrmClientes.actImprimirExecute(Sender: TObject);
 var
- rp: TfrClientes;
+ rp: TrLClientes;
 begin
   inherited;
   if pgcCRUD.ActivePageIndex=0 then
   begin
-    rp:=TfrClientes.Create(self);
+    rp:=TrLClientes.Create(self);
     rp.qrpCliente.Preview;
     rp.free;
   end;
@@ -74,6 +57,14 @@ procedure TfrmClientes.dbgBrowseDblClick(Sender: TObject);
 begin
   inherited;
   dsBrowse.Dataset.Edit;
+end;
+
+procedure TfrmClientes.FormShow(Sender: TObject);
+begin
+  inherited;
+  dm.tblClientes.Open;
+  SetDBGridColumnsCaption(dbgBrowse, MainDataSet.FieldDefs);
+
 end;
 
 end.

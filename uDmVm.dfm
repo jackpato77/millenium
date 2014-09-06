@@ -1,113 +1,148 @@
 object dm: Tdm
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 556
   Width = 718
   object cdsArticulos: TClientDataSet
     Active = True
     Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nombre'
+        DataType = ftString
+        Size = 60
+      end
+      item
+        Name = 'costo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'um'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'rubro_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'subrubro_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'descripcion'
+        DataType = ftString
+        Size = 240
+      end>
+    IndexDefs = <>
     Params = <>
     ProviderName = 'dspArticulos'
+    StoreDefs = True
     Left = 104
     Top = 112
+    object cdsArticulosid: TIntegerField
+      FieldName = 'id'
+      Origin = 'articulos.id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsArticulosnombre: TStringField
+      FieldName = 'nombre'
+      Origin = 'articulos.nombre'
+      Size = 60
+    end
+    object cdsArticuloscosto: TFloatField
+      FieldName = 'costo'
+      Origin = 'articulos.costo'
+      currency = True
+    end
+    object cdsArticulosum: TStringField
+      FieldName = 'um'
+      Origin = 'articulos.um'
+      Size = 10
+    end
+    object cdsArticulosrubro_id: TIntegerField
+      FieldName = 'rubro_id'
+      Origin = 'articulos.rubro_id'
+    end
+    object cdsArticulossubrubro_id: TIntegerField
+      FieldName = 'subrubro_id'
+      Origin = 'articulos.subrubro_id'
+    end
+    object cdsArticulosdescripcion: TStringField
+      FieldName = 'descripcion'
+      Origin = 'articulos.descripcion'
+      Size = 240
+    end
+    object cdsArticulosrubro: TStringField
+      FieldKind = fkLookup
+      FieldName = 'rubro'
+      LookupDataSet = cdsRubros
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'rubro_id'
+      Size = 30
+      Lookup = True
+    end
+    object cdsArticulossubrubro: TStringField
+      FieldKind = fkLookup
+      FieldName = 'subrubro'
+      LookupDataSet = cdsSubrubros
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'subrubro_id'
+      Size = 35
+      Lookup = True
+    end
   end
   object dspArticulos: TDataSetProvider
     DataSet = tblArticulos
-    Left = 160
+    Left = 165
     Top = 112
   end
   object tblArticulos: TMyTable
     TableName = 'articulos'
     Connection = cnxVM
-    OnCalcFields = tblArticulosCalcFields
     Left = 40
     Top = 112
-    object tblArticulosidarticulo: TIntegerField
-      Tag = 40
-      AutoGenerateValue = arAutoInc
-      FieldName = 'idarticulo'
-      Origin = 'articulos.idarticulo'
+    object tblArticulosid: TIntegerField
+      FieldName = 'id'
+      Origin = 'articulos.id'
     end
-    object tblArticulosdenominacion: TStringField
-      Tag = 40
-      FieldName = 'denominacion'
-      Origin = 'articulos.denominacion'
-      Size = 250
-    end
-    object tblArticulosumcompra: TStringField
-      Tag = 40
-      FieldName = 'umcompra'
-      Origin = 'articulos.umcompra'
-      Size = 15
+    object tblArticulosnombre: TStringField
+      FieldName = 'nombre'
+      Origin = 'articulos.nombre'
+      Size = 60
     end
     object tblArticuloscosto: TFloatField
-      Tag = 40
       FieldName = 'costo'
       Origin = 'articulos.costo'
-      currency = True
     end
-    object tblArticulosidrubro: TIntegerField
-      Tag = 40
-      FieldName = 'idrubro'
-      Origin = 'articulos.idrubro'
+    object tblArticulosum: TStringField
+      FieldName = 'um'
+      Origin = 'articulos.um'
+      Size = 10
     end
-    object tblArticulosidsubrubro: TIntegerField
-      Tag = 40
-      FieldName = 'idsubrubro'
-      Origin = 'articulos.idsubrubro'
+    object tblArticulosrubro_id: TIntegerField
+      FieldName = 'rubro_id'
+      Origin = 'articulos.rubro_id'
     end
-    object tblArticulosvcosto1: TFloatField
-      Tag = 40
-      FieldName = 'vcosto1'
-      Origin = 'articulos.vcosto1'
+    object tblArticulossubrubro_id: TIntegerField
+      FieldName = 'subrubro_id'
+      Origin = 'articulos.subrubro_id'
     end
-    object tblArticulosvcosto2: TFloatField
-      Tag = 40
-      FieldName = 'vcosto2'
-      Origin = 'articulos.vcosto2'
-    end
-    object tblArticulosvcosto3: TFloatField
-      Tag = 40
-      FieldName = 'vcosto3'
-      Origin = 'articulos.vcosto3'
-    end
-    object tblArticulosvcosto4: TFloatField
-      Tag = 40
-      FieldName = 'vcosto4'
-      Origin = 'articulos.vcosto4'
-    end
-    object tblArticulosprecio: TCurrencyField
-      Tag = 40
-      FieldKind = fkCalculated
-      FieldName = 'precio'
-      Calculated = True
-    end
-    object tblArticulosRubro: TStringField
-      Tag = 40
-      FieldKind = fkLookup
-      FieldName = 'Rubro'
-      LookupDataSet = qryRubros
-      LookupKeyFields = 'idrubro'
-      LookupResultField = 'Rubro'
-      KeyFields = 'idrubro'
-      Size = 45
-      Lookup = True
-    end
-    object tblArticulosSubRubro: TStringField
-      Tag = 40
-      FieldKind = fkLookup
-      FieldName = 'SubRubro'
-      LookupDataSet = tblSubRubros
-      LookupKeyFields = 'idsubrubro'
-      LookupResultField = 'SubRubro'
-      KeyFields = 'idsubrubro'
-      Size = 50
-      Lookup = True
+    object tblArticulosdescripcion: TStringField
+      FieldName = 'descripcion'
+      Origin = 'articulos.descripcion'
+      Size = 240
     end
   end
   object cnxVM: TMyConnection
     Database = 'dbmillenium'
     Username = 'root'
-    Password = 'gabiru22'
     Server = '127.0.0.1'
     Connected = True
     LoginPrompt = False
@@ -117,115 +152,59 @@ object dm: Tdm
   object tblVentas: TMyTable
     TableName = 'ventas'
     Connection = cnxVM
-    OnCalcFields = tblVentasCalcFields
     Left = 40
     Top = 160
-    object tblVentasidventa: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'idventa'
-      Origin = 'ventas.idventa'
-    end
-    object tblVentasfecha: TDateTimeField
-      DefaultExpression = 'Date'
-      FieldName = 'fecha'
-      Origin = 'ventas.fecha'
-    end
-    object tblVentasidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'ventas.idcliente'
-    end
-    object tblVentasidtipopago: TIntegerField
-      FieldName = 'idtipopago'
-      Origin = 'ventas.idtipopago'
-    end
-    object tblVentasdescuento: TFloatField
-      FieldName = 'descuento'
-      Origin = 'ventas.descuento'
-    end
-    object tblVentassubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'ventas.subtotal'
-    end
-    object tblVentasobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'ventas.observaciones'
-      Size = 255
-    end
-    object tblVentastipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'ventas.tipo'
-      Size = 5
-    end
-    object tblVentasTotal: TCurrencyField
-      FieldKind = fkCalculated
-      FieldName = 'Total'
-      Calculated = True
-    end
   end
   object tblDetails: TMyTable
-    TableName = 'lineas'
+    TableName = 'detalles'
     Connection = cnxVM
     Left = 40
     Top = 288
-    object tblDetailsidlinea: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'idlinea'
-      Origin = 'lineas.idlinea'
-    end
-    object tblDetailsidmaster: TIntegerField
-      FieldName = 'idmaster'
-      Origin = 'lineas.idmaster'
-    end
-    object tblDetailsmaster: TStringField
-      FieldName = 'master'
-      Origin = 'lineas.master'
-      Size = 15
-    end
-    object tblDetailsidarticulo: TIntegerField
-      FieldName = 'idarticulo'
-      Origin = 'lineas.idarticulo'
-    end
-    object tblDetailsprecio: TFloatField
-      FieldName = 'precio'
-      Origin = 'lineas.precio'
-    end
-    object tblDetailscantidad: TIntegerField
-      FieldName = 'cantidad'
-      Origin = 'lineas.cantidad'
-    end
-    object tblDetailsalto: TFloatField
-      FieldName = 'alto'
-      Origin = 'lineas.alto'
-    end
-    object tblDetailsancho: TFloatField
-      FieldName = 'base'
-      Origin = 'lineas.base'
-    end
+    ParamData = <
+      item
+        DataType = ftInteger
+        Name = 'pedido_id'
+        Value = 9
+      end>
   end
   object dspDetalles: TDataSetProvider
     DataSet = tblDetails
-    Left = 160
+    Left = 232
     Top = 288
   end
   object cdsDetails: TClientDataSet
     Active = True
-    Aggregates = <>
+    Aggregates = <
+      item
+        Active = True
+        GroupingLevel = 1
+        IndexName = 'PEDIDO'
+        Visible = False
+      end>
+    AggregatesActive = True
     FieldDefs = <
       item
-        Name = 'idlinea'
+        Name = 'id'
         DataType = ftInteger
       end
       item
-        Name = 'idmaster'
+        Name = 'pedido_id'
         DataType = ftInteger
       end
       item
-        Name = 'master'
-        DataType = ftString
-        Size = 15
+        Name = 'articulo_id'
+        DataType = ftInteger
       end
       item
-        Name = 'idarticulo'
+        Name = 'cantidad'
+        DataType = ftInteger
+      end
+      item
+        Name = 'base'
+        DataType = ftInteger
+      end
+      item
+        Name = 'alto'
         DataType = ftInteger
       end
       item
@@ -233,16 +212,9 @@ object dm: Tdm
         DataType = ftFloat
       end
       item
-        Name = 'cantidad'
-        DataType = ftInteger
-      end
-      item
-        Name = 'alto'
-        DataType = ftFloat
-      end
-      item
-        Name = 'base'
-        DataType = ftFloat
+        Name = 'estado'
+        DataType = ftString
+        Size = 1
       end>
     IndexDefs = <
       item
@@ -250,148 +222,130 @@ object dm: Tdm
       end
       item
         Name = 'PRIMARY_KEY'
-        Fields = 'idvdetalle'
+        Fields = 'id'
         Options = [ixUnique]
       end
       item
         Name = 'CHANGEINDEX'
       end
       item
-        Name = 'IDX_VENTA'
-        Fields = 'idventa'
+        Name = 'PEDIDO'
+        Fields = 'pedido_id'
       end>
+    IndexName = 'PEDIDO'
+    MasterFields = 'id'
+    MasterSource = dsBPedidos
     Params = <>
     ProviderName = 'dspDetalles'
     StoreDefs = True
-    AfterPost = cdsDetailsAfterPost
-    OnCalcFields = cdsDetailsCalcFields
-    OnNewRecord = cdsDetailsNewRecord
-    Left = 102
+    OnCalcFields = cdsLineaCalcFields
+    Left = 166
     Top = 288
-    object cdsDetailsidlinea: TIntegerField
-      FieldName = 'idlinea'
-      Origin = 'lineas.idlinea'
+    object cdsDetailsid: TIntegerField
+      FieldName = 'id'
+      Origin = 'detalles.id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
     end
-    object cdsDetailsidmaster: TIntegerField
-      FieldName = 'idmaster'
-      Origin = 'lineas.idmaster'
+    object cdsDetailspedido_id: TIntegerField
+      FieldName = 'pedido_id'
+      Origin = 'detalles.pedido_id'
     end
-    object cdsDetailsmaster: TStringField
-      FieldName = 'master'
-      Origin = 'lineas.master'
-      Size = 15
-    end
-    object cdsDetailsidarticulo: TIntegerField
-      FieldName = 'idarticulo'
-      Origin = 'lineas.idarticulo'
-    end
-    object cdsDetailsprecio: TFloatField
-      FieldName = 'precio'
-      Origin = 'lineas.precio'
+    object cdsDetailsarticulo_id: TIntegerField
+      FieldName = 'articulo_id'
+      Origin = 'detalles.articulo_id'
     end
     object cdsDetailscantidad: TIntegerField
       FieldName = 'cantidad'
-      Origin = 'lineas.cantidad'
+      Origin = 'detalles.cantidad'
     end
-    object cdsDetailsalto: TFloatField
-      FieldName = 'alto'
-      Origin = 'lineas.alto'
-    end
-    object cdsDetailsbase: TFloatField
+    object cdsDetailsbase: TIntegerField
       FieldName = 'base'
-      Origin = 'lineas.base'
+      Origin = 'detalles.base'
+    end
+    object cdsDetailsalto: TIntegerField
+      FieldName = 'alto'
+      Origin = 'detalles.alto'
+    end
+    object cdsDetailsprecio: TFloatField
+      FieldName = 'precio'
+      Origin = 'detalles.precio'
+    end
+    object cdsDetailsestado: TStringField
+      FieldName = 'estado'
+      Origin = 'detalles.estado'
+      Size = 1
+    end
+    object cdsDetailsarticulo_nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'articulo_nombre'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'articulo_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsDetailsarticulo_um: TStringField
+      FieldKind = fkLookup
+      FieldName = 'articulo_um'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'um'
+      KeyFields = 'articulo_id'
+      Size = 5
+      Lookup = True
+    end
+    object cdsDetailscnttotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'cnttotal'
+      Calculated = True
+    end
+    object cdsDetailssubtotal: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'subtotal'
+      Calculated = True
+    end
+    object cdsDetailstotal: TAggregateField
+      FieldName = 'total'
+      Visible = True
+      Active = True
+      currency = True
+      Expression = 'SUM(cantidad*base*alto/1000/1000*precio)'
+      GroupingLevel = 1
+      IndexName = 'PEDIDO'
     end
   end
   object qrySearch: TMyQuery
     Connection = cnxVM
-    Left = 232
-    Top = 16
-  end
-  object cdsAux: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspDetalles'
-    OnCalcFields = cdsAuxCalcFields
-    Left = 206
-    Top = 288
-    object IntegerField1: TIntegerField
-      FieldName = 'idvdetalle'
-      Origin = 'vdetalles.idvdetalle'
-    end
-    object IntegerField2: TIntegerField
-      FieldName = 'idventa'
-      Origin = 'vdetalles.idventa'
-    end
-    object IntegerField3: TIntegerField
-      FieldName = 'idarticulo'
-      Origin = 'vdetalles.idarticulo'
-    end
-    object StringField1: TStringField
-      FieldKind = fkLookup
-      FieldName = 'ArticuloDenominacion'
-      LookupDataSet = tblArticulos
-      LookupKeyFields = 'idarticulo'
-      LookupResultField = 'denominacion'
-      KeyFields = 'idarticulo'
-      Size = 30
-      Lookup = True
-    end
-    object StringField2: TStringField
-      FieldKind = fkLookup
-      FieldName = 'ArticuloUMedida'
-      LookupDataSet = tblArticulos
-      LookupKeyFields = 'idarticulo'
-      LookupResultField = 'umcompra'
-      KeyFields = 'idarticulo'
-      Size = 5
-      Lookup = True
-    end
-    object cdsAuxArticuloPrecio: TCurrencyField
-      FieldKind = fkLookup
-      FieldName = 'ArticuloPrecio'
-      LookupDataSet = tblArticulos
-      LookupKeyFields = 'idarticulo'
-      LookupResultField = 'costo'
-      KeyFields = 'idarticulo'
-      Lookup = True
-    end
-    object cdsAuxCantidad: TIntegerField
-      FieldName = 'cantidad'
-      Origin = 'vdetalles.cantidad'
-    end
-    object FloatField1: TFloatField
-      FieldName = 'precio'
-      Origin = 'vdetalles.precio'
-    end
-    object cdsAuxAlto: TFloatField
-      FieldName = 'alto'
-      Origin = 'vdetalles.alto'
-    end
-    object cdsAuxAncho: TFloatField
-      FieldName = 'ancho'
-      Origin = 'vdetalles.ancho'
-    end
-    object cdsAuxCntTotal: TFloatField
-      FieldKind = fkInternalCalc
-      FieldName = 'CntTotal'
-    end
-    object cdsAuxSubTotal: TCurrencyField
-      FieldKind = fkInternalCalc
-      FieldName = 'Subtotal'
-    end
+    Left = 168
+    Top = 496
   end
   object qryNextID: TMyQuery
+    SQLInsert.Strings = (
+      'INSERT INTO vmconfig'
+      '  (valor)'
+      'VALUES'
+      '  (:valor)')
+    SQLDelete.Strings = (
+      'DELETE FROM vmconfig'
+      'WHERE'
+      '  nombre = :Old_nombre')
+    SQLUpdate.Strings = (
+      'UPDATE vmconfig'
+      'SET'
+      '  valor = :valor'
+      'WHERE'
+      '  nombre = :Old_nombre')
     Connection = cnxVM
     SQL.Strings = (
-      'select value from mmentities where name like :pname')
-    Left = 344
-    Top = 16
+      'select valor from vmconfig where nombre like :pnombre')
+    Left = 32
+    Top = 496
     ParamData = <
       item
         DataType = ftString
-        Name = 'pname'
-        ParamType = ptInput
-        Value = 'rubros'
+        Name = 'pnombre'
+        ParamType = ptInputOutput
       end>
   end
   object cdsVentas: TClientDataSet
@@ -399,7 +353,15 @@ object dm: Tdm
     Aggregates = <>
     FieldDefs = <
       item
-        Name = 'idventa'
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nro'
+        DataType = ftInteger
+      end
+      item
+        Name = 'pedido_id'
         DataType = ftInteger
       end
       item
@@ -407,214 +369,97 @@ object dm: Tdm
         DataType = ftDateTime
       end
       item
-        Name = 'idcliente'
-        DataType = ftInteger
-      end
-      item
-        Name = 'idtipopago'
-        DataType = ftInteger
-      end
-      item
-        Name = 'descuento'
+        Name = 'dcto'
         DataType = ftFloat
       end
       item
-        Name = 'subtotal'
+        Name = 'total'
         DataType = ftFloat
-      end
-      item
-        Name = 'observaciones'
-        DataType = ftString
-        Size = 255
       end
       item
         Name = 'tipo'
         DataType = ftString
-        Size = 5
-      end
-      item
-        Name = 'Total'
-        Attributes = [faReadonly]
-        DataType = ftCurrency
+        Size = 10
       end>
     IndexDefs = <>
     Params = <>
     ProviderName = 'dspVentas'
     StoreDefs = True
-    OnCalcFields = tblVentasCalcFields
+    OnCalcFields = cdsVentasCalcFields
     OnNewRecord = cdsVentasNewRecord
     Left = 104
     Top = 160
-    object cdsVentasidventa: TIntegerField
-      FieldName = 'idventa'
-      Origin = 'ventas.idventa'
+    object cdsVentasid: TIntegerField
+      FieldName = 'id'
+      Origin = 'ventas.id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsVentasnro: TIntegerField
+      FieldName = 'nro'
+      Origin = 'ventas.nro'
+      DisplayFormat = '000-00000'
+    end
+    object cdsVentaspedido_id: TIntegerField
+      FieldName = 'pedido_id'
+      Origin = 'ventas.pedido_id'
     end
     object cdsVentasfecha: TDateTimeField
       FieldName = 'fecha'
       Origin = 'ventas.fecha'
     end
-    object cdsVentasidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'ventas.idcliente'
+    object cdsVentasdcto: TFloatField
+      FieldName = 'dcto'
+      Origin = 'ventas.dcto'
     end
-    object cdsVentasidtipopago: TIntegerField
-      FieldName = 'idtipopago'
-      Origin = 'ventas.idtipopago'
+    object cdsVentasdcto_monto: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'dcto_monto'
+      currency = True
+      Calculated = True
     end
-    object cdsVentasdescuento: TFloatField
-      FieldName = 'descuento'
-      Origin = 'ventas.descuento'
-    end
-    object cdsVentassubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'ventas.subtotal'
-    end
-    object cdsVentasobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'ventas.observaciones'
-      Size = 255
+    object cdsVentastotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'total'
+      Origin = 'ventas.total'
+      currency = True
+      Calculated = True
     end
     object cdsVentastipo: TStringField
       FieldName = 'tipo'
       Origin = 'ventas.tipo'
-      Size = 5
+      Size = 10
     end
     object cdsVentasCliente: TStringField
       FieldKind = fkLookup
       FieldName = 'Cliente'
-      LookupDataSet = tblClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'nombre'
-      KeyFields = 'idcliente'
-      Size = 40
+      LookupDataSet = cdsVPedidos
+      LookupKeyFields = 'id'
+      LookupResultField = 'cliente_nombre'
+      KeyFields = 'pedido_id'
+      Size = 35
       Lookup = True
     end
-    object cdsVentasClienteCondIVA: TStringField
+    object cdsVentasPedido_Nro: TIntegerField
       FieldKind = fkLookup
-      FieldName = 'ClienteCondIVA'
-      LookupDataSet = tblClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'condiva'
-      KeyFields = 'idcliente'
-      Size = 10
+      FieldName = 'Pedido_Nro'
+      LookupDataSet = cdsVPedidos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nro'
+      KeyFields = 'pedido_id'
+      DisplayFormat = '000-00000'
       Lookup = True
-    end
-    object cdsVentasClienteDireccion: TStringField
-      FieldKind = fkLookup
-      FieldName = 'ClienteDireccion'
-      LookupDataSet = tblClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'direccion'
-      KeyFields = 'idcliente'
-      Size = 50
-      Lookup = True
-    end
-    object cdsVentasTotal: TCurrencyField
-      FieldName = 'Total'
-      ReadOnly = True
     end
   end
   object dspVentas: TDataSetProvider
     DataSet = tblVentas
-    Left = 160
+    Left = 164
     Top = 160
   end
   object tblClientes: TMyTable
     TableName = 'clientes'
     Connection = cnxVM
-    Active = True
     Left = 40
     Top = 64
-    object tblClientesidcliente: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'idcliente'
-      Origin = 'clientes.idcliente'
-    end
-    object tblClientesrazonsocial: TStringField
-      FieldName = 'razonsocial'
-      Origin = 'clientes.razonsocial'
-      Size = 50
-    end
-    object tblClientesnombre: TStringField
-      FieldName = 'nombre'
-      Origin = 'clientes.nombre'
-      Size = 50
-    end
-    object tblClientescuit: TStringField
-      FieldName = 'cuit'
-      Origin = 'clientes.cuit'
-      Size = 45
-    end
-    object tblClientesdireccion: TStringField
-      FieldName = 'direccion'
-      Origin = 'clientes.direccion'
-      Size = 100
-    end
-    object tblClientescp: TStringField
-      FieldName = 'cp'
-      Origin = 'clientes.cp'
-      Size = 45
-    end
-    object tblClienteslocalidad: TStringField
-      FieldName = 'localidad'
-      Origin = 'clientes.localidad'
-      Size = 45
-    end
-    object tblClientesprovincia: TStringField
-      FieldName = 'provincia'
-      Origin = 'clientes.provincia'
-      Size = 45
-    end
-    object tblClientespais: TStringField
-      FieldName = 'pais'
-      Origin = 'clientes.pais'
-      Size = 45
-    end
-    object tblClientestelefono: TStringField
-      FieldName = 'telefono'
-      Origin = 'clientes.telefono'
-      Size = 15
-    end
-    object tblClientescelular: TStringField
-      FieldName = 'celular'
-      Origin = 'clientes.celular'
-      Size = 45
-    end
-    object tblClientesfax: TStringField
-      FieldName = 'fax'
-      Origin = 'clientes.fax'
-      Size = 45
-    end
-    object tblClientescontacto: TStringField
-      FieldName = 'contacto'
-      Origin = 'clientes.contacto'
-      Size = 45
-    end
-    object tblClientescondiva: TStringField
-      FieldName = 'condiva'
-      Origin = 'clientes.condiva'
-      Size = 45
-    end
-    object tblClientesmail: TStringField
-      FieldName = 'mail'
-      Origin = 'clientes.mail'
-      Size = 45
-    end
-    object tblClientesweb: TStringField
-      FieldName = 'web'
-      Origin = 'clientes.web'
-      Size = 45
-    end
-    object tblClientesidcategoria: TIntegerField
-      FieldName = 'idcategoria'
-      Origin = 'clientes.idcategoria'
-    end
-    object tblClientesexterno: TStringField
-      FieldName = 'externo'
-      Origin = 'clientes.externo'
-      FixedChar = True
-      Size = 1
-    end
   end
   object tblRubros: TMyTable
     TableName = 'rubros'
@@ -624,233 +469,15 @@ object dm: Tdm
   end
   object tblSubRubros: TMyTable
     TableName = 'subrubros'
+    MasterSource = dsARubros
     Connection = cnxVM
-    Active = True
     Left = 32
     Top = 440
   end
-  object dsRubros: TDataSource
-    DataSet = qryRubros
-    Left = 496
-    Top = 16
-  end
-  object tblHPrecios: TMyTable
-    TableName = 'hprecios'
+  object tblPrecios: TMyTable
+    TableName = 'precios'
     Connection = cnxVM
     Left = 32
-    Top = 344
-  end
-  object qryRubros: TMyQuery
-    Connection = cnxVM
-    SQL.Strings = (
-      'SELECT * FROM rubros'
-      'ORDER BY idrubro')
-    Active = True
-    Left = 416
-    Top = 16
-  end
-  object qrySubRubros: TMyQuery
-    Connection = cnxVM
-    SQL.Strings = (
-      'SELECT * FROM subrubros'
-      'ORDER BY idsubrubro')
-    MasterSource = dsRubros
-    MasterFields = 'idrubro'
-    DetailFields = 'idrubro'
-    Left = 416
-    Top = 72
-    ParamData = <
-      item
-        DataType = ftInteger
-        Name = 'idrubro'
-        ParamType = ptInput
-        Value = 25
-      end>
-  end
-  object qryUpdatePrecios: TMyQuery
-    Connection = cnxVM
-    SQL.Strings = (
-      'UPDATE articulos'
-      'SET costo = costo * :pcosto,'
-      'vcosto1 = :pvcosto1,'
-      'vcosto2 = :pvcosto2,'
-      'vcosto3 = :pvcosto3,'
-      'vcosto4 = :pvcosto4,'
-      'WHERE idrubro = :pidrubro'
-      'AND idsubrubro = :pidsubrubro'
-      'AND idarticulo BETWEEN :piddesde AND :pidhasta')
-    Left = 232
-    Top = 72
-    ParamData = <
-      item
-        DataType = ftUnknown
-        Name = 'pcosto'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pvcosto1'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pvcosto2'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pvcosto3'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pvcosto4'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pidrubro'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pidsubrubro'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'piddesde'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'pidhasta'
-      end>
-  end
-  object tblRemitos: TMyTable
-    TableName = 'presupuestos'
-    Connection = cnxVM
-    Left = 96
-    Top = 344
-    object tblRemitosidpresupuesto: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'idpresupuesto'
-      Origin = 'presupuestos.idpresupuesto'
-    end
-    object tblRemitosfecha: TDateTimeField
-      FieldName = 'fecha'
-      Origin = 'presupuestos.fecha'
-    end
-    object tblRemitosidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'presupuestos.idcliente'
-    end
-    object tblRemitosdescuento: TFloatField
-      FieldName = 'descuento'
-      Origin = 'presupuestos.descuento'
-    end
-    object tblRemitossubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'presupuestos.subtotal'
-    end
-    object tblRemitosobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'presupuestos.observaciones'
-      Size = 255
-    end
-    object tblRemitostipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'presupuestos.tipo'
-      Size = 5
-    end
-  end
-  object cdsRemitos: TClientDataSet
-    Active = True
-    Aggregates = <>
-    FieldDefs = <
-      item
-        Name = 'idpresupuesto'
-        DataType = ftInteger
-      end
-      item
-        Name = 'fecha'
-        DataType = ftDateTime
-      end
-      item
-        Name = 'idcliente'
-        DataType = ftInteger
-      end
-      item
-        Name = 'descuento'
-        DataType = ftFloat
-      end
-      item
-        Name = 'subtotal'
-        DataType = ftFloat
-      end
-      item
-        Name = 'observaciones'
-        DataType = ftString
-        Size = 255
-      end
-      item
-        Name = 'tipo'
-        DataType = ftString
-        Size = 5
-      end>
-    IndexDefs = <>
-    Params = <>
-    ProviderName = 'dspRemitos'
-    StoreDefs = True
-    OnNewRecord = cdsRemitosNewRecord
-    Left = 160
-    Top = 344
-    object cdsRemitosfecha: TDateTimeField
-      FieldName = 'fecha'
-      Origin = 'presupuestos.fecha'
-    end
-    object cdsRemitosidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'presupuestos.idcliente'
-    end
-    object cdsRemitosdescuento: TFloatField
-      FieldName = 'descuento'
-      Origin = 'presupuestos.descuento'
-    end
-    object cdsRemitossubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'presupuestos.subtotal'
-    end
-    object cdsRemitosobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'presupuestos.observaciones'
-      Size = 255
-    end
-    object cdsRemitostipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'presupuestos.tipo'
-      Size = 5
-    end
-    object cdsRemitosClienteDireccion: TStringField
-      FieldKind = fkLookup
-      FieldName = 'ClienteDireccion'
-      LookupDataSet = tblClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'direccion'
-      KeyFields = 'idcliente'
-      Size = 100
-      Lookup = True
-    end
-    object cdsRemitosCliente: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Cliente'
-      LookupDataSet = tblClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'nombre'
-      KeyFields = 'idcliente'
-      Size = 100
-      Lookup = True
-    end
-    object cdsRemitosidpresupuesto: TIntegerField
-      FieldName = 'idpresupuesto'
-      Origin = 'presupuestos.idpresupuesto'
-    end
-  end
-  object dspRemitos: TDataSetProvider
-    DataSet = tblRemitos
-    Left = 232
     Top = 344
   end
   object dsClientes: TDataSource
@@ -860,8 +487,8 @@ object dm: Tdm
   end
   object dsArticulos: TDataSource
     DataSet = tblArticulos
-    Left = 96
-    Top = 400
+    Left = 232
+    Top = 128
   end
   object dspClientes: TDataSetProvider
     DataSet = tblClientes
@@ -875,152 +502,90 @@ object dm: Tdm
     ProviderName = 'dspClientes'
     Left = 104
     Top = 64
-  end
-  object tblPresupuestos: TMyTable
-    TableName = 'presupuestos'
-    OrderFields = 'fecha DESC'
-    Connection = cnxVM
-    OnCalcFields = tblPresupuestosCalcFields
-    Left = 40
-    Top = 224
-    object tblPresupuestosCliente: TStringField
-      DisplayWidth = 80
-      FieldKind = fkLookup
-      FieldName = 'Cliente'
-      LookupDataSet = cdsClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'Nombre'
-      KeyFields = 'idcliente'
-      Size = 100
-      Lookup = True
-    end
-    object tblPresupuestosidpresupuesto: TIntegerField
-      FieldName = 'idpresupuesto'
-      Origin = 'presupuestos.idpresupuesto'
-    end
-    object tblPresupuestosfecha: TDateTimeField
-      FieldName = 'fecha'
-      Origin = 'presupuestos.fecha'
-    end
-    object tblPresupuestosidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'presupuestos.idcliente'
-    end
-    object tblPresupuestosdescuento: TFloatField
-      FieldName = 'descuento'
-      Origin = 'presupuestos.descuento'
-    end
-    object tblPresupuestossubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'presupuestos.subtotal'
-      currency = True
-    end
-    object tblPresupuestosobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'presupuestos.observaciones'
-      Size = 255
-    end
-    object tblPresupuestostipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'presupuestos.tipo'
-      Size = 5
-    end
-    object tblPresupuestosTotal: TCurrencyField
-      FieldKind = fkCalculated
-      FieldName = 'Total'
-      Calculated = True
-    end
-  end
-  object cdsPresupuestos: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspPresupuestos'
-    Left = 120
-    Top = 224
-    object cdsPresupuestosidpresupuesto: TIntegerField
-      FieldName = 'idpresupuesto'
-      Origin = 'presupuestos.idpresupuesto'
+    object cdsClientesid: TIntegerField
+      FieldName = 'id'
+      Origin = 'clientes.id'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
     end
-    object cdsPresupuestosfecha: TDateTimeField
-      FieldName = 'fecha'
-      Origin = 'presupuestos.fecha'
+    object cdsClientesnombre: TStringField
+      FieldName = 'nombre'
+      Origin = 'clientes.nombre'
+      Size = 100
     end
-    object cdsPresupuestosidcliente: TIntegerField
-      FieldName = 'idcliente'
-      Origin = 'presupuestos.idcliente'
+    object cdsClientescuit: TStringField
+      FieldName = 'cuit'
+      Origin = 'clientes.cuit'
+      Size = 12
     end
-    object cdsPresupuestosdescuento: TFloatField
-      DefaultExpression = '0'
-      FieldName = 'descuento'
-      Origin = 'presupuestos.descuento'
+    object cdsClientesdomicilio: TStringField
+      FieldName = 'domicilio'
+      Origin = 'clientes.domicilio'
+      Size = 150
     end
-    object cdsPresupuestossubtotal: TFloatField
-      FieldName = 'subtotal'
-      Origin = 'presupuestos.subtotal'
-      currency = True
+    object cdsClientestelefono: TStringField
+      FieldName = 'telefono'
+      Origin = 'clientes.telefono'
+      Size = 15
     end
-    object cdsPresupuestosobservaciones: TStringField
-      FieldName = 'observaciones'
-      Origin = 'presupuestos.observaciones'
-      Size = 255
+    object cdsClientescondicion_iva: TStringField
+      FieldName = 'condicion_iva'
+      Origin = 'clientes.condicion_iva'
+      Size = 15
     end
-    object cdsPresupuestostipo: TStringField
-      FieldName = 'tipo'
-      Origin = 'presupuestos.tipo'
-      Size = 5
+    object cdsClientescontacto: TStringField
+      FieldName = 'contacto'
+      Origin = 'clientes.contacto'
+      Size = 50
     end
-    object cdsPresupuestosCliente: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Cliente'
-      LookupDataSet = cdsClientes
-      LookupKeyFields = 'idcliente'
-      LookupResultField = 'Nombre'
-      KeyFields = 'idcliente'
-      Size = 80
-      Lookup = True
-    end
-  end
-  object dspPresupuestos: TDataSetProvider
-    DataSet = tblPresupuestos
-    Left = 200
-    Top = 224
   end
   object qryCleanDetail: TMyQuery
     Connection = cnxVM
     SQL.Strings = (
-      
-        'delete from lineas where idmaster= :idmaster and master = :maste' +
-        'r')
-    Left = 328
-    Top = 72
+      'delete from detalles where pedido_id= :pedido')
+    Options.AutoPrepare = True
+    Left = 96
+    Top = 496
     ParamData = <
       item
-        DataType = ftUnknown
-        Name = 'idmaster'
-      end
-      item
-        DataType = ftUnknown
-        Name = 'master'
+        DataType = ftInteger
+        Name = 'pedido'
+        ParamType = ptInput
       end>
-  end
-  object dsSubRubros: TDataSource
-    DataSet = qrySubRubros
-    Left = 496
-    Top = 72
   end
   object qryArticulos: TMyQuery
     Connection = cnxVM
     SQL.Strings = (
       
-        'SELECT idarticulo, denominacion, r.rubro, sr.subrubro, umcompra,' +
-        ' costo, vcosto1, vcosto2, vcosto3, vcosto4, (costo*vcosto1*vcost' +
-        'o2*vcosto3*vcosto4) precio'
-      'FROM articulos a JOIN rubros r ON a.idrubro=r.idrubro'
-      'JOIN subrubros sr ON a.idsubrubro=sr.idsubrubro')
-    Left = 392
-    Top = 200
+        'SELECT a.id, a.nombre, a.um, a.costo, truncate(a.costo*(1+p.vcos' +
+        'to1*p.vcosto2*p.vcosto3*p.vcosto4),4) precio'
+      'FROM articulos a JOIN precios p ON a.id=p.id'
+      'WHERE p.deleted is NULL')
+    Left = 248
+    Top = 496
+    object qryArticulosid: TIntegerField
+      FieldName = 'id'
+      Origin = 'articulos.id'
+    end
+    object qryArticulosnombre: TStringField
+      FieldName = 'nombre'
+      Origin = 'articulos.nombre'
+      Size = 60
+    end
+    object qryArticulosum: TStringField
+      FieldName = 'um'
+      Origin = 'articulos.um'
+      Size = 10
+    end
+    object qryArticuloscosto: TFloatField
+      FieldName = 'costo'
+      Origin = 'articulos.costo'
+      currency = True
+    end
+    object qryArticulosprecio: TFloatField
+      FieldName = 'precio'
+      Origin = '.precio'
+      currency = True
+    end
   end
   object cdsRubros: TClientDataSet
     Active = True
@@ -1029,16 +594,6 @@ object dm: Tdm
     ProviderName = 'dspRubros'
     Left = 496
     Top = 168
-    object cdsRubrosidrubro: TIntegerField
-      FieldName = 'idrubro'
-      Origin = 'rubros.idrubro'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object cdsRubrosrubro: TStringField
-      FieldName = 'rubro'
-      Origin = 'rubros.rubro'
-      Size = 50
-    end
   end
   object dspRubros: TDataSetProvider
     DataSet = tblRubros
@@ -1051,25 +606,39 @@ object dm: Tdm
     Top = 232
   end
   object cdsSubrubros: TClientDataSet
+    Active = True
     Aggregates = <>
-    IndexFieldNames = 'idrubro'
-    MasterFields = 'idrubro'
-    MasterSource = dsARubros
-    PacketRecords = 0
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nombre'
+        DataType = ftString
+        Size = 150
+      end
+      item
+        Name = 'rubro_id'
+        DataType = ftInteger
+      end>
+    IndexDefs = <
+      item
+        Name = 'DEFAULT_ORDER'
+      end
+      item
+        Name = 'PRIMARY_KEY'
+        Fields = 'id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'CHANGEINDEX'
+      end>
     Params = <>
     ProviderName = 'dspSubRubros'
+    StoreDefs = True
     Left = 496
     Top = 232
-    object cdsSubrubrosidsubrubro: TIntegerField
-      FieldName = 'idsubrubro'
-    end
-    object cdsSubrubrosidrubro: TIntegerField
-      FieldName = 'idrubro'
-    end
-    object cdsSubrubrossubrubro: TStringField
-      FieldName = 'subrubro'
-      Size = 100
-    end
   end
   object dsARubros: TDataSource
     DataSet = cdsRubros
@@ -1078,20 +647,18 @@ object dm: Tdm
   end
   object dsASubrubros: TDataSource
     DataSet = cdsSubrubros
-    Left = 616
+    Left = 624
     Top = 232
   end
   object tblCajas: TMyTable
     TableName = 'cajas'
     Connection = cnxVM
-    Active = True
     FilterSQL = 'fecha>=CURDATE()'
-    Left = 24
-    Top = 496
+    Left = 376
+    Top = 424
     object tblCajasconcepto: TStringField
       FieldKind = fkLookup
       FieldName = 'concepto'
-      LookupDataSet = tblConceptos
       LookupKeyFields = 'idconcepto'
       LookupResultField = 'concepto'
       KeyFields = 'idconcepto'
@@ -1141,14 +708,11 @@ object dm: Tdm
     end
   end
   object cdsCajas: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCajas'
-    OnCalcFields = cdsCajasCalcFields
-    OnNewRecord = cdsCajasNewRecord
-    Left = 96
-    Top = 496
+    Left = 448
+    Top = 424
     object cdsCajasfecha: TDateTimeField
       FieldName = 'fecha'
       Origin = 'cajas.fecha'
@@ -1194,7 +758,6 @@ object dm: Tdm
     object cdsCajasconcepto: TStringField
       FieldKind = fkLookup
       FieldName = 'concepto'
-      LookupDataSet = tblConceptos
       LookupKeyFields = 'idconcepto'
       LookupResultField = 'concepto'
       KeyFields = 'idconcepto'
@@ -1209,26 +772,14 @@ object dm: Tdm
   end
   object dspCajas: TDataSetProvider
     DataSet = tblCajas
-    Left = 160
-    Top = 496
-  end
-  object tblConceptos: TMyTable
-    TableName = 'conceptos'
-    Connection = cnxVM
-    Active = True
-    Left = 480
-    Top = 304
-  end
-  object dsConceptos: TDataSource
-    DataSet = tblConceptos
-    Left = 536
-    Top = 304
+    Left = 512
+    Top = 424
   end
   object dsCajas: TDataSource
     AutoEdit = False
     DataSet = tblCajas
-    Left = 224
-    Top = 496
+    Left = 576
+    Top = 424
   end
   object qryCajaSaldo: TMyQuery
     Connection = cnxVM
@@ -1237,12 +788,1121 @@ object dm: Tdm
       ' FROM Cajas'
       'WHERE Fecha = :Fecha'
       'GROUP BY Fecha')
-    Left = 288
-    Top = 496
+    Left = 640
+    Top = 424
     ParamData = <
       item
         DataType = ftUnknown
         Name = 'Fecha'
       end>
+  end
+  object tblPedidos: TMyTable
+    TableName = 'pedidos'
+    OrderFields = 'fecha DESC'
+    Connection = cnxVM
+    BeforeDelete = tblPedidosBeforeDelete
+    Left = 40
+    Top = 224
+    object tblPedidosid: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'id'
+      Origin = 'pedidos.id'
+    end
+    object tblPedidosnro: TIntegerField
+      FieldName = 'nro'
+      Origin = 'pedidos.nro'
+      DisplayFormat = '000-00000'
+    end
+    object tblPedidoscliente_id: TIntegerField
+      FieldName = 'cliente_id'
+      Origin = 'pedidos.cliente_id'
+    end
+    object tblPedidosfecha: TDateField
+      FieldName = 'fecha'
+      Origin = 'pedidos.fecha'
+    end
+    object tblPedidosfecha_ingreso: TDateTimeField
+      FieldName = 'fecha_ingreso'
+      Origin = 'pedidos.fecha_ingreso'
+    end
+    object tblPedidosfecha_requerido: TDateField
+      FieldName = 'fecha_requerido'
+      Origin = 'pedidos.fecha_requerido'
+    end
+    object tblPedidosestado_id: TIntegerField
+      FieldName = 'estado_id'
+      Origin = 'pedidos.estado_id'
+    end
+    object tblPedidoscomentario: TMemoField
+      FieldName = 'comentario'
+      Origin = 'pedidos.comentario'
+      BlobType = ftMemo
+    end
+    object tblPedidosempleado_id: TIntegerField
+      FieldName = 'empleado_id'
+      Origin = 'pedidos.empleado_id'
+    end
+    object tblPedidosmonto: TFloatField
+      FieldName = 'monto'
+      Origin = 'pedidos.monto'
+      currency = True
+    end
+    object tblPedidostipo: TStringField
+      FieldName = 'tipo'
+      Origin = 'pedidos.tipo'
+    end
+  end
+  object dsPedidosClientes: TDataSource
+    AutoEdit = False
+    DataSet = tblClientes
+    Left = 304
+    Top = 128
+  end
+  object dsDetallesArticulos: TDataSource
+    AutoEdit = False
+    DataSet = cdsArticulos
+    Left = 176
+    Top = 344
+  end
+  object dsDetalles: TDataSource
+    DataSet = tblDetails
+    Left = 104
+    Top = 288
+  end
+  object cdsLinea: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'Articulo_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Cantidad'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Base'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Alto'
+        DataType = ftInteger
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    OnCalcFields = cdsLineaCalcFields
+    Left = 286
+    Top = 288
+    Data = {
+      590000009619E0BD01000000180000000400000000000300000059000B417274
+      6963756C6F5F696404000100000000000843616E746964616404000100000000
+      000442617365040001000000000004416C746F04000100000000000000}
+    object cdsLineaArticulo_id: TIntegerField
+      FieldName = 'Articulo_id'
+    end
+    object cdsLineaArticulo_Nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Articulo_Nombre'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'Articulo_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsLineaArticulo_UM: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Articulo_UM'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'um'
+      KeyFields = 'Articulo_id'
+      Size = 10
+      Lookup = True
+    end
+    object cdsLineaArticulo_Precio: TCurrencyField
+      FieldKind = fkLookup
+      FieldName = 'Precio'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'costo'
+      KeyFields = 'Articulo_id'
+      Lookup = True
+    end
+    object cdsLineaCantidad: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Cantidad'
+    end
+    object cdsLineaBase: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Base'
+    end
+    object cdsLineaAlto: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Alto'
+    end
+    object cdsLineaCntTotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'CntTotal'
+      Calculated = True
+    end
+    object cdsLineaSubtotal: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'Subtotal'
+      Calculated = True
+    end
+  end
+  object dsLinea: TDataSource
+    DataSet = cdsLinea
+    Left = 328
+    Top = 288
+  end
+  object dsLineas: TDataSource
+    DataSet = cdsLineas
+    Left = 328
+    Top = 352
+  end
+  object cdsLineas: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'Articulo_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Cantidad'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Base'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Alto'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Precio'
+        DataType = ftCurrency
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    OnCalcFields = cdsLineaCalcFields
+    Left = 277
+    Top = 352
+    Data = {
+      7C0000009619E0BD0100000018000000050000000000030000007C000B417274
+      6963756C6F5F696404000100000000000843616E746964616404000100000000
+      000442617365040001000000000004416C746F04000100000000000650726563
+      696F080004000000010007535542545950450200490006004D6F6E6579000000}
+    object IntegerField1: TIntegerField
+      FieldName = 'Articulo_id'
+    end
+    object cdsLineasArticulo_Nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Articulo_Nombre'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'articulo_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsLineasArticulo_UM: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Articulo_UM'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'UM'
+      KeyFields = 'articulo_id'
+      Size = 5
+      Lookup = True
+    end
+    object IntegerField4: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Cantidad'
+    end
+    object IntegerField2: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Base'
+    end
+    object IntegerField3: TIntegerField
+      DefaultExpression = '1'
+      FieldName = 'Alto'
+    end
+    object cdsLineasCntTotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'CntTotal'
+      Calculated = True
+    end
+    object CurrencyField2: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'Subtotal'
+      ReadOnly = True
+      Calculated = True
+    end
+    object cdsLineasPrecio: TCurrencyField
+      FieldName = 'Precio'
+    end
+  end
+  object cdsPedidos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nro'
+        DataType = ftInteger
+      end
+      item
+        Name = 'cliente_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'fecha'
+        DataType = ftDate
+      end
+      item
+        Name = 'fecha_requerido'
+        DataType = ftDate
+      end
+      item
+        Name = 'estado_id'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'comentario'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'empleado_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'tipo'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'fecha_ingreso'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    OnCalcFields = cdsPedidosCalcFields
+    OnNewRecord = cdsPedidosNewRecord
+    Left = 166
+    Top = 224
+    Data = {
+      EA0000009619E0BD01000000180000000A000000000003000000EA0002696404
+      00010000000000036E726F04000100000000000A636C69656E74655F69640400
+      01000000000005666563686104000600000000000F66656368615F7265717565
+      7269646F04000600000000000965737461646F5F696401004900000001000557
+      494454480200020014000A636F6D656E746172696F0100490000000100055749
+      4454480200020064000B656D706C6561646F5F69640400010000000000047469
+      706F01004900000001000557494454480200020014000D66656368615F696E67
+      7265736F08000800000000000000}
+    object cdsPedidosid: TIntegerField
+      FieldName = 'id'
+    end
+    object cdsPedidosnro: TIntegerField
+      FieldName = 'nro'
+      DisplayFormat = '0000-000000'
+    end
+    object cdsPedidoscliente_id: TIntegerField
+      FieldName = 'cliente_id'
+    end
+    object cdsPedidoscliente_nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_nombre'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'cliente_id'
+      Size = 50
+      Lookup = True
+    end
+    object cdsPedidoscliente_cuit: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_cuit'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'cuit'
+      KeyFields = 'cliente_id'
+      Size = 15
+      Lookup = True
+    end
+    object cdsPedidoscliente_domicilio: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_domicilio'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'domicilio'
+      KeyFields = 'cliente_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsPedidoscliente_telefono: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_telefono'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'telefono'
+      KeyFields = 'cliente_id'
+      Lookup = True
+    end
+    object cdsPedidosfecha: TDateField
+      FieldName = 'fecha'
+    end
+    object cdsPedidosfecha_requerido: TDateField
+      FieldName = 'fecha_requerido'
+    end
+    object cdsPedidosestado: TStringField
+      FieldName = 'estado_id'
+    end
+    object cdsPedidosforma_entrega: TStringField
+      DisplayWidth = 200
+      FieldName = 'comentario'
+      Size = 100
+    end
+    object cdsPedidosempleado_id: TIntegerField
+      FieldName = 'empleado_id'
+    end
+    object cdsPedidosmonto: TFloatField
+      DisplayLabel = 'Total'
+      FieldKind = fkCalculated
+      FieldName = 'monto'
+      currency = True
+      Calculated = True
+    end
+    object cdsPedidostipo: TStringField
+      FieldName = 'tipo'
+    end
+    object cdsPedidosestado2: TStringField
+      FieldKind = fkLookup
+      FieldName = 'estado'
+      LookupDataSet = tblEstados
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'estado_id'
+      Size = 30
+      Lookup = True
+    end
+    object cdsPedidosfecha_ingreso: TDateTimeField
+      FieldName = 'fecha_ingreso'
+    end
+  end
+  object dspPedidos: TDataSetProvider
+    DataSet = tblPedidos
+    Options = [poFetchDetailsOnDemand, poCascadeDeletes, poCascadeUpdates, poUseQuoteChar]
+    Left = 232
+    Top = 224
+  end
+  object dsPedidos: TDataSource
+    DataSet = tblPedidos
+    Left = 104
+    Top = 224
+  end
+  object dsAPedidos: TDataSource
+    DataSet = cdsPedidos
+    Left = 296
+    Top = 224
+  end
+  object tblEstados: TMyTable
+    TableName = 'estados'
+    Connection = cnxVM
+    Left = 96
+    Top = 440
+  end
+  object dsEstados: TDataSource
+    DataSet = tblEstados
+    Left = 152
+    Top = 440
+  end
+  object cdsArticuloPrecios: TClientDataSet
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nombre'
+        DataType = ftString
+        Size = 60
+      end
+      item
+        Name = 'costo'
+        DataType = ftFloat
+      end
+      item
+        Name = 'um'
+        DataType = ftString
+        Size = 10
+      end
+      item
+        Name = 'rubro_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'subrubro_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'descripcion'
+        DataType = ftString
+        Size = 240
+      end>
+    IndexDefs = <>
+    Params = <>
+    ProviderName = 'dspArticulos'
+    StoreDefs = True
+    Left = 232
+    Top = 80
+    object cdsArticuloPreciosid: TIntegerField
+      FieldName = 'id'
+    end
+    object cdsArticuloPreciosnombre: TStringField
+      FieldName = 'nombre'
+      Size = 60
+    end
+    object cdsArticuloPreciosum: TStringField
+      FieldName = 'um'
+      Size = 10
+    end
+    object cdsArticuloPrecioscosto: TFloatField
+      FieldName = 'costo'
+    end
+  end
+  object dsPrecios: TDataSource
+    DataSet = qryArticulos
+    Left = 320
+    Top = 496
+  end
+  object dsAVentas: TDataSource
+    DataSet = cdsVentas
+    Left = 264
+    Top = 168
+  end
+  object dsDetails: TDataSource
+    DataSet = cdsDetails
+    Left = 392
+    Top = 288
+  end
+  object dsVPedidos: TDataSource
+    AutoEdit = False
+    DataSet = cdsVPedidos
+    Left = 616
+    Top = 304
+  end
+  object dsVLineas: TDataSource
+    AutoEdit = False
+    DataSet = cdsVLineas
+    Left = 616
+    Top = 352
+  end
+  object pedidos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPedidos'
+    Left = 360
+    Top = 224
+    object pedidosid: TIntegerField
+      FieldName = 'id'
+    end
+    object pedidosnro: TIntegerField
+      FieldName = 'nro'
+    end
+    object pedidoscliente_id: TIntegerField
+      FieldName = 'cliente_id'
+    end
+    object pedidosfecha: TDateField
+      FieldName = 'fecha'
+    end
+    object pedidosfecha_ingreso: TDateTimeField
+      FieldName = 'fecha_ingreso'
+    end
+    object pedidosfecha_requerido: TDateField
+      FieldName = 'fecha_requerido'
+    end
+    object pedidosestado_id: TIntegerField
+      FieldName = 'estado_id'
+    end
+    object pedidoscomentario: TMemoField
+      FieldName = 'comentario'
+      BlobType = ftMemo
+    end
+    object pedidosempleado_id: TIntegerField
+      FieldName = 'empleado_id'
+    end
+    object pedidosmonto: TFloatField
+      FieldName = 'monto'
+    end
+    object pedidostipo: TStringField
+      FieldName = 'tipo'
+    end
+    object pedidoscliente_nombre: TStringField
+      FieldName = 'cliente_nombre'
+      ReadOnly = True
+      Size = 100
+    end
+    object pedidoscliente_cuit: TStringField
+      FieldName = 'cliente_cuit'
+      ReadOnly = True
+      Size = 18
+    end
+    object pedidoscliente_domicilio: TStringField
+      FieldName = 'cliente_domicilio'
+      ReadOnly = True
+      Size = 150
+    end
+    object pedidoscliente_telefono: TStringField
+      FieldName = 'cliente_telefono'
+      ReadOnly = True
+      Size = 15
+    end
+    object pedidosestado: TStringField
+      FieldName = 'estado'
+      ReadOnly = True
+      Size = 15
+    end
+    object pedidoscdsDetails: TDataSetField
+      FieldName = 'cdsDetails'
+    end
+    object pedidostblDetails: TDataSetField
+      FieldName = 'tblDetails'
+    end
+  end
+  object cdsVPedidos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nro'
+        DataType = ftInteger
+      end
+      item
+        Name = 'cliente_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'fecha'
+        DataType = ftDate
+      end
+      item
+        Name = 'fecha_ingreso'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'fecha_requerido'
+        DataType = ftDate
+      end
+      item
+        Name = 'estado_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'comentario'
+        DataType = ftMemo
+      end
+      item
+        Name = 'empleado_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'monto'
+        DataType = ftFloat
+      end
+      item
+        Name = 'tipo'
+        DataType = ftString
+        Size = 20
+      end>
+    IndexDefs = <
+      item
+        Name = 'DEFAULT_ORDER'
+        DescFields = 'fecha'
+        Fields = 'fecha;id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'PRIMARY_KEY'
+        Fields = 'id'
+        Options = [ixUnique]
+      end
+      item
+        Name = 'CHANGEINDEX'
+      end>
+    IndexFieldNames = 'nro'
+    Params = <>
+    ProviderName = 'dspPedidos'
+    StoreDefs = True
+    Left = 552
+    Top = 304
+    object cdsVPedidosid: TIntegerField
+      FieldName = 'id'
+      Origin = 'pedidos.id'
+    end
+    object cdsVPedidosnro: TIntegerField
+      FieldName = 'nro'
+      Origin = 'pedidos.nro'
+    end
+    object cdsVPedidoscliente_id: TIntegerField
+      FieldName = 'cliente_id'
+      Origin = 'pedidos.cliente_id'
+    end
+    object cdsVPedidosfecha: TDateField
+      FieldName = 'fecha'
+      Origin = 'pedidos.fecha'
+    end
+    object cdsVPedidosfecha_ingreso: TDateTimeField
+      FieldName = 'fecha_ingreso'
+      Origin = 'pedidos.fecha_ingreso'
+    end
+    object cdsVPedidosfecha_requerido: TDateField
+      FieldName = 'fecha_requerido'
+      Origin = 'pedidos.fecha_requerido'
+    end
+    object cdsVPedidosestado_id: TIntegerField
+      FieldName = 'estado_id'
+      Origin = 'pedidos.estado_id'
+    end
+    object cdsVPedidoscomentario: TMemoField
+      FieldName = 'comentario'
+      Origin = 'pedidos.comentario'
+      BlobType = ftMemo
+    end
+    object cdsVPedidosempleado_id: TIntegerField
+      FieldName = 'empleado_id'
+      Origin = 'pedidos.empleado_id'
+    end
+    object cdsVPedidosmonto: TFloatField
+      FieldName = 'monto'
+      Origin = 'pedidos.monto'
+      currency = True
+    end
+    object cdsVPedidostipo: TStringField
+      FieldName = 'tipo'
+      Origin = 'pedidos.tipo'
+    end
+    object cdsVPedidoscliente_nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_nombre'
+      LookupDataSet = cdsClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'cliente_id'
+      Size = 50
+      Lookup = True
+    end
+    object cdsVPedidoscliente_domicilio: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_domicilio'
+      LookupDataSet = cdsClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'domicilio'
+      KeyFields = 'cliente_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsVPedidoscliente_cuit: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_cuit'
+      LookupDataSet = cdsClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'cuit'
+      KeyFields = 'cliente_id'
+      Lookup = True
+    end
+    object cdsVPedidoscliente_telefono: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_telefono'
+      LookupDataSet = cdsClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'telefono'
+      KeyFields = 'cliente_id'
+      Size = 15
+      Lookup = True
+    end
+  end
+  object cdsVLineas: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'pedido_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'articulo_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'cantidad'
+        DataType = ftInteger
+      end
+      item
+        Name = 'base'
+        DataType = ftInteger
+      end
+      item
+        Name = 'alto'
+        DataType = ftInteger
+      end
+      item
+        Name = 'precio'
+        DataType = ftFloat
+      end
+      item
+        Name = 'estado'
+        DataType = ftString
+        Size = 1
+      end>
+    IndexDefs = <>
+    IndexFieldNames = 'pedido_id'
+    MasterFields = 'id'
+    MasterSource = dsVPedidos
+    PacketRecords = 0
+    Params = <>
+    ProviderName = 'dspDetalles'
+    StoreDefs = True
+    OnCalcFields = cdsLineaCalcFields
+    Left = 560
+    Top = 352
+    object cdsVLineasid: TIntegerField
+      FieldName = 'id'
+      Origin = 'detalles.id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsVLineaspedido_id: TIntegerField
+      FieldName = 'pedido_id'
+      Origin = 'detalles.pedido_id'
+    end
+    object cdsVLineasarticulo_id: TIntegerField
+      FieldName = 'articulo_id'
+      Origin = 'detalles.articulo_id'
+    end
+    object cdsVLineascantidad: TIntegerField
+      FieldName = 'cantidad'
+      Origin = 'detalles.cantidad'
+    end
+    object cdsVLineasbase: TIntegerField
+      FieldName = 'base'
+      Origin = 'detalles.base'
+    end
+    object cdsVLineasalto: TIntegerField
+      FieldName = 'alto'
+      Origin = 'detalles.alto'
+    end
+    object cdsVLineasprecio: TFloatField
+      FieldName = 'precio'
+      Origin = 'detalles.precio'
+      currency = True
+    end
+    object cdsVLineasestado: TStringField
+      FieldName = 'estado'
+      Origin = 'detalles.estado'
+      Size = 1
+    end
+    object cdsVLineasarticulo_nombre: TStringField
+      FieldKind = fkLookup
+      FieldName = 'articulo_nombre'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'articulo_id'
+      Size = 80
+      Lookup = True
+    end
+    object cdsVLineasarticulo_um: TStringField
+      FieldKind = fkLookup
+      FieldName = 'articulo_um'
+      LookupDataSet = cdsArticulos
+      LookupKeyFields = 'id'
+      LookupResultField = 'um'
+      KeyFields = 'articulo_id'
+      Size = 5
+      Lookup = True
+    end
+    object cdsVLineasCntTotal: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'CntTotal'
+      Calculated = True
+    end
+    object cdsVLineassubtotal: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'subtotal'
+      Calculated = True
+    end
+  end
+  object cdsBPedidos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nro'
+        DataType = ftInteger
+      end
+      item
+        Name = 'cliente_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'fecha'
+        DataType = ftDate
+      end
+      item
+        Name = 'fecha_ingreso'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'fecha_requerido'
+        DataType = ftDate
+      end
+      item
+        Name = 'estado_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'comentario'
+        DataType = ftMemo
+      end
+      item
+        Name = 'empleado_id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'monto'
+        DataType = ftFloat
+      end
+      item
+        Name = 'tipo'
+        DataType = ftString
+        Size = 20
+      end>
+    IndexDefs = <>
+    Params = <>
+    ProviderName = 'dspPedidos'
+    StoreDefs = True
+    OnNewRecord = cdsBPedidosNewRecord
+    Left = 414
+    Top = 224
+    object IntegerField5: TIntegerField
+      FieldName = 'id'
+      Origin = 'pedidos.id'
+    end
+    object IntegerField6: TIntegerField
+      FieldName = 'nro'
+      Origin = 'pedidos.nro'
+      DisplayFormat = '0000-000000'
+    end
+    object IntegerField7: TIntegerField
+      FieldName = 'cliente_id'
+      Origin = 'pedidos.cliente_id'
+    end
+    object StringField1: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_nombre'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'cliente_id'
+      Size = 50
+      Lookup = True
+    end
+    object StringField2: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_cuit'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'cuit'
+      KeyFields = 'cliente_id'
+      Size = 15
+      Lookup = True
+    end
+    object StringField3: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_domicilio'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'domicilio'
+      KeyFields = 'cliente_id'
+      Size = 80
+      Lookup = True
+    end
+    object StringField4: TStringField
+      FieldKind = fkLookup
+      FieldName = 'cliente_telefono'
+      LookupDataSet = tblClientes
+      LookupKeyFields = 'id'
+      LookupResultField = 'telefono'
+      KeyFields = 'cliente_id'
+      Lookup = True
+    end
+    object DateField1: TDateField
+      FieldName = 'fecha'
+      Origin = 'pedidos.fecha'
+    end
+    object DateField2: TDateField
+      FieldName = 'fecha_requerido'
+      Origin = 'pedidos.fecha_requerido'
+    end
+    object IntegerField8: TIntegerField
+      FieldName = 'empleado_id'
+      Origin = 'pedidos.empleado_id'
+    end
+    object FloatField1: TFloatField
+      DisplayLabel = 'Total'
+      FieldName = 'monto'
+      Origin = 'pedidos.monto'
+      currency = True
+    end
+    object StringField7: TStringField
+      FieldName = 'tipo'
+      Origin = 'pedidos.tipo'
+    end
+    object StringField8: TStringField
+      FieldKind = fkLookup
+      FieldName = 'estado'
+      LookupDataSet = tblEstados
+      LookupKeyFields = 'id'
+      LookupResultField = 'nombre'
+      KeyFields = 'estado_id'
+      Size = 30
+      Lookup = True
+    end
+    object DateTimeField1: TDateTimeField
+      FieldName = 'fecha_ingreso'
+      Origin = 'pedidos.fecha_ingreso'
+    end
+    object cdsBPedidosestado_id: TIntegerField
+      FieldName = 'estado_id'
+      Origin = 'pedidos.estado_id'
+    end
+    object cdsBPedidoscomentario: TMemoField
+      FieldName = 'comentario'
+      Origin = 'pedidos.comentario'
+      BlobType = ftMemo
+    end
+  end
+  object dsBPedidos: TDataSource
+    DataSet = cdsBPedidos
+    Left = 416
+    Top = 168
+  end
+  object dsRubros: TDataSource
+    DataSet = qryRubros
+    Left = 584
+    Top = 80
+  end
+  object qryUpdatePrecios: TMyQuery
+    Connection = cnxVM
+    SQL.Strings = (
+      'UPDATE articulos'
+      'SET costo = costo * :pcosto,'
+      'vcosto1 = :pvcosto1,'
+      'vcosto2 = :pvcosto2,'
+      'vcosto3 = :pvcosto3,'
+      'vcosto4 = :pvcosto4,'
+      'WHERE idrubro = :pidrubro'
+      'AND idsubrubro = :pidsubrubro'
+      'AND idarticulo BETWEEN :piddesde AND :pidhasta')
+    Left = 472
+    Top = 360
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'pcosto'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pvcosto1'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pvcosto2'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pvcosto3'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pvcosto4'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pidrubro'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pidsubrubro'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'piddesde'
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pidhasta'
+      end>
+  end
+  object qryRubros: TMyTable
+    TableName = 'categorias'
+    OrderFields = 'id'
+    Connection = cnxVM
+    Left = 448
+    Top = 80
+  end
+  object dspCategorias: TDataSetProvider
+    DataSet = qryRubros
+    Left = 512
+    Top = 40
+  end
+  object cdsCategorias: TClientDataSet
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'id'
+        DataType = ftInteger
+      end
+      item
+        Name = 'nombre'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'parent'
+        DataType = ftInteger
+      end>
+    IndexDefs = <>
+    Params = <>
+    ProviderName = 'dspCategorias'
+    StoreDefs = True
+    Left = 520
+    Top = 88
   end
 end

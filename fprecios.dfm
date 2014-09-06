@@ -1,193 +1,162 @@
 inherited frmPrecios: TfrmPrecios
-  AutoSize = True
   Caption = 'Actualizacion de Precios'
-  ClientHeight = 378
-  ClientWidth = 668
+  ClientHeight = 494
+  ClientWidth = 790
   OnActivate = FormActivate
-  ExplicitWidth = 684
-  ExplicitHeight = 416
+  ExplicitWidth = 798
+  ExplicitHeight = 521
   PixelsPerInch = 96
-  TextHeight = 19
+  TextHeight = 15
   object pnlMain: TPanel
     Left = 0
     Top = 0
-    Width = 668
-    Height = 378
+    Width = 782
+    Height = 486
     TabOrder = 0
-    object Label1: TLabel
-      Left = 23
-      Top = 28
-      Width = 46
-      Height = 19
-      Caption = 'Rubro: '
-    end
-    object Label2: TLabel
-      Left = 23
-      Top = 67
-      Width = 69
-      Height = 19
-      Caption = 'SubRubro: '
-    end
-    object Label3: TLabel
-      Left = 23
-      Top = 110
-      Width = 45
-      Height = 19
-      Caption = 'Rango:'
-    end
-    object Label4: TLabel
-      Left = 221
-      Top = 110
-      Width = 32
-      Height = 19
-      Caption = '  de  '
-    end
-    object Label5: TLabel
-      Left = 25
-      Top = 156
-      Width = 45
-      Height = 19
-      Caption = 'Costo: '
-    end
-    object Label6: TLabel
-      Left = 25
-      Top = 206
-      Width = 56
-      Height = 19
-      Caption = 'Calculo: '
-    end
-    object JvDBSearchComboBox1: TJvDBSearchComboBox
-      Left = 105
-      Top = 23
-      Width = 388
-      Height = 27
-      DataField = 'rubro'
-      DataResult = 'idrubro'
-      DataSource = dm.dsRubros
-      AutoDropDown = True
-      Style = csDropDownList
-      ItemHeight = 19
-      TabOrder = 0
-      Text = 'VIDRIOS'
-    end
-    object JvDBSearchComboBox2: TJvDBSearchComboBox
-      Left = 105
-      Top = 63
-      Width = 388
-      Height = 27
-      DataField = 'subrubro'
-      DataResult = 'idsubrubro'
-      DataSource = dsSubRubros
-      AutoDropDown = True
-      Style = csDropDownList
-      ItemHeight = 19
-      TabOrder = 1
-      Text = 'FLOAT COLOR'
-    end
     object btnAlicar: TBitBtn
-      Left = 398
-      Top = 320
+      Left = 544
+      Top = 440
       Width = 109
       Height = 37
       Caption = 'Aplicar'
-      TabOrder = 2
-      OnClick = btnAlicarClick
-    end
-    object edtDesde: TSpinEdit
-      Left = 105
-      Top = 105
-      Width = 95
-      Height = 29
-      MaxValue = 0
-      MinValue = 0
-      TabOrder = 3
-      Value = 1
-    end
-    object edtHasta: TSpinEdit
-      Left = 289
-      Top = 105
-      Width = 95
-      Height = 29
-      MaxValue = 0
-      MinValue = 0
-      TabOrder = 4
-      Value = 999
-    end
-    object edtCosto: TDBEdit
-      Left = 105
-      Top = 152
-      Width = 95
-      Height = 27
-      DataField = 'costo'
-      DataSource = dsHPrecios
-      TabOrder = 5
+      TabOrder = 0
     end
     object edtVCosto1: TDBEdit
-      Left = 105
-      Top = 202
+      Left = 619
+      Top = 69
       Width = 95
-      Height = 27
+      Height = 23
       DataField = 'vcosto1'
-      DataSource = dsHPrecios
-      TabOrder = 6
+      TabOrder = 1
     end
     object edtVCosto2: TDBEdit
-      Left = 105
-      Top = 241
+      Left = 619
+      Top = 98
       Width = 95
-      Height = 27
+      Height = 23
       DataField = 'vcosto2'
-      DataSource = dsHPrecios
-      TabOrder = 7
+      TabOrder = 2
     end
     object edtVCosto3: TDBEdit
-      Left = 105
-      Top = 281
+      Left = 720
+      Top = 69
       Width = 95
-      Height = 27
+      Height = 23
       DataField = 'vcosto3'
-      DataSource = dsHPrecios
-      TabOrder = 8
+      TabOrder = 3
     end
     object edtVCosto4: TDBEdit
-      Left = 105
-      Top = 320
+      Left = 720
+      Top = 98
       Width = 95
-      Height = 27
+      Height = 23
       DataField = 'vcosto4'
-      DataSource = dsHPrecios
-      TabOrder = 9
-    end
-    object rgpMulti: TRadioGroup
-      Left = 244
-      Top = 156
-      Width = 118
-      Height = 95
-      Caption = 'Valores en'
-      ItemIndex = 0
-      Items.Strings = (
-        '%'
-        '$')
-      TabOrder = 10
+      TabOrder = 4
     end
     object btnCancelar: TBitBtn
-      Left = 516
-      Top = 320
+      Left = 659
+      Top = 440
       Width = 110
       Height = 37
       Caption = 'Cancelar'
       ModalResult = 2
-      TabOrder = 11
+      TabOrder = 5
     end
-  end
-  object dsSubRubros: TDataSource
-    DataSet = dm.qrySubRubros
-    Left = 360
-    Top = 24
-  end
-  object dsHPrecios: TDataSource
-    DataSet = dm.tblHPrecios
-    Left = 360
-    Top = 64
+    object JvRadioGroup1: TJvRadioGroup
+      Left = 211
+      Top = 16
+      Width = 180
+      Height = 89
+      Caption = 'Base para Calculo '
+      ItemIndex = 0
+      Items.Strings = (
+        'Precio Venta'
+        'Costo Compra')
+      TabOrder = 6
+      CaptionVisible = True
+    end
+    object JvRadioGroup2: TJvRadioGroup
+      Left = 397
+      Top = 16
+      Width = 180
+      Height = 89
+      Caption = 'Tipo de Actualizacion '
+      ItemIndex = 0
+      Items.Strings = (
+        'Lineal'
+        'Porcentual')
+      TabOrder = 7
+      CaptionVisible = True
+    end
+    object dbgPrecios: TDBGrid
+      Left = 211
+      Top = 127
+      Width = 553
+      Height = 307
+      DataSource = dm.dsPrecios
+      TabOrder = 8
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -13
+      TitleFont.Name = 'Calibri'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'id'
+          Title.Alignment = taCenter
+          Title.Caption = 'Cod'
+          Width = 50
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nombre'
+          Title.Alignment = taCenter
+          Title.Caption = 'Articulo'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'um'
+          Title.Alignment = taCenter
+          Title.Caption = 'UM'
+          Width = 50
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'costo'
+          Title.Alignment = taCenter
+          Title.Caption = 'Costo'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'precio'
+          Title.Alignment = taCenter
+          Title.Caption = 'Precio'
+          Visible = True
+        end>
+    end
+    object JvDBTreeView1: TJvDBTreeView
+      Left = 1
+      Top = 1
+      Width = 193
+      Height = 484
+      DataSource = dm.dsRubros
+      MasterField = 'id'
+      DetailField = 'parent'
+      IconField = 'id'
+      ItemField = 'nombre'
+      StartMasterValue = '0'
+      UseFilter = False
+      PersistentNode = True
+      Indent = 19
+      Align = alLeft
+      TabOrder = 9
+      RowSelect = True
+      Mirror = False
+    end
   end
 end
